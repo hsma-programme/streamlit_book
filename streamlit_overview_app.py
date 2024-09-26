@@ -16,7 +16,7 @@ st.set_page_config(layout="wide")
 show_code = st.toggle("Click to show or hide the code", value=True)
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs(
-    ["Text, Headers, Markdown and Messages",
+    ["Headers, Text, Markdown and Messages",
     "User Inputs",
     "Dataframes, Charts, Metrics and Maps",
     "Upload and Download Buttons",
@@ -24,6 +24,40 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(
     ])
 
 with tab1:
+
+    if show_code:
+        st.code(
+    '''
+    st.header("Titles and text")
+
+    st.title("This is a title")
+
+    st.header("This is a header")
+
+    st.subheader("This is a subheader")
+
+    st.text("This is text")
+
+    st.write("This is text produced with the st.write command")
+
+    st.header("Markdown")
+
+    '''
+        )
+
+    st.header("Titles and text")
+
+    st.title("This is a title")
+
+    st.header("This is a header")
+
+    st.subheader("This is a subheader")
+
+    st.text("This is text")
+
+    st.write("This is text produced with the st.write command")
+
+    st.header("Markdown")
 
     if show_code:
         st.code(
