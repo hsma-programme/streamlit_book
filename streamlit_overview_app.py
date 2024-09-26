@@ -134,6 +134,8 @@ with tab1:
     of different numbers of newlines between the lines.
     """)
 
+    st.header("Messages")
+
     if show_code:
         st.code(
     '''
