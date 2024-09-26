@@ -134,6 +134,19 @@ with tab1:
     of different numbers of newlines between the lines.
     """)
 
+    if show_code:
+        st.code(
+    '''
+    st.error("This is an error")
+
+    st.warning("This is a warning")
+
+    st.success("This is a good message")
+
+    st.info("This is an informational message")
+    '''
+        )
+
     st.error("This is an error")
 
     st.warning("This is a warning")
