@@ -1,5 +1,53 @@
 ---
-title: "(Coming Soon!) Editable Dataframes"
+title: "Editable Dataframes"
 filters:
   - whitphx/stlite
 ---
+
+
+Any pandas dataframe can be turned into an editable dataframe using the `st.data_editor()` function.
+
+This displays the dataframe in a very similar manner to `st.dataframe()` but allows users to also click in and edit individual cells.
+
+In the example below, try changing the value in the top left cell and see how it updates the values printed out in the app.
+
+This is possible because we save the output of the `st.data_editor()` function to a different variable, allowing us to access the updated dataframe and use it just like we would any normal dataframe.
+
+```{stlite-python}
+import micropip
+await micropip.install("setuptools")
+await micropip.install("palmerpenguins")
+import pandas as pd
+from palmerpenguins import load_penguins
+import streamlit as st
+
+penguins_df = load_penguins()
+
+penguins_df_edited = st.data_editor(penguins_df)
+
+st.write(f"The value in row 1 cell 1 is {penguins_df.head(1)['species'].values[0]}")
+st.write(f"The value in row 1 cell 1 of the edited dataframe is {penguins_df_edited.head(1)['species'].values[0]}")
+```
+
+```{python}
+#| eval: false
+import pandas #| as pd
+from palmerpenguins import load_penguins
+import streamlit as st
+
+penguins_df = pd.read_csv("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/penguins_df.csv")
+
+penguins_df_edited = st.data_editor(penguins_df)
+
+st.write(f"The value in row 1 cell 1 is {penguins_df.head(1)['species'].values[0]}")
+
+st.write(f"The value in row 1 cell 1 of the edited dataframe is {penguins_df_edited.head(1)['species'].values[0]}")
+```
+
+:::{.callout-warning}
+You will want to make it clear to your users that changes to their dataframe will not be saved after they close or refresh the browser.
+
+You will either need to use a more advanced method to write the changes in the dataframe to some sort of persistent storage, like a SQL database, or just provide a way for users to easily save their updated dataframe if relevant.
+
+While you could also save and load to the same .csv file, you may find that having multiple people accessing the web app at once could cause signficant confusion - so if you find yourself needing to edit dataframes that also need to persist afterwards, make sure you consider whether other alternatives may exist.
+:::

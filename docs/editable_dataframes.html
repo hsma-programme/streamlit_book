@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HSMA - Web Apps with Streamlit - 17&nbsp; (Coming Soon!) Editable Dataframes</title>
+<title>HSMA - Web Apps with Streamlit - 17&nbsp; Editable Dataframes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -44,6 +78,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/stlite/iframeResizer.min.js"></script>
+<script src="site_libs/quarto-contrib/stlite/stlite.js"></script>
+<link href="site_libs/quarto-contrib/stlite/style.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction_to_inputs.html">User Inputs</a></li><li class="breadcrumb-item"><a href="./editable_dataframes.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">(Coming Soon!) Editable Dataframes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction_to_inputs.html">User Inputs</a></li><li class="breadcrumb-item"><a href="./editable_dataframes.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -271,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./editable_dataframes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">(Coming Soon!) Editable Dataframes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></span></a>
   </div>
 </li>
       </ul>
@@ -573,9 +610,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction_to_inputs.html">User Inputs</a></li><li class="breadcrumb-item"><a href="./editable_dataframes.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">(Coming Soon!) Editable Dataframes</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction_to_inputs.html">User Inputs</a></li><li class="breadcrumb-item"><a href="./editable_dataframes.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">(Coming Soon!) Editable Dataframes</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></h1>
 </div>
 
 
@@ -592,6 +629,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Any pandas dataframe can be turned into an editable dataframe using the <code>st.data_editor()</code> function.</p>
+<p>This displays the dataframe in a very similar manner to <code>st.dataframe()</code> but allows users to also click in and edit individual cells.</p>
+<p>In the example below, try changing the value in the top left cell and see how it updates the values printed out in the app.</p>
+<p>This is possible because we save the output of the <code>st.data_editor()</code> function to a different variable, allowing us to access the updated dataframe and use it just like we would any normal dataframe.</p>
+<iframe src="https://share.stlite.net/?embed=true#code=import%20micropip%0Aawait%20micropip.install%28%22setuptools%22%29%0Aawait%20micropip.install%28%22palmerpenguins%22%29%0Aimport%20pandas%20as%20pd%0Afrom%20palmerpenguins%20import%20load_penguins%0Aimport%20streamlit%20as%20st%0A%0Apenguins_df%20%3D%20load_penguins%28%29%0A%0Apenguins_df_edited%20%3D%20st.data_editor%28penguins_df%29%0A%0Ast.write%28f%22The%20value%20in%20row%201%20cell%201%20is%20%7Bpenguins_df.head%281%29%5B%27species%27%5D.values%5B0%5D%7D%22%29%0Ast.write%28f%22The%20value%20in%20row%201%20cell%201%20of%20the%20edited%20dataframe%20is%20%7Bpenguins_df_edited.head%281%29%5B%27species%27%5D.values%5B0%5D%7D%22%29
+
+" class="stlite"></iframe>
+<div id="6c4de32e" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="co">#| as pd</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>penguins_df <span class="op">=</span> pd.read_csv(<span class="st">"https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/penguins_df.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>penguins_df_edited <span class="op">=</span> st.data_editor(penguins_df)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>st.write(<span class="ss">f"The value in row 1 cell 1 is </span><span class="sc">{</span>penguins_df<span class="sc">.</span>head(<span class="dv">1</span>)[<span class="st">'species'</span>]<span class="sc">.</span>values[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>st.write(<span class="ss">f"The value in row 1 cell 1 of the edited dataframe is </span><span class="sc">{</span>penguins_df_edited<span class="sc">.</span>head(<span class="dv">1</span>)[<span class="st">'species'</span>]<span class="sc">.</span>values[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You will want to make it clear to your users that changes to their dataframe will not be saved after they close or refresh the browser.</p>
+<p>You will either need to use a more advanced method to write the changes in the dataframe to some sort of persistent storage, like a SQL database, or just provide a way for users to easily save their updated dataframe if relevant.</p>
+<p>While you could also save and load to the same .csv file, you may find that having multiple people accessing the web app at once could cause signficant confusion - so if you find yourself needing to edit dataframes that also need to persist afterwards, make sure you consider whether other alternatives may exist.</p>
+</div>
+</div>
 
 
 
