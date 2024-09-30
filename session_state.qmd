@@ -180,5 +180,6 @@ except:
 The sample app linked below also uses a concept known as `callbacks`, which is often used with session state, to make the button increment work. Head to the callbacks chapter to find out more!
 :::
 
-```{=html} <iframe width="780" height="800" src="https://session-state-callbacks-examples-hsma.streamlit.app/" title="Session State example"></iframe>
+```{=html}
+<iframe width="780" height="800" src="https://session-state-callbacks-examples-hsma.streamlit.app/" title="Session State example"></iframe>
 ```

@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./editable_dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">(Coming Soon!) Editable Dataframes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></span></a>
   </div>
 </li>
       </ul>
@@ -445,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./partial_reruns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns (fragments)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -468,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./caching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">(Coming Soon!) Caching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Reducing Load Time with Caching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -677,7 +677,7 @@ Tip
 </ul>
 </div>
 </div>
-<div id="af66a049" class="cell" data-execution_count="1">
+<div id="f27e3129" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'your_number'</span> <span class="kw">not</span> <span class="kw">in</span> st.session_state:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    st.session_state.your_number <span class="op">=</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -686,7 +686,7 @@ Tip
 <h2 data-number="36.2" class="anchored" data-anchor-id="assigning-to-session-state-keys"><span class="header-section-number">36.2</span> Assigning to session state keys</h2>
 <p>Session state can be used to store a range of things.</p>
 <p>It can store the input given in a user input widget:</p>
-<div id="01eae664" class="cell" data-execution_count="2">
+<div id="cfc9693e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>st.session_state.your_number <span class="op">=</span> st.number_input(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Pick a number between 1 and 100"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    min_value<span class="op">=</span><span class="dv">1</span>, max_value<span class="op">=</span><span class="dv">100</span>, value<span class="op">=</span><span class="va">None</span></span>
@@ -711,11 +711,11 @@ A note about assigning inputs to session state like this
 </div>
 </div>
 <p>Or the result of a calculation (whether that’s a number, a dataframe, a graph, or something else)</p>
-<div id="22d89826" class="cell" data-execution_count="3">
+<div id="15832563" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>st.session_state.the_final_answer <span class="op">=</span> result <span class="op">*</span> <span class="dv">42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The thing you’re saving to the state could itself optionally use something stored in the session state!</p>
-<div id="efd4aa0e" class="cell" data-execution_count="4">
+<div id="6a50ade8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>st.session_state.the_final_answer <span class="op">=</span> st.session_state.your_number <span class="op">*</span> <span class="dv">42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -733,7 +733,7 @@ A note about assigning inputs to session state like this
 <p>Try comparing the behaviour when moving between the different pages of the app.</p>
 <section id="app.py" class="level3" data-number="36.4.1">
 <h3 data-number="36.4.1" class="anchored" data-anchor-id="app.py"><span class="header-section-number">36.4.1</span> app.py</h3>
-<div id="d9524f21" class="cell" data-execution_count="6">
+<div id="da9bf41c" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pg <span class="op">=</span> st.navigation([</span>
@@ -746,7 +746,7 @@ A note about assigning inputs to session state like this
 </section>
 <section id="page_1.py" class="level3" data-number="36.4.2">
 <h3 data-number="36.4.2" class="anchored" data-anchor-id="page_1.py"><span class="header-section-number">36.4.2</span> page_1.py</h3>
-<div id="03a766ac" class="cell" data-execution_count="7">
+<div id="bffa7830" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'your_number'</span> <span class="kw">not</span> <span class="kw">in</span> st.session_state:</span>
@@ -773,7 +773,7 @@ A note about assigning inputs to session state like this
 </section>
 <section id="page_2.py" class="level3" data-number="36.4.3">
 <h3 data-number="36.4.3" class="anchored" data-anchor-id="page_2.py"><span class="header-section-number">36.4.3</span> page_2.py</h3>
-<div id="8b2aa3e5" class="cell" data-execution_count="8">
+<div id="ad8a0d7b" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'your_number'</span> <span class="kw">not</span> <span class="kw">in</span> st.session_state:</span>
@@ -811,7 +811,7 @@ Note
 <p>The sample app linked below also uses a concept known as <code>callbacks</code>, which is often used with session state, to make the button increment work. Head to the callbacks chapter to find out more!</p>
 </div>
 </div>
-<p><code>{=html} &lt;iframe width="780" height="800" src="https://session-state-callbacks-examples-hsma.streamlit.app/" title="Session State example"&gt;&lt;/iframe&gt;</code></p>
+<iframe width="780" height="800" src="https://session-state-callbacks-examples-hsma.streamlit.app/" title="Session State example"></iframe>
 
 
 </section>
@@ -1710,8 +1710,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./caching.html" class="pagination-link" aria-label="(Coming Soon!) Caching">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">(Coming Soon!) Caching</span></span>
+      <a href="./caching.html" class="pagination-link" aria-label="Reducing Load Time with Caching">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Reducing Load Time with Caching</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
