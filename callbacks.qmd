@@ -1,5 +1,79 @@
 ---
-title: "(Coming Soon!) Callbacks"
+title: "Callbacks"
 filters:
   - whitphx/stlite
 ---
+
+Callbacks are custom functions that will execute when a user interacts with an input.
+
+They are often used in conjunction with session state.
+
+For example - we could increment a counter every time the user clicks on a button.
+
+![](assets/callback_gif.gif)
+
+:::{.callout-tip}
+In standard Streamlit, this would be impossible because it would forget that you clicked the button every time you did so!
+
+Callbacks + session state get around that problem.
+:::
+
+## Callbacks Code Example
+
+To begin, we initialise our session state variable like before.
+
+```{python}
+#| eval: false
+
+if 'button_click_count' not in st.session_state:
+  st.session_state.button_click_count = None
+```
+
+Next, we define our callback function.
+
+```{python}
+#| eval: false
+
+def button_action():
+  st.session_state.button_click_count += 1
+```
+
+We associate the callback with the relevant input, using the ‘on_click’ or ‘on_change’ parameter as appropriate.
+
+In this case, it will mean that `on_click` (i.e. every time the user clicks on the button), the function `button_action` that we just defined will run. This function will add 1 to the count of button clicks we are storing in a session state key, which means it will persist between runs of the app and across app pages. Therefore, rather than the count resetting to 0 each time the button is clicked as it would if we weren't using the session state, it will instead gradually increase the count.
+
+:::{.callout-warning}
+The value of the `button_click_count` session state variable will reset when the user closes the browser tab or refreshes it.
+:::
+
+```{python}
+#| eval: false
+
+add_number_button = st.button(
+  "Click me!",
+  on_click=button_action
+)
+```
+
+Finally, we use our session state variable as we want to!
+
+```{python}
+#| eval: false
+
+st.write(f"You've clicked the button {st.session_state.button_click_count} times")
+```
+
+```{=html}
+<iframe width="780" height="500" src="https://hsma-session-state-callbacks.streamlit.app?embed=true" title="Session State and Callbacks App Example"></iframe>
+```
+
+[Click here to load the app in a new page](https://hsma-session-state-callbacks.streamlit.app/)
+
+
+## More detail on callbacks
+
+While the ways mentioned here should work in most simple cases, you may want to take a look into the documentation to fully get your head around the power of state and callbacks.
+
+<https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state>
+
+* It’s technically better practice to use the on_change callback if you’re storing the value of an input widget in session state - but just assigning it directly works in most cases

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HSMA - Web Apps with Streamlit - 37&nbsp; (Coming Soon!) Callbacks</title>
+<title>HSMA - Web Apps with Streamlit - 37&nbsp; Callbacks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -110,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./caching.html">Advanced Concepts</a></li><li class="breadcrumb-item"><a href="./callbacks.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">(Coming Soon!) Callbacks</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./caching.html">Advanced Concepts</a></li><li class="breadcrumb-item"><a href="./callbacks.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Callbacks</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -271,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./editable_dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">(Coming Soon!) Editable Dataframes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></span></a>
   </div>
 </li>
       </ul>
@@ -411,7 +445,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./partial_reruns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns (fragments)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -434,7 +468,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./caching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">(Coming Soon!) Caching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Reducing Load Time with Caching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -446,7 +480,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./callbacks.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">(Coming Soon!) Callbacks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Callbacks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -568,14 +602,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#callbacks-code-example" id="toc-callbacks-code-example" class="nav-link active" data-scroll-target="#callbacks-code-example"><span class="header-section-number">37.1</span> Callbacks Code Example</a></li>
+  <li><a href="#more-detail-on-callbacks" id="toc-more-detail-on-callbacks" class="nav-link" data-scroll-target="#more-detail-on-callbacks"><span class="header-section-number">37.2</span> More detail on callbacks</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./caching.html">Advanced Concepts</a></li><li class="breadcrumb-item"><a href="./callbacks.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">(Coming Soon!) Callbacks</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./caching.html">Advanced Concepts</a></li><li class="breadcrumb-item"><a href="./callbacks.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Callbacks</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">(Coming Soon!) Callbacks</span></h1>
+<h1 class="title"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Callbacks</span></h1>
 </div>
 
 
@@ -592,8 +633,74 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Callbacks are custom functions that will execute when a user interacts with an input.</p>
+<p>They are often used in conjunction with session state.</p>
+<p>For example - we could increment a counter every time the user clicks on a button.</p>
+<p><img src="assets/callback_gif.gif" class="img-fluid"></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In standard Streamlit, this would be impossible because it would forget that you clicked the button every time you did so!</p>
+<p>Callbacks + session state get around that problem.</p>
+</div>
+</div>
+<section id="callbacks-code-example" class="level2" data-number="37.1">
+<h2 data-number="37.1" class="anchored" data-anchor-id="callbacks-code-example"><span class="header-section-number">37.1</span> Callbacks Code Example</h2>
+<p>To begin, we initialise our session state variable like before.</p>
+<div id="6f7cf011" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'button_click_count'</span> <span class="kw">not</span> <span class="kw">in</span> st.session_state:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  st.session_state.button_click_count <span class="op">=</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we define our callback function.</p>
+<div id="61de6f03" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> button_action():</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  st.session_state.button_click_count <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We associate the callback with the relevant input, using the ‘on_click’ or ‘on_change’ parameter as appropriate.</p>
+<p>In this case, it will mean that <code>on_click</code> (i.e.&nbsp;every time the user clicks on the button), the function <code>button_action</code> that we just defined will run. This function will add 1 to the count of button clicks we are storing in a session state key, which means it will persist between runs of the app and across app pages. Therefore, rather than the count resetting to 0 each time the button is clicked as it would if we weren’t using the session state, it will instead gradually increase the count.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The value of the <code>button_click_count</code> session state variable will reset when the user closes the browser tab or refreshes it.</p>
+</div>
+</div>
+<div id="7c2f4027" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>add_number_button <span class="op">=</span> st.button(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Click me!"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  on_click<span class="op">=</span>button_action</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, we use our session state variable as we want to!</p>
+<div id="c688dc59" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>st.write(<span class="ss">f"You've clicked the button </span><span class="sc">{</span>st<span class="sc">.</span>session_state<span class="sc">.</span>button_click_count<span class="sc">}</span><span class="ss"> times"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<iframe width="780" height="500" src="https://hsma-session-state-callbacks.streamlit.app?embed=true" title="Session State and Callbacks App Example"></iframe>
+<p><a href="https://hsma-session-state-callbacks.streamlit.app/">Click here to load the app in a new page</a></p>
+</section>
+<section id="more-detail-on-callbacks" class="level2" data-number="37.2">
+<h2 data-number="37.2" class="anchored" data-anchor-id="more-detail-on-callbacks"><span class="header-section-number">37.2</span> More detail on callbacks</h2>
+<p>While the ways mentioned here should work in most simple cases, you may want to take a look into the documentation to fully get your head around the power of state and callbacks.</p>
+<p><a href="https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state" class="uri">https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state</a></p>
+<ul>
+<li>It’s technically better practice to use the on_change callback if you’re storing the value of an input widget in session state - but just assigning it directly works in most cases</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script>
