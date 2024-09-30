@@ -42,7 +42,7 @@ In this example, we have a folder that looks like this
 
 ![](assets/2024-08-20-17-18-02.png)
 
-When starting up the app, we will simply be running `streamlit run app.py` from within the
+When starting up the app, we will simply be running `streamlit run app.py` from within the folder.
 
 Let's take a look at the contents of app.py
 
@@ -102,13 +102,11 @@ pg.run()
 ```
 
 1. Instead of passing the `st.Page` calls directly into `st.navigation` we have created a variable per page. This isn't strictly necessary, but makes it a lot easier to keep track of what's going on in our use of `st.navigation`.
-2. We can
+2. We can then create a dictionary where the keys (the values before the :) are strings representing what we want our subsection names to be. The values of the dictionary are lists containing the variables we defined above. For example, here section 1 will contain only the homepage, while sections 2 and 3 will contain 2 pages each.
 
 ```{=html}
-<iframe width="1100" height="800" src="https://penguin-trends-multipage-example-nested-sidebar.streamlit.app??embed=True" title="Quarto Components"></iframe>
+<iframe width="1100" height="800" src="https://penguin-trends-multipage-example-nested-sidebar.streamlit.app" title="Quarto Components"></iframe>
 ```
-
-
 
 ## Method 2: 'pages' subfolder
 
