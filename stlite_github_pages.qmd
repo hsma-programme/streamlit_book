@@ -3,3 +3,237 @@ title: "(Coming Soon!) Deploying to Github Pages with Serverless Streamlit (stli
 filters:
   - whitphx/stlite
 ---
+
+:::{.callout-error}
+This page is unfinished and so far contains just the code examples for some stlite apps with very little in the way of example. This page will be enhanced further in the future.
+:::
+
+## stlite
+
+[Stlite](https://github.com/whitphx/stlite) makes use of the Pyodide framework to run Python in the user's browser instead of on a remote server.
+
+While some kind of hosting is still required to allow the website code to be served, the hosting requirements are significantly smaller as the host server does not need to actually run any processes itself, and simply acts as a distributor of the code files.
+
+Downsides of stlite include
+
+- some limitations on the Python packages that are available
+    - many key packages including pandas, geopandas, plotly and simpy are available
+- slower running of code (between 3x and 20x slower)
+  - execution speed is linked to the speed of the user's device, so using devices like phones will give significantly poorer performance
+- slower initial startup of the app
+- apps don't work on the Firefox browser
+- possibility of Pyodide being blocked by organisational policies in the future (though this does not seem to occur at present)
+
+Positives include
+
+- lighter requirements for the machine hosting the files
+  - it is also possible to serve the files from free hosting such as Github Pages
+- data not leaving the user's machine
+- no limitations on the number of concurrent users, making it suitable for apps with multiple users likely to be making use of the app at once
+
+:::{.callout-warning}
+While stlite code in theory avoids data leaving the user's browser, the limitations and security have not fully yet been investigated by the HSMA team in the context of sensitive data, so it should not be used for sensitive data until further assurances can be given.
+:::
+
+## Single Page stlite apps
+
+stlite apps only require a single file - `index.html`
+
+This will contain all your Streamlit code.
+
+```{html}
+// This initial code is the same for all stlite apps
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Stlite App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@stlite/mountable@0.63.1/build/stlite.css"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@stlite/mountable@0.63.1/build/stlite.js"></script>
+    <script>
+    // The code prior to this point is the same for every Stlite app you create
+
+      stlite.mount(
+        {
+        requirements: ["simpy"], // Packages to install, provided as a list
+        entrypoint: "streamlit_app.py", // Which page to start on - essential even if only providing a single page
+        // We then pass in a dictionary of files, with the keys being the filenames and the values being code
+        // The name of one file must match the file given as the entrypoint
+        // The file itself doesn't have to exist - it's just a reference to use
+        // The Streamlit code is wrapped in backticks (which are different to single quotes)
+        files: {"streamlit_app.py":`
+import streamlit as st
+import simpy
+import random
+import pandas as pd
+
+st.title("Simple One-Step DES")
+
+######### THE REST OF YOUR STREAMLIT APP CODE HERE
+
+`}
+// The code after this point is the same for every stlite app you create
+        },
+        document.getElementById("root"),
+      );
+    </script>
+  </body>
+</html>
+```
+
+### Example Repository
+
+Click [here](https://github.com/Bergam0t/stlite_example_hsma) to view an example repository containing a working multipage stlite app.
+
+## Multipage stlite apps
+
+In some ways, multipage stlite apps are easier to work with, as you can just include the initial page navigation code within the `index.html` portion and your remaining streamlit code can live in .py files as normal.
+
+In this example, we have a multipage app containing a homepage and a page where the user can run the simulation.
+
+We first upload these additional pages in Github and then get their 'raw' URL using the 'Raw' button when previewing these files in Github.
+
+Our initial stlite code is then very similar, but we pass in the additional pages to the mount command.
+
+```{html}
+// This initial code is the same for all stlite apps
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Stlite App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@stlite/mountable@0.63.1/build/stlite.css"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@stlite/mountable@0.63.1/build/stlite.js"></script>
+    <script>
+        // The code prior to this point is the same for every Stlite app you create
+
+      stlite.mount(
+        {
+        requirements: ["simpy"], // Packages to install
+        entrypoint: "app.py",
+        files: {
+          // Our first file must contain Streamlit code; this will be used on loading
+          // and in this case is used to define the navigation but is never actually displayed
+          // to the user
+      "app.py":`
+import streamlit as st
+
+pg = st.navigation([
+        st.Page("home_page.py", title="Welcome!", icon=":material/add_circle:"),
+        st.Page("des_page.py", title="Run Simulation", icon=":material/laptop:")
+     ])
+
+pg.run()
+`,
+// Next we pass in our actual streamlit pages.
+// it's important that the names of the pages (e.g. home_page.py) match the file names as they appear on github
+// and in your st.Page navigation details
+"home_page.py": {
+  // Instead of pasting in the code, we instead pass in the URL of the python file as it is hosted on github
+        url: "https://raw.githubusercontent.com/Bergam0t/stlite_multipage_example_hsma/refs/heads/main/home_page.py"
+      },
+  // We repeat this for any additional pages
+"des_page.py": {
+        url: "https://raw.githubusercontent.com/Bergam0t/stlite_multipage_example_hsma/refs/heads/main/des_page.py"
+      }
+}
+        },
+        // The code after this point is the same for every stlite app you create
+
+        document.getElementById("root"),
+      );
+    </script>
+  </body>
+</html>
+
+```
+
+### Example Repository
+
+Click [here](https://github.com/Bergam0t/stlite_multipage_example_hsma) to view an example repository containing a working multipage stlite app.
+
+
+## Deploying to github pages
+
+From your github repository, click on 'settings'.
+
+![](assets/2024-09-30-17-29-21.png)
+
+In the sidebar on the left, click on 'pages'.
+
+![](assets/2024-09-30-17-29-45.png)
+
+Choose 'Branch' and 'Main'.
+
+![](assets/2024-09-30-17-30-04.png)
+
+Leave the folder as 'root' and click 'Save'.
+
+![](assets/2024-09-30-17-30-25.png)
+
+After saving, it should look like this:
+
+![](assets/2024-09-30-17-30-46.png)
+
+Next, head back to your repository and click on the cog next to 'about'.
+
+![](assets/2024-09-30-17-31-20.png)
+
+Tick 'use your github pages website'.
+
+![](assets/2024-09-30-17-31-37.png)
+
+This will automatically generate a github pages link.
+
+![](assets/2024-09-30-17-32-04.png)
+
+Click 'Save Changes'
+
+Now click on the URL to view your app.
+
+![](assets/2024-09-30-17-32-58.png)
+
+
+:::{.callout-warning}
+Pages deployed with stlite do not work on Firefox (as of September 2024)
+
+Chrome, Edge and Safari are all known to work fine.
+:::
+
+
+## Stlite tips
+
+- The 'spinner' does not work in stlite by default. This can be a problem with long-running calculations that occur after clicking something as it is not obvious to your user that something is going on.
+Instead, you must make sure you run `import asyncio` and then use it as follows.
+
+```{python}
+#| eval: false
+with st.spinner('Running a long-running calculation..'):
+    await asyncio.sleep(0.1)
+
+    # Do the actual calculation...
+```
+
+This will ensure the spinner actually appears, but the code is otherwise unchanged.
