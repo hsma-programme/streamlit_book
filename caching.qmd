@@ -21,8 +21,9 @@ This can quickly lead to memory requirements ballooning (and your app crashing!)
 By using the `@st.cache_data` decorator, Streamlit will intelligently handle the loading in of datasets to minimize unnecessary reloads and memory use.
 
 To switch from doing a standard data import to using caching, we
+
 - Turn our data import into a function that returns the data
-- Add the @st.cache_data decorator directly above the function
+- Add the `@st.cache_data` decorator directly above the function
 - Call the function in our code to load the data in, assigning the output (the dataframe) to a variable
 
 We can then just use our dataframe like normal - Streamlit will handle the awkward bits.
@@ -64,6 +65,29 @@ When a dataset is cached, this means it will almost be excluded from the top-to-
 If the version of the cache is deemed to be valid, then rather than loading the dataset in again from scratch and using memory on your web host to do so, it will use the version already in the cache.
 
 This will make your app feel far more responsive - when actions that trigger a rerun, like changing the value of a slider or the value entered in a text/numeric input, as the data reload isn't triggered, subsequent changes to the dataset will feel much quicker.
+
+Here is an example of the same app with and without caching so you can compare performance.
+
+:::{.callout-note}
+In this example, the performance improvement is very minor due to the small size of the dataset. With larger datasets with tens of thousands of rows or geodataframes that often contain complex information of 20+ mb, then the performance difference is significantly bigger.
+:::
+
+### Without Caching
+
+```{=html}
+<iframe width="780" height="500" src="https://hsma-app-without-caching.streamlit.app/" title="Quarto Components"></iframe>
+```
+
+[Click here to load the app in a new page](https://hsma-app-without-caching.streamlit.app/)
+
+### With Caching
+
+```{=html}
+<iframe width="780" height="500" src="https://hsma-app-with-caching.streamlit.app/" title="Quarto Components"></iframe>
+```
+
+[Click here to load the app in a new page](https://hsma-app-with-caching.streamlit.app/)
+
 
 ## Caching Other Steps
 

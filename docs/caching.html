@@ -611,7 +611,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#without-caching" id="toc-without-caching" class="nav-link" data-scroll-target="#without-caching"><span class="header-section-number">35.1.1</span> Without Caching</a></li>
   <li><a href="#loading-in-the-same-dataset-with-caching" id="toc-loading-in-the-same-dataset-with-caching" class="nav-link" data-scroll-target="#loading-in-the-same-dataset-with-caching"><span class="header-section-number">35.1.2</span> Loading in the Same Dataset with Caching</a></li>
   </ul></li>
-  <li><a href="#how-does-caching-affect-the-app" id="toc-how-does-caching-affect-the-app" class="nav-link" data-scroll-target="#how-does-caching-affect-the-app"><span class="header-section-number">35.2</span> How Does Caching Affect the App?</a></li>
+  <li><a href="#how-does-caching-affect-the-app" id="toc-how-does-caching-affect-the-app" class="nav-link" data-scroll-target="#how-does-caching-affect-the-app"><span class="header-section-number">35.2</span> How Does Caching Affect the App?</a>
+  <ul class="collapse">
+  <li><a href="#without-caching-1" id="toc-without-caching-1" class="nav-link" data-scroll-target="#without-caching-1"><span class="header-section-number">35.2.1</span> Without Caching</a></li>
+  <li><a href="#with-caching" id="toc-with-caching" class="nav-link" data-scroll-target="#with-caching"><span class="header-section-number">35.2.2</span> With Caching</a></li>
+  </ul></li>
   <li><a href="#caching-other-steps" id="toc-caching-other-steps" class="nav-link" data-scroll-target="#caching-other-steps"><span class="header-section-number">35.3</span> Caching Other Steps</a></li>
   <li><a href="#caching-types-data-vs-resources" id="toc-caching-types-data-vs-resources" class="nav-link" data-scroll-target="#caching-types-data-vs-resources"><span class="header-section-number">35.4</span> Caching Types: Data vs Resources</a></li>
   <li><a href="#caching-functions-with-parameters" id="toc-caching-functions-with-parameters" class="nav-link" data-scroll-target="#caching-functions-with-parameters"><span class="header-section-number">35.5</span> Caching Functions with Parameters</a></li>
@@ -653,13 +657,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>When we reach the stage of deploying our app to the web, we have to be a bit more conscious of how much memory our app is using when being accessed by multiple people simultaneously By default, the data will be loaded in separately for each user - even though it’s identical This can quickly lead to memory requirements ballooning (and your app crashing!)</p></li>
 </ol>
 <p>By using the <code>@st.cache_data</code> decorator, Streamlit will intelligently handle the loading in of datasets to minimize unnecessary reloads and memory use.</p>
-<p>To switch from doing a standard data import to using caching, we - Turn our data import into a function that returns the data - Add the <span class="citation" data-cites="st.cache_data">(<a href="#ref-st.cache_data" role="doc-biblioref"><strong>st.cache_data?</strong></a>)</span> decorator directly above the function - Call the function in our code to load the data in, assigning the output (the dataframe) to a variable</p>
+<p>To switch from doing a standard data import to using caching, we</p>
+<ul>
+<li>Turn our data import into a function that returns the data</li>
+<li>Add the <code>@st.cache_data</code> decorator directly above the function</li>
+<li>Call the function in our code to load the data in, assigning the output (the dataframe) to a variable</li>
+</ul>
 <p>We can then just use our dataframe like normal - Streamlit will handle the awkward bits.</p>
 <section id="a-caching-code-example" class="level2" data-number="35.1">
 <h2 data-number="35.1" class="anchored" data-anchor-id="a-caching-code-example"><span class="header-section-number">35.1</span> A Caching Code Example</h2>
 <section id="without-caching" class="level3" data-number="35.1.1">
 <h3 data-number="35.1.1" class="anchored" data-anchor-id="without-caching"><span class="header-section-number">35.1.1</span> Without Caching</h3>
-<div id="d42e923b" class="cell" data-execution_count="1">
+<div id="07b9a0fb" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -670,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="loading-in-the-same-dataset-with-caching" class="level3" data-number="35.1.2">
 <h3 data-number="35.1.2" class="anchored" data-anchor-id="loading-in-the-same-dataset-with-caching"><span class="header-section-number">35.1.2</span> Loading in the Same Dataset with Caching</h3>
-<div id="0c68c009" class="cell" data-execution_count="2">
+<div id="e89b27b2" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -689,12 +698,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>When a dataset is cached, this means it will almost be excluded from the top-to-bottom running of the app.</p>
 <p>If the version of the cache is deemed to be valid, then rather than loading the dataset in again from scratch and using memory on your web host to do so, it will use the version already in the cache.</p>
 <p>This will make your app feel far more responsive - when actions that trigger a rerun, like changing the value of a slider or the value entered in a text/numeric input, as the data reload isn’t triggered, subsequent changes to the dataset will feel much quicker.</p>
+<p>Here is an example of the same app with and without caching so you can compare performance.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this example, the performance improvement is very minor due to the small size of the dataset. With larger datasets with tens of thousands of rows or geodataframes that often contain complex information of 20+ mb, then the performance difference is significantly bigger.</p>
+</div>
+</div>
+<section id="without-caching-1" class="level3" data-number="35.2.1">
+<h3 data-number="35.2.1" class="anchored" data-anchor-id="without-caching-1"><span class="header-section-number">35.2.1</span> Without Caching</h3>
+<iframe width="780" height="500" src="https://hsma-app-without-caching.streamlit.app/" title="Quarto Components"></iframe>
+<p><a href="https://hsma-app-without-caching.streamlit.app/">Click here to load the app in a new page</a></p>
+</section>
+<section id="with-caching" class="level3" data-number="35.2.2">
+<h3 data-number="35.2.2" class="anchored" data-anchor-id="with-caching"><span class="header-section-number">35.2.2</span> With Caching</h3>
+<iframe width="780" height="500" src="https://hsma-app-with-caching.streamlit.app/" title="Quarto Components"></iframe>
+<p><a href="https://hsma-app-with-caching.streamlit.app/">Click here to load the app in a new page</a></p>
+</section>
 </section>
 <section id="caching-other-steps" class="level2" data-number="35.3">
 <h2 data-number="35.3" class="anchored" data-anchor-id="caching-other-steps"><span class="header-section-number">35.3</span> Caching Other Steps</h2>
 <p>If you have certain actions that take a long time, then you may wish to cache those too.</p>
 <p>For example, if you had a long-running data cleaning step that you ran when the data was loaded into the app, then you could cache that as well.</p>
-<div id="4eec7765" class="cell" data-execution_count="3">
+<div id="6055054e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -740,7 +773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="35.6.1" class="anchored" data-anchor-id="ttl-time-to-live"><span class="header-section-number">35.6.1</span> TTL (time to live)</h3>
 <p>TTL determines how long to keep cached data before rerunning it.</p>
 <p>For example, if data is likely to change over time, you could set the ttl parameter to set the number of seconds to keep cached data for.</p>
-<div id="2095b842" class="cell" data-execution_count="4">
+<div id="97dbd9b1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">@st.cache_data</span>(ttl<span class="op">=</span><span class="dv">3600</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> your_function_here():</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    …</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -750,7 +783,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="max_entries" class="level3" data-number="35.6.2">
 <h3 data-number="35.6.2" class="anchored" data-anchor-id="max_entries"><span class="header-section-number">35.6.2</span> max_entries</h3>
 <p>Once the cache contains the maximum number of objects you have specified, the oldest ones will be deleted to make way for new ones.</p>
-<div id="632cc419" class="cell" data-execution_count="5">
+<div id="d7b70c55" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">@st.cache_data</span>(max_entries<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> your_function_here():</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    …</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
