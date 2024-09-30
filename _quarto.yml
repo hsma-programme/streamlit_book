@@ -75,6 +75,10 @@ book:
     - exercise_2a_simple_calculator.qmd
     - exercise_2b_wordcloud_app.qmd
     - exercise_3_dashboard.qmd
+    - exercise_4_des_part_1.qmd
+    - exercise_5_des_part_2_multipage.qmd
+    - exercise_6_des_part_3_advanced_streamlit.qmd
+    - exercise_7_deployment.qmd
   # - part: Example Apps
   #   chapters:
   #   - dashboard.qmd

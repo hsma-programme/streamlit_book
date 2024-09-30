@@ -1,0 +1,16 @@
+# Exercise 7: Take Me To The Clouds Above
+
+The final task of the day is deploying an app.
+
+- Create a new repository and upload one of the apps you’ve created in the last few sessions to Github using the skills from session 7A (or borrow the sample app from the exercise_4 folder)
+
+- Deploy your app to the streamlit community cloud
+    - Remember to include a requirements.txt file
+
+- Share your link in your PSG channel
+
+If you finish this,
+
+- Try uploading some more apps
+- Go back to any exercises you want to spend more time on
+- Or start building an app of your choice!

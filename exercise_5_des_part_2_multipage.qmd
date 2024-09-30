@@ -1,0 +1,23 @@
+# Exercise 5: DEStiny's Child
+
+It’s time to enhance our DES app a bit!
+
+Take a copy of your original version first and store it somewhere safe!
+
+Do these steps in the order listed, and take the time to make sure it’s working after each step.
+
+- Add a run button
+
+- Split your code out into separate files for the web app and the DES classes, then import the DES classes where you need them and update how the g class values are set
+
+- Turn your app into a multipage app
+    - Make the first page give a brief explanation of what the app actually is
+    - Make the second page allow people to run the simulation
+
+## Bonus Tasks
+
+- Add the HSMA logo to your app (it’s provided in the exercise_2 folder)
+
+- Create a custom colourscheme for your app using a config.toml file in a .streamlit subfolder
+
+- Import the file style.css into your app to change the font of your app
