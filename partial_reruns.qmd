@@ -1,5 +1,5 @@
 ---
-title: "Partial Reruns"
+title: "Partial Reruns (fragments)"
 filters:
   - whitphx/stlite
 ---
@@ -148,6 +148,8 @@ Instead, you can view the output of this code in the embedded webpage below.
 :::
 
 Notice that now when we change the parameters in the drop-down select boxes, only half of the app fades out - indicating that only half of the app is updating at a time; each half of the page can now act independently of the other.
+
+[Click here to open the example app if it does not load in the box below](https://penguins-partial-rerun-example.streamlit.app?embed=true)
 
 ```{=html}
 <iframe width="900" height="900" src="https://penguins-partial-rerun-example.streamlit.app?embed=true" title="Partial Rerun Example"></iframe>

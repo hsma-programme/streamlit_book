@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HSMA - Web Apps with Streamlit - 33&nbsp; Partial Reruns</title>
+<title>HSMA - Web Apps with Streamlit - 33&nbsp; Partial Reruns (fragments)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./forms_and_run_buttons.html">Controlling Application Flow</a></li><li class="breadcrumb-item"><a href="./partial_reruns.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./forms_and_run_buttons.html">Controlling Application Flow</a></li><li class="breadcrumb-item"><a href="./partial_reruns.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns (fragments)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -308,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./editable_dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">(Coming Soon!) Editable Dataframes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></span></a>
   </div>
 </li>
       </ul>
@@ -448,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./partial_reruns.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns (fragments)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -616,9 +616,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./forms_and_run_buttons.html">Controlling Application Flow</a></li><li class="breadcrumb-item"><a href="./partial_reruns.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./forms_and_run_buttons.html">Controlling Application Flow</a></li><li class="breadcrumb-item"><a href="./partial_reruns.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns (fragments)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns</span></h1>
+<h1 class="title"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns (fragments)</span></h1>
 </div>
 
 
@@ -640,7 +640,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We have two separate sets of filters - one that only affects the left visual, and one that affects the right.</p>
 <p>In a standard app, the whole thing would rerun even though only one of the visuals theoretically needs to be updated. Let’s take a look at the app as we would have generally written it.</p>
 <p>A short delay has been added in to make it clearer when the app is updating. What you will notice is that when any item is changed in the dropdown menu, the whole app fades out as all of the plots are recalculated, even though this is unnecessary as the right drop-downs don’t affect the left plot, and vice-versa.</p>
-<div id="ef577d1a" class="cell" data-execution_count="1">
+<div id="a5934398" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
@@ -679,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-partial-rerun-decorator" class="level2" data-number="33.1">
 <h2 data-number="33.1" class="anchored" data-anchor-id="the-partial-rerun-decorator"><span class="header-section-number">33.1</span> The Partial Rerun Decorator</h2>
 <p>Now let’s rewrite this using the fragment code.</p>
-<div id="0e2ad069" class="cell" data-execution_count="2">
+<div id="34c34b2e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
@@ -761,6 +761,7 @@ Note
 </div>
 </div>
 <p>Notice that now when we change the parameters in the drop-down select boxes, only half of the app fades out - indicating that only half of the app is updating at a time; each half of the page can now act independently of the other.</p>
+<p><a href="https://penguins-partial-rerun-example.streamlit.app?embed=true">Click here to open the example app if it does not load in the box below</a></p>
 <iframe width="900" height="900" src="https://penguins-partial-rerun-example.streamlit.app?embed=true" title="Partial Rerun Example"></iframe>
 
 
