@@ -934,23 +934,23 @@
   {
     "objectID": "caching.html",
     "href": "caching.html",
-    "title": "35  (Coming Soon!) Caching",
+    "title": "35  Reducing Load Time with Caching",
     "section": "",
-    "text": "35.1 Caching functions with parameters\nWhile using caching for the initial load of a dataframe, it can also make sense to use it for other long-running functions.\nLike normal functions, functions for caching can accept parameters.\nStreamlit will be able to look at the parameters passed in and tell whether it should\nuse a cached version of the data (because the parameters are the same as a previous instance that’s already in its cache)\nrun the function (because it’s a new set of parameters that it doesn’t already have a saved output for in its cache)",
+    "text": "35.1 A Caching Code Example",
     "crumbs": [
       "Advanced Concepts",
-      "<span class='chapter-number'>35</span>  <span class='chapter-title'>(Coming Soon!) Caching</span>"
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
     ]
   },
   {
     "objectID": "caching.html#caching-functions-with-parameters",
     "href": "caching.html#caching-functions-with-parameters",
-    "title": "35  (Coming Soon!) Caching",
-    "section": "",
-    "text": "There are a few complexities around parameters that you may want to look into if using this in your own app: https://docs.streamlit.io/develop/concepts/architecture/caching#excluding-input-parameters",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.5 Caching Functions with Parameters",
+    "text": "35.5 Caching Functions with Parameters\nWhile using caching for the initial load of a dataframe, it can also make sense to use it for other long-running functions.\nLike normal functions, functions for caching can accept parameters.\nStreamlit will be able to look at the parameters passed in and tell whether it should\n\nuse a cached version of the data (because the parameters are the same as a previous instance that’s already in its cache)\nrun the function (because it’s a new set of parameters that it doesn’t already have a saved output for in its cache)\nThere are a few complexities around parameters that you may want to look into if using this in your own app: https://docs.streamlit.io/develop/concepts/architecture/caching#excluding-input-parameters",
     "crumbs": [
       "Advanced Concepts",
-      "<span class='chapter-number'>35</span>  <span class='chapter-title'>(Coming Soon!) Caching</span>"
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
     ]
   },
   {
@@ -1094,6 +1094,72 @@
     "crumbs": [
       "User Inputs",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Editable Dataframes</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#caching-settings",
+    "href": "caching.html#caching-settings",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.6 Caching settings",
+    "text": "35.6 Caching settings\nWhen you choose to cache something, you can add in some additional settings to make the cache as effective as possible for your particular situation.\n\n35.6.1 TTL (time to live)\nTTL determines how long to keep cached data before rerunning it.\nFor example, if data is likely to change over time, you could set the ttl parameter to set the number of seconds to keep cached data for.\n\n@st.cache_data(ttl=3600)\ndef your_function_here():\n    …\n\nThis also prevents your cache from becoming very large. Large caches could exceed the memory limits on your host.\n\n\n35.6.2 max_entries\nOnce the cache contains the maximum number of objects you have specified, the oldest ones will be deleted to make way for new ones.\n\n@st.cache_data(max_entries=10)\ndef your_function_here():\n    …\n\nThis also prevents your cache from becoming very large.",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#further-caching-settings",
+    "href": "caching.html#further-caching-settings",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.7 Further Caching Settings",
+    "text": "35.7 Further Caching Settings\nAdditional caching settings can be explored in the documentation.",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#a-caching-code-example",
+    "href": "caching.html#a-caching-code-example",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "",
+    "text": "35.1.1 Without Caching\n\nimport pandas as pd\nimport streamlit as st\n\nathlete_statistics = pd.read_csv(\"athlete_details_eventwise.csv\")\n\nst.dataframe(athlete_statistics)\n\n\n\n35.1.2 Loading in the Same Dataset with Caching\n\nimport pandas as pd\nimport streamlit as st\n\n@st.cache_data\ndef load_data():\n  return pd.read_csv(\"athlete_details_eventwise.csv\")\n\nathlete_statistics = load_data()\n\nst.dataframe(athlete_statistics)",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#how-does-caching-affect-the-app",
+    "href": "caching.html#how-does-caching-affect-the-app",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.2 How Does Caching Affect the App?",
+    "text": "35.2 How Does Caching Affect the App?\nWhen a dataset is cached, this means it will almost be excluded from the top-to-bottom running of the app.\nIf the version of the cache is deemed to be valid, then rather than loading the dataset in again from scratch and using memory on your web host to do so, it will use the version already in the cache.\nThis will make your app feel far more responsive - when actions that trigger a rerun, like changing the value of a slider or the value entered in a text/numeric input, as the data reload isn’t triggered, subsequent changes to the dataset will feel much quicker.",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#caching-other-steps",
+    "href": "caching.html#caching-other-steps",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.3 Caching Other Steps",
+    "text": "35.3 Caching Other Steps\nIf you have certain actions that take a long time, then you may wish to cache those too.\nFor example, if you had a long-running data cleaning step that you ran when the data was loaded into the app, then you could cache that as well.\n\nimport pandas as pd\nimport streamlit as st\n\n@st.cache_data\ndef load_data():\n  return pd.read_csv(\"athlete_details_eventwise.csv\")\n\nathlete_statistics = load_data()\n\n@st.cache_data\ndef clean_data():\n\n  my_clean_dataframe = athlete_statistics ... ## long-running code here...\n\n  return my_clean_dataframe\n\nclean_athlete_statistics = clean_data()\n\nst.dataframe(clean_athlete_statistics)",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#caching-types-data-vs-resources",
+    "href": "caching.html#caching-types-data-vs-resources",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.4 Caching Types: Data vs Resources",
+    "text": "35.4 Caching Types: Data vs Resources\nCaching can also be used for other large files - for example, if you wanted to load in a trained machine learning model that’s the same for all users who will interact with your app.\n\nIt’s not always obvious which to use, so head to the Streamlit documentation if you’re a bit unsure.",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
     ]
   }
 ]
