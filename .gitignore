@@ -10,3 +10,4 @@ test/archive/7282_1.csv
 test/archive/Datafiniti_Hotel_Reviews_Jun19.csv
 test/archive/Datafiniti_Hotel_Reviews.csv
 *.pyc
+test_cache.py
