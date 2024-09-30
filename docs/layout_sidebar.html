@@ -308,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./editable_dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">(Coming Soon!) Editable Dataframes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></span></a>
   </div>
 </li>
       </ul>
@@ -448,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./partial_reruns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns (fragments)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./caching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">(Coming Soon!) Caching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Reducing Load Time with Caching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -483,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./callbacks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">(Coming Soon!) Callbacks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Callbacks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -650,7 +650,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="collapsible-sidebars" class="level2" data-number="25.1">
 <h2 data-number="25.1" class="anchored" data-anchor-id="collapsible-sidebars"><span class="header-section-number">25.1</span> Collapsible Sidebars</h2>
 <p>The Streamlit sidebar gives us a distinct area on the left-hand side of the screen to use.</p>
-<div id="f0375084" class="cell" data-execution_count="1">
+<div id="f6d324dd" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> st.sidebar:</span>
@@ -702,7 +702,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Use the <code>with</code> notation, as above.</li>
 </ol>
-<div id="f901ead7" class="cell" data-execution_count="2">
+<div id="f6665a34" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> st.sidebar:</span>
@@ -726,7 +726,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The code below is completely equivalent to the code above.</p>
-<div id="cc73c55e" class="cell" data-execution_count="3">
+<div id="291c3c80" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>st.sidebar.header(<span class="st">"I'm a sidebar"</span>)</span>
@@ -771,7 +771,7 @@ Tip
 <p>You can run other general python commands between the import and setting the page config - but you cannot, for example, use <code>st.header()</code> before calling <code>st.set_page_config()</code>.</p>
 </div>
 </div>
-<div id="620febae" class="cell" data-execution_count="4">
+<div id="d598c0f0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>st.set_page_config(initial_sidebar_state<span class="op">=</span><span class="st">'collapsed'</span>)</span>
@@ -803,7 +803,7 @@ Tip
 <section id="making-the-sidebar-expander-more-obvious" class="level3" data-number="25.5.2">
 <h3 data-number="25.5.2" class="anchored" data-anchor-id="making-the-sidebar-expander-more-obvious"><span class="header-section-number">25.5.2</span> Making the sidebar expander more obvious</h3>
 <p>With custom CSS, we can make the sidebar expander button more obvious.</p>
-<div id="38a36782" class="cell" data-execution_count="5">
+<div id="5344522d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>st.markdown(</span>
@@ -847,7 +847,7 @@ Warning
 <p>As the streamlit library evolves, the names of various elements on the page may change, meaning that these may not remain consistent over time.</p>
 </div>
 </div>
-<div id="22171dc3" class="cell" data-execution_count="6">
+<div id="e7782558" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Credit to Amy H in the PenCHORD team for this!</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.com/kailo-beewell/kailo_beewell_dashboard_package/blob/be249c515d5cfd7d168abf14f03927322b72322b/kailo_beewell_dashboard/css/style.css#L2</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>

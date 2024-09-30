@@ -558,6 +558,17 @@
     ]
   },
   {
+    "objectID": "editable_dataframes.html",
+    "href": "editable_dataframes.html",
+    "title": "17  Editable Dataframes",
+    "section": "",
+    "text": "Any pandas dataframe can be turned into an editable dataframe using the st.data_editor() function.\nThis displays the dataframe in a very similar manner to st.dataframe() but allows users to also click in and edit individual cells.\nIn the example below, try changing the value in the top left cell and see how it updates the values printed out in the app.\nThis is possible because we save the output of the st.data_editor() function to a different variable, allowing us to access the updated dataframe and use it just like we would any normal dataframe.\n\n\nimport pandas as pd\nfrom palmerpenguins import load_penguins\nimport streamlit as st\n\npenguins_df = pd.read_csv(\"https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/penguins_df.csv\")\n\npenguins_df_edited = st.data_editor(penguins_df)\n\nst.write(f\"The value in row 1 cell 1 is {penguins_df.head(1)['species'].values[0]}\")\n\nst.write(f\"The value in row 1 cell 1 of the edited dataframe is {penguins_df_edited.head(1)['species'].values[0]}\")\n\n\n\n\n\n\n\nWarning\n\n\n\nYou will want to make it clear to your users that changes to their dataframe will not be saved after they close or refresh the browser.\nYou will either need to use a more advanced method to write the changes in the dataframe to some sort of persistent storage, like a SQL database, or just provide a way for users to easily save their updated dataframe if relevant.\nWhile you could also save and load to the same .csv file, you may find that having multiple people accessing the web app at once could cause signficant confusion - so if you find yourself needing to edit dataframes that also need to persist afterwards, make sure you consider whether other alternatives may exist.",
+    "crumbs": [
+      "User Inputs",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Editable Dataframes</span>"
+    ]
+  },
+  {
     "objectID": "file_downloads_tabular.html",
     "href": "file_downloads_tabular.html",
     "title": "18  Downloading tabular data files (e.g. pandas dataframes)",
@@ -661,7 +672,7 @@
     "href": "layout_divider.html",
     "title": "23  Page Dividers",
     "section": "",
-    "text": "The divider is a simple function that puts a horizontal line across the width of the page.\nThis can make it easier to indicate different sections of the page that should be looked at together.\n\nimport streamlit as st\n\nst.title(\"This is a title\")\n\nst.write(\"Here's a first line of text\")\n\nst.divider()\n\nst.write(\"Here's some more text\")\n\nst.divider()\n\nst.write(\"Here's the final text\")\n\n2024-09-24 08:32:47.717 \n  Warning: to view this Streamlit app on a browser, run it with the following\n  command:\n\n    streamlit run c:\\HSMA\\streamlit_book\\.venv\\Lib\\site-packages\\ipykernel_launcher.py [ARGUMENTS]\n\n\n\nThere are no additional parameters you can pass into st.divider().",
+    "text": "The divider is a simple function that puts a horizontal line across the width of the page.\nThis can make it easier to indicate different sections of the page that should be looked at together.\n\nimport streamlit as st\n\nst.title(\"This is a title\")\n\nst.write(\"Here's a first line of text\")\n\nst.divider()\n\nst.write(\"Here's some more text\")\n\nst.divider()\n\nst.write(\"Here's the final text\")\n\n2024-09-30 14:26:57.203 \n  Warning: to view this Streamlit app on a browser, run it with the following\n  command:\n\n    streamlit run c:\\HSMA\\streamlit_book\\.venv\\Lib\\site-packages\\ipykernel_launcher.py [ARGUMENTS]\n\n\n\nThere are no additional parameters you can pass into st.divider().",
     "crumbs": [
       "Layout",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>Page Dividers</span>"
@@ -943,11 +954,77 @@
     ]
   },
   {
+    "objectID": "caching.html#a-caching-code-example",
+    "href": "caching.html#a-caching-code-example",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "",
+    "text": "35.1.1 Without Caching\n\nimport pandas as pd\nimport streamlit as st\n\nathlete_statistics = pd.read_csv(\"athlete_details_eventwise.csv\")\n\nst.dataframe(athlete_statistics)\n\n\n\n35.1.2 Loading in the Same Dataset with Caching\n\nimport pandas as pd\nimport streamlit as st\n\n@st.cache_data\ndef load_data():\n  return pd.read_csv(\"athlete_details_eventwise.csv\")\n\nathlete_statistics = load_data()\n\nst.dataframe(athlete_statistics)",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#how-does-caching-affect-the-app",
+    "href": "caching.html#how-does-caching-affect-the-app",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.2 How Does Caching Affect the App?",
+    "text": "35.2 How Does Caching Affect the App?\nWhen a dataset is cached, this means it will almost be excluded from the top-to-bottom running of the app.\nIf the version of the cache is deemed to be valid, then rather than loading the dataset in again from scratch and using memory on your web host to do so, it will use the version already in the cache.\nThis will make your app feel far more responsive - when actions that trigger a rerun, like changing the value of a slider or the value entered in a text/numeric input, as the data reload isn’t triggered, subsequent changes to the dataset will feel much quicker.\nHere is an example of the same app with and without caching so you can compare performance.\n\n\n\n\n\n\nNote\n\n\n\nIn this example, the performance improvement is very minor due to the small size of the dataset. With larger datasets with tens of thousands of rows or geodataframes that often contain complex information of 20+ mb, then the performance difference is significantly bigger.\n\n\n\n35.2.1 Without Caching\n\nClick here to load the app in a new page\n\n\n35.2.2 With Caching\n\nClick here to load the app in a new page",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#caching-other-steps",
+    "href": "caching.html#caching-other-steps",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.3 Caching Other Steps",
+    "text": "35.3 Caching Other Steps\nIf you have certain actions that take a long time, then you may wish to cache those too.\nFor example, if you had a long-running data cleaning step that you ran when the data was loaded into the app, then you could cache that as well.\n\nimport pandas as pd\nimport streamlit as st\n\n@st.cache_data\ndef load_data():\n  return pd.read_csv(\"athlete_details_eventwise.csv\")\n\nathlete_statistics = load_data()\n\n@st.cache_data\ndef clean_data():\n\n  my_clean_dataframe = athlete_statistics ... ## long-running code here...\n\n  return my_clean_dataframe\n\nclean_athlete_statistics = clean_data()\n\nst.dataframe(clean_athlete_statistics)",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#caching-types-data-vs-resources",
+    "href": "caching.html#caching-types-data-vs-resources",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.4 Caching Types: Data vs Resources",
+    "text": "35.4 Caching Types: Data vs Resources\nCaching can also be used for other large files - for example, if you wanted to load in a trained machine learning model that’s the same for all users who will interact with your app.\n\nIt’s not always obvious which to use, so head to the Streamlit documentation if you’re a bit unsure.",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
     "objectID": "caching.html#caching-functions-with-parameters",
     "href": "caching.html#caching-functions-with-parameters",
     "title": "35  Reducing Load Time with Caching",
     "section": "35.5 Caching Functions with Parameters",
     "text": "35.5 Caching Functions with Parameters\nWhile using caching for the initial load of a dataframe, it can also make sense to use it for other long-running functions.\nLike normal functions, functions for caching can accept parameters.\nStreamlit will be able to look at the parameters passed in and tell whether it should\n\nuse a cached version of the data (because the parameters are the same as a previous instance that’s already in its cache)\nrun the function (because it’s a new set of parameters that it doesn’t already have a saved output for in its cache)\nThere are a few complexities around parameters that you may want to look into if using this in your own app: https://docs.streamlit.io/develop/concepts/architecture/caching#excluding-input-parameters",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#caching-settings",
+    "href": "caching.html#caching-settings",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.6 Caching settings",
+    "text": "35.6 Caching settings\nWhen you choose to cache something, you can add in some additional settings to make the cache as effective as possible for your particular situation.\n\n35.6.1 TTL (time to live)\nTTL determines how long to keep cached data before rerunning it.\nFor example, if data is likely to change over time, you could set the ttl parameter to set the number of seconds to keep cached data for.\n\n@st.cache_data(ttl=3600)\ndef your_function_here():\n    …\n\nThis also prevents your cache from becoming very large. Large caches could exceed the memory limits on your host.\n\n\n35.6.2 max_entries\nOnce the cache contains the maximum number of objects you have specified, the oldest ones will be deleted to make way for new ones.\n\n@st.cache_data(max_entries=10)\ndef your_function_here():\n    …\n\nThis also prevents your cache from becoming very large.",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
+    ]
+  },
+  {
+    "objectID": "caching.html#further-caching-settings",
+    "href": "caching.html#further-caching-settings",
+    "title": "35  Reducing Load Time with Caching",
+    "section": "35.7 Further Caching Settings",
+    "text": "35.7 Further Caching Settings\nAdditional caching settings can be explored in the documentation.",
     "crumbs": [
       "Advanced Concepts",
       "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
@@ -1006,6 +1083,39 @@
     "crumbs": [
       "Advanced Concepts",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>Persisting Data Across Pages and Runs with Session State</span>"
+    ]
+  },
+  {
+    "objectID": "callbacks.html",
+    "href": "callbacks.html",
+    "title": "37  Callbacks",
+    "section": "",
+    "text": "37.1 Callbacks Code Example\nTo begin, we initialise our session state variable like before.\nif 'button_click_count' not in st.session_state:\n  st.session_state.button_click_count = None\nNext, we define our callback function.\ndef button_action():\n  st.session_state.button_click_count += 1\nWe associate the callback with the relevant input, using the ‘on_click’ or ‘on_change’ parameter as appropriate.\nIn this case, it will mean that on_click (i.e. every time the user clicks on the button), the function button_action that we just defined will run. This function will add 1 to the count of button clicks we are storing in a session state key, which means it will persist between runs of the app and across app pages. Therefore, rather than the count resetting to 0 each time the button is clicked as it would if we weren’t using the session state, it will instead gradually increase the count.\nadd_number_button = st.button(\n  \"Click me!\",\n  on_click=button_action\n)\nFinally, we use our session state variable as we want to!\nst.write(f\"You've clicked the button {st.session_state.button_click_count} times\")\nClick here to load the app in a new page",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>37</span>  <span class='chapter-title'>Callbacks</span>"
+    ]
+  },
+  {
+    "objectID": "callbacks.html#callbacks-code-example",
+    "href": "callbacks.html#callbacks-code-example",
+    "title": "37  Callbacks",
+    "section": "",
+    "text": "Warning\n\n\n\nThe value of the button_click_count session state variable will reset when the user closes the browser tab or refreshes it.",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>37</span>  <span class='chapter-title'>Callbacks</span>"
+    ]
+  },
+  {
+    "objectID": "callbacks.html#more-detail-on-callbacks",
+    "href": "callbacks.html#more-detail-on-callbacks",
+    "title": "37  Callbacks",
+    "section": "37.2 More detail on callbacks",
+    "text": "37.2 More detail on callbacks\nWhile the ways mentioned here should work in most simple cases, you may want to take a look into the documentation to fully get your head around the power of state and callbacks.\nhttps://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state\n\nIt’s technically better practice to use the on_change callback if you’re storing the value of an input widget in session state - but just assigning it directly works in most cases",
+    "crumbs": [
+      "Advanced Concepts",
+      "<span class='chapter-number'>37</span>  <span class='chapter-title'>Callbacks</span>"
     ]
   },
   {
@@ -1083,83 +1193,6 @@
     "crumbs": [
       "Additional Resources",
       "<span class='chapter-number'>50</span>  <span class='chapter-title'>Streamlit Cheat Sheet</span>"
-    ]
-  },
-  {
-    "objectID": "editable_dataframes.html",
-    "href": "editable_dataframes.html",
-    "title": "17  Editable Dataframes",
-    "section": "",
-    "text": "Any pandas dataframe can be turned into an editable dataframe using the st.data_editor() function.\nThis displays the dataframe in a very similar manner to st.dataframe() but allows users to also click in and edit individual cells.\nIn the example below, try changing the value in the top left cell and see how it updates the values printed out in the app.\nThis is possible because we save the output of the st.data_editor() function to a different variable, allowing us to access the updated dataframe and use it just like we would any normal dataframe.\n\n\nimport pandas as pd\nfrom palmerpenguins import load_penguins\nimport streamlit as st\n\npenguins_df = pd.read_csv(\"https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/penguins_df.csv\")\n\npenguins_df_edited = st.data_editor(penguins_df)\n\nst.write(f\"The value in row 1 cell 1 is {penguins_df.head(1)['species'].values[0]}\")\n\nst.write(f\"The value in row 1 cell 1 of the edited dataframe is {penguins_df_edited.head(1)['species'].values[0]}\")\n\n\n\n\n\n\n\nWarning\n\n\n\nYou will want to make it clear to your users that changes to their dataframe will not be saved after they close or refresh the browser.\nYou will either need to use a more advanced method to write the changes in the dataframe to some sort of persistent storage, like a SQL database, or just provide a way for users to easily save their updated dataframe if relevant.\nWhile you could also save and load to the same .csv file, you may find that having multiple people accessing the web app at once could cause signficant confusion - so if you find yourself needing to edit dataframes that also need to persist afterwards, make sure you consider whether other alternatives may exist.",
-    "crumbs": [
-      "User Inputs",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Editable Dataframes</span>"
-    ]
-  },
-  {
-    "objectID": "caching.html#caching-settings",
-    "href": "caching.html#caching-settings",
-    "title": "35  Reducing Load Time with Caching",
-    "section": "35.6 Caching settings",
-    "text": "35.6 Caching settings\nWhen you choose to cache something, you can add in some additional settings to make the cache as effective as possible for your particular situation.\n\n35.6.1 TTL (time to live)\nTTL determines how long to keep cached data before rerunning it.\nFor example, if data is likely to change over time, you could set the ttl parameter to set the number of seconds to keep cached data for.\n\n@st.cache_data(ttl=3600)\ndef your_function_here():\n    …\n\nThis also prevents your cache from becoming very large. Large caches could exceed the memory limits on your host.\n\n\n35.6.2 max_entries\nOnce the cache contains the maximum number of objects you have specified, the oldest ones will be deleted to make way for new ones.\n\n@st.cache_data(max_entries=10)\ndef your_function_here():\n    …\n\nThis also prevents your cache from becoming very large.",
-    "crumbs": [
-      "Advanced Concepts",
-      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
-    ]
-  },
-  {
-    "objectID": "caching.html#further-caching-settings",
-    "href": "caching.html#further-caching-settings",
-    "title": "35  Reducing Load Time with Caching",
-    "section": "35.7 Further Caching Settings",
-    "text": "35.7 Further Caching Settings\nAdditional caching settings can be explored in the documentation.",
-    "crumbs": [
-      "Advanced Concepts",
-      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
-    ]
-  },
-  {
-    "objectID": "caching.html#a-caching-code-example",
-    "href": "caching.html#a-caching-code-example",
-    "title": "35  Reducing Load Time with Caching",
-    "section": "",
-    "text": "35.1.1 Without Caching\n\nimport pandas as pd\nimport streamlit as st\n\nathlete_statistics = pd.read_csv(\"athlete_details_eventwise.csv\")\n\nst.dataframe(athlete_statistics)\n\n\n\n35.1.2 Loading in the Same Dataset with Caching\n\nimport pandas as pd\nimport streamlit as st\n\n@st.cache_data\ndef load_data():\n  return pd.read_csv(\"athlete_details_eventwise.csv\")\n\nathlete_statistics = load_data()\n\nst.dataframe(athlete_statistics)",
-    "crumbs": [
-      "Advanced Concepts",
-      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
-    ]
-  },
-  {
-    "objectID": "caching.html#how-does-caching-affect-the-app",
-    "href": "caching.html#how-does-caching-affect-the-app",
-    "title": "35  Reducing Load Time with Caching",
-    "section": "35.2 How Does Caching Affect the App?",
-    "text": "35.2 How Does Caching Affect the App?\nWhen a dataset is cached, this means it will almost be excluded from the top-to-bottom running of the app.\nIf the version of the cache is deemed to be valid, then rather than loading the dataset in again from scratch and using memory on your web host to do so, it will use the version already in the cache.\nThis will make your app feel far more responsive - when actions that trigger a rerun, like changing the value of a slider or the value entered in a text/numeric input, as the data reload isn’t triggered, subsequent changes to the dataset will feel much quicker.\nHere is an example of the same app with and without caching so you can compare performance.\n\n\n\n\n\n\nNote\n\n\n\nIn this example, the performance improvement is very minor due to the small size of the dataset. With larger datasets with tens of thousands of rows or geodataframes that often contain complex information of 20+ mb, then the performance difference is significantly bigger.\n\n\n\n35.2.1 Without Caching\n\nClick here to load the app in a new page\n\n\n35.2.2 With Caching\n\nClick here to load the app in a new page",
-    "crumbs": [
-      "Advanced Concepts",
-      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
-    ]
-  },
-  {
-    "objectID": "caching.html#caching-other-steps",
-    "href": "caching.html#caching-other-steps",
-    "title": "35  Reducing Load Time with Caching",
-    "section": "35.3 Caching Other Steps",
-    "text": "35.3 Caching Other Steps\nIf you have certain actions that take a long time, then you may wish to cache those too.\nFor example, if you had a long-running data cleaning step that you ran when the data was loaded into the app, then you could cache that as well.\n\nimport pandas as pd\nimport streamlit as st\n\n@st.cache_data\ndef load_data():\n  return pd.read_csv(\"athlete_details_eventwise.csv\")\n\nathlete_statistics = load_data()\n\n@st.cache_data\ndef clean_data():\n\n  my_clean_dataframe = athlete_statistics ... ## long-running code here...\n\n  return my_clean_dataframe\n\nclean_athlete_statistics = clean_data()\n\nst.dataframe(clean_athlete_statistics)",
-    "crumbs": [
-      "Advanced Concepts",
-      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
-    ]
-  },
-  {
-    "objectID": "caching.html#caching-types-data-vs-resources",
-    "href": "caching.html#caching-types-data-vs-resources",
-    "title": "35  Reducing Load Time with Caching",
-    "section": "35.4 Caching Types: Data vs Resources",
-    "text": "35.4 Caching Types: Data vs Resources\nCaching can also be used for other large files - for example, if you wanted to load in a trained machine learning model that’s the same for all users who will interact with your app.\n\nIt’s not always obvious which to use, so head to the Streamlit documentation if you’re a bit unsure.",
-    "crumbs": [
-      "Advanced Concepts",
-      "<span class='chapter-number'>35</span>  <span class='chapter-title'>Reducing Load Time with Caching</span>"
     ]
   }
 ]

@@ -308,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./editable_dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">(Coming Soon!) Editable Dataframes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></span></a>
   </div>
 </li>
       </ul>
@@ -448,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./partial_reruns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Partial Reruns (fragments)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./caching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">(Coming Soon!) Caching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Reducing Load Time with Caching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -483,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./callbacks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">(Coming Soon!) Callbacks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Callbacks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -646,7 +646,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="26.1" class="anchored" data-anchor-id="tabs-in-streamlit"><span class="header-section-number">26.1</span> Tabs in Streamlit</h2>
 <p>Tabs are an extremely useful way to organise your page into something that is easier to navigate.</p>
 <p>Tabs look like this in a Streamlit app.</p>
-<div id="f1b28314" class="cell" data-execution_count="1">
+<div id="2719807c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>tab1, tab2, tab3 <span class="op">=</span> st.tabs([<span class="st">"This is Tab 1"</span>, <span class="st">"This is the Second Tab"</span>, <span class="st">"Tab 3 is Here!"</span>])</span>
@@ -683,7 +683,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Using a ‘with’ statement and indenting the code that should sit within the tab.</li>
 </ol>
-<div id="4c627454" class="cell" data-execution_count="2">
+<div id="54ddd123" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tab_a, tab_b <span class="op">=</span> st.tabs([<span class="st">"A Tab"</span>, <span class="st">"Another Tab"</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -696,7 +696,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Replacing the <code>st</code> in sections like <code>st.text()</code> with the variable name for the given tab.</li>
 </ol>
-<div id="08f12f59" class="cell" data-execution_count="3">
+<div id="dc903644" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tab_a, tab_b <span class="op">=</span> st.tabs([<span class="st">"A Tab"</span>, <span class="st">"Another Tab"</span>])</span>
@@ -714,7 +714,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this example, notice what happens to the random numbers as you change the number of tabs being generated.</p>
 <section id="using-the-tab.-syntax" class="level3" data-number="26.3.1">
 <h3 data-number="26.3.1" class="anchored" data-anchor-id="using-the-tab.-syntax"><span class="header-section-number">26.3.1</span> Using the ‘tab.’ syntax</h3>
-<div id="3d518c32" class="cell" data-execution_count="4">
+<div id="e164883e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -735,7 +735,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It’s also possible to do this using the ‘with’ syntax.</p>
 <p>In this example, in every separate tab, we pull back a random wikipedia page.</p>
 <p>(However, due to the way this works behind the scenes, we don’t get a new page on changing the number of tabs even though the app is rerunning each time)</p>
-<div id="6b367797" class="cell" data-execution_count="5">
+<div id="452ab791" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit.components.v1 <span class="im">as</span> components</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -769,7 +769,7 @@ Warning
 <p>This is not a supported part of Streamlit - the ways in which streamlit internally names these tabs may change over time, causing this code to no longer work.</p>
 </div>
 </div>
-<div id="e2b19807" class="cell" data-execution_count="6">
+<div id="a8c8ba95" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Credit to user 'Dallas on https://discuss.streamlit.io/t/customizing-the-appearance-of-tabs/48913</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
