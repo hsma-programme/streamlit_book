@@ -25,6 +25,8 @@ Let's first take a look at the multipage app itself and explore how a multipage 
 <iframe width="1100" height="800" src="https://penguin-trends-multipage-example-method-1.streamlit.app?embed=True" title="Quarto Components"></iframe>
 ```
 
+[Click here to load the sample app in a new tab](https://penguin-trends-multipage-example-method-1.streamlit.app)
+
 :::{.callout-tip}
 The key things to take away are that
 
@@ -105,8 +107,10 @@ pg.run()
 2. We can then create a dictionary where the keys (the values before the :) are strings representing what we want our subsection names to be. The values of the dictionary are lists containing the variables we defined above. For example, here section 1 will contain only the homepage, while sections 2 and 3 will contain 2 pages each.
 
 ```{=html}
-<iframe width="1100" height="800" src="https://penguin-trends-multipage-example-nested-sidebar.streamlit.app" title="Quarto Components"></iframe>
+<iframe width="1100" height="800" src="https://penguin-trends-multipage-example-nested-sidebar.streamlit.app?embed=True" title="Quarto Components"></iframe>
 ```
+
+[Click here to load the sample app in a new tab](https://penguin-trends-multipage-example-nested-sidebar.streamlit.app)
 
 ## Method 2: 'pages' subfolder
 
@@ -125,6 +129,9 @@ Let's look at an example multipage app with 5 pages.
 ```{=html}
 <iframe width="1100" height="800" src="https://penguin-trends-multipage-example-method-2.streamlit.app?embed=True" title="Quarto Components"></iframe>
 ```
+
+[Click here to load the sample app in a new tab](https://penguin-trends-multipage-example-method-2.streamlit.app)
+
 
 The structure of our app in our filesystem looks like this; in Windows explorer, this is how the files and folders appear.
 
