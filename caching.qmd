@@ -1,5 +1,8 @@
 ---
-title: "(Coming Soon!) Caching"
+title: "Reducing Load Time with Caching"
+format:
+  html:
+    toc-depth: 3
 filters:
   - whitphx/stlite
 ---
@@ -10,7 +13,6 @@ There are two main issues we might run into
 
 1. Each time you rerun something in your app (e.g. filtering the dataframe by using a drop-down select box), then the code to load the dataframe gets run again too.
 This can make your app feel really sluggish with larger data files
-
 
 2. When we reach the stage of deploying our app to the web, we have to be a bit more conscious of how much memory our app is using when being accessed by multiple people simultaneously
 By default, the data will be loaded in separately for each user - even though it’s identical
@@ -25,7 +27,74 @@ To switch from doing a standard data import to using caching, we
 
 We can then just use our dataframe like normal - Streamlit will handle the awkward bits.
 
-![](assets/2024-09-16-23-09-58.png)
+## A Caching Code Example
+
+### Without Caching
+
+```{python}
+#| eval: false
+import pandas as pd
+import streamlit as st
+
+athlete_statistics = pd.read_csv("athlete_details_eventwise.csv")
+
+st.dataframe(athlete_statistics)
+```
+
+### Loading in the Same Dataset with Caching
+
+```{python}
+#| eval: false
+import pandas as pd
+import streamlit as st
+
+@st.cache_data
+def load_data():
+  return pd.read_csv("athlete_details_eventwise.csv")
+
+athlete_statistics = load_data()
+
+st.dataframe(athlete_statistics)
+```
+
+## How Does Caching Affect the App?
+
+When a dataset is cached, this means it will almost be excluded from the top-to-bottom running of the app.
+
+If the version of the cache is deemed to be valid, then rather than loading the dataset in again from scratch and using memory on your web host to do so, it will use the version already in the cache.
+
+This will make your app feel far more responsive - when actions that trigger a rerun, like changing the value of a slider or the value entered in a text/numeric input, as the data reload isn't triggered, subsequent changes to the dataset will feel much quicker.
+
+## Caching Other Steps
+
+If you have certain actions that take a long time, then you may wish to cache those too.
+
+For example, if you had a long-running data cleaning step that you ran when the data was loaded into the app, then you could cache that as well.
+
+```{python}
+#| eval: false
+import pandas as pd
+import streamlit as st
+
+@st.cache_data
+def load_data():
+  return pd.read_csv("athlete_details_eventwise.csv")
+
+athlete_statistics = load_data()
+
+@st.cache_data
+def clean_data():
+
+  my_clean_dataframe = athlete_statistics ... ## long-running code here...
+
+  return my_clean_dataframe
+
+clean_athlete_statistics = clean_data()
+
+st.dataframe(clean_athlete_statistics)
+```
+
+## Caching Types: Data vs Resources
 
 Caching can also be used for other large files - for example, if you wanted to load in a trained machine learning model that’s the same for all users who will interact with your app.
 
@@ -33,8 +102,7 @@ Caching can also be used for other large files - for example, if you wanted to l
 
 It’s not always obvious which to use, so head to [the Streamlit documentation](https://docs.streamlit.io/develop/concepts/architecture/caching#deciding-which-caching-decorator-to-use) if you’re a bit unsure.
 
-
-## Caching functions with parameters
+## Caching Functions with Parameters
 
 While using caching for the initial load of a dataframe, it can also make sense to use it for other long-running functions.
 
@@ -42,8 +110,43 @@ Like normal functions, functions for caching can accept parameters.
 
 Streamlit will be able to look at the parameters passed in and tell whether it should
 
-use a cached version of the data (because the parameters are the same as a previous instance that’s already in its cache)
-
-run the function (because it’s a new set of parameters that it doesn’t already have a saved output for in its cache)
+- use a cached version of the data (because the parameters are the same as a previous instance that’s already in its cache)
+- run the function (because it’s a new set of parameters that it doesn’t already have a saved output for in its cache)
 
 * There are a few complexities around parameters that you may want to look into if using this in your own app: https://docs.streamlit.io/develop/concepts/architecture/caching#excluding-input-parameters
+
+## Caching settings
+
+When you choose to cache something, you can add in some additional settings to make the cache as effective as possible for your particular situation.
+
+### TTL (time to live)
+
+TTL determines how long to keep cached data before rerunning it.
+
+For example, if data is likely to change over time, you could set the ttl parameter to set the number of seconds to keep cached data for.
+
+```{python}
+#| eval: false
+@st.cache_data(ttl=3600)
+def your_function_here():
+	…
+```
+
+This also prevents your cache from becoming very large. Large caches could exceed the memory limits on your host.
+
+### max_entries
+
+Once the cache contains the maximum number of objects you have specified, the oldest ones will be deleted to make way for new ones.
+
+```{python}
+#| eval: false
+@st.cache_data(max_entries=10)
+def your_function_here():
+	…
+```
+
+This also prevents your cache from becoming very large.
+
+## Further Caching Settings
+
+Additional caching settings can be explored [in the documentation](https://docs.streamlit.io/develop/concepts/architecture/caching).
