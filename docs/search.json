@@ -1194,5 +1194,16 @@
       "Additional Resources",
       "<span class='chapter-number'>50</span>  <span class='chapter-title'>Streamlit Cheat Sheet</span>"
     ]
+  },
+  {
+    "objectID": "custom_page_navigation.html",
+    "href": "custom_page_navigation.html",
+    "title": "34  Custom Page Navigation Buttons",
+    "section": "",
+    "text": "The st.switch_page() function allows for additional custom navigation within an app.\nThis can be useful to help guide users through a particular journey, directing their actions more than if you just let them use the sidebar.\nst.switch_page is generally paired with st.button using the following syntax:\n\nimport streamlit as st\n\nif st.button(\"String denoting what appears on the button\"):\n  st.switch_page(\"page_to_switch_to.py\")\n\n\n34.0.1 Example App Using st.switch_page\nHere is an example app.\n\nClick here to load the app in a new page\nIn this app, we have a folder structure like so:\n\nWe then set up each page as follows:\n\n\n34.0.2 app.py\nThis is unchanged from our original multipage app\n\nimport streamlit as st\n\npg = st.navigation([\n        st.Page(\"home_page.py\", title=\"Welcome!\", icon=\":material/add_circle:\"),\n        st.Page(\"des_page.py\", title=\"Run Simulation\", icon=\":material/laptop:\")\n     ])\n\npg.run()\n\n\n\n34.0.3 home_page.py\n\nimport streamlit as st\n\nst.title(\"Clinic Simulation App\")\n\nst.write(\"Welcome to the clinic simulation app!\")\n\nif st.button(\"Click here to head to the simulation page\"):\n    st.switch_page(\"des_page.py\")\n\n\n\n34.0.4 des_page.py\n\nimport streamlit as st\nimport simpy\nimport random\nimport pandas as pd\n\nst.title(\"Simple One-Step DES\")\n\nif st.button(\"Click here to return to the homepage\"):\n    st.switch_page(\"home_page.py\")\n\npatient_iat_slider = st.slider(\"What is the average length of time between patients arriving?\",\n                               min_value=1, max_value=30, value=5)\n\n# Remaining code here...",
+    "crumbs": [
+      "Controlling Application Flow",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Custom Page Navigation Buttons</span>"
+    ]
   }
 ]
