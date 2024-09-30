@@ -800,7 +800,6 @@ Your app should allow people to change
 - The number of simulation runs
 
 You can place these parameters anywhere (e.g. main screen, sidebar).
-Try to make it so that the model does not run without a button being pressed.
 
 It should then display some (or all) of the charts and summary values from the original file
 

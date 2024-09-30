@@ -2,7 +2,7 @@
 
 Let’s now make our app really powerful! We’re going to work with a new Streamlit app that works out the estimated demand for an area given its demographic features[^1], make it more efficient, and then incorporate it into our main app.
 
-[^1] This is just a dummy app to show what’s possible - it’s not using a proper method to estimate the demand!
+[^1]: This is just a dummy app to show what’s possible - it’s not using a proper method to estimate the demand!
 
 :::{.callout-note collapse="true"}
 ### Click here to view and copy the code for the new page
