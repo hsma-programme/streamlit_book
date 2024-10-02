@@ -63,6 +63,7 @@ book:
     - memory_management.qmd
     - authentication.qmd
     - secrets.qmd
+    - persisting_data_between_sessions.qmd
   - part: Deployment
     chapters:
     - streamlit_community_cloud.qmd

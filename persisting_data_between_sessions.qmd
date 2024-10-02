@@ -1,0 +1,40 @@
+---
+title: Persisting data between sessions
+---
+
+:::{.callout-warning}
+This section is a work in progress - it will be enhanced further with detailed instructions at a later date
+:::
+
+Because of how Streamlit apps run when deployed on something like Streamlit cloud or an alternative platform like Heroku - data you write to something like a csv in a relative folder to your app will not persist indefinitely.
+
+This means that for some apps you may find yourself in the situation of needing a place to read and write from outside of the Streamlit ecosystem.
+
+## TiDB cloud
+
+Here are some details from the Kailo dashboard project on how TiDB cloud was used for this purpose.
+
+[Documentation](https://kailo-beewell-dashboard.readthedocs.io/en/latest/hosting_data.html)
+[Code example](https://github.com/kailo-beewell/kailo_beewell_dashboard_package/blob/main/kailo_beewell_dashboard/import_data.py)
+
+:::{.callout-tip}
+TiDB cloud has been certified to a range of standards including SOC 1 Type 2, SOC 2 Type 2, SOC 3, ISO 27001, ISO 27701, PCI DSS, GDPR, and HIPAA standards and requirements.
+
+However, you should still consult with all relevant departments in your organisation before using it for any data of a sensitive nature.
+:::
+
+## Supabase
+
+Supabase has been confirmed recently as a working option. A code example will follow shortly.
+
+## Google Sheets
+
+While a public google sheets is a good option for persisting data that needs to be read, writing back to the sheet is anecdotally far more difficult, and tutorials on the subject appear to be outdated. Using an alternative approach is recommended.
+
+## Writing to an internal database
+
+For an internal tool that is deployed on internal server infrastructure, you may wish to write to an existing database in your organisation.
+
+Streamlit provides details around how to do this with a range of providers, such as [Microsoft SQL Server](https://docs.streamlit.io/develop/tutorials/databases/mssql)
+
+Details for different databases can be found here: <https://docs.streamlit.io/develop/tutorials/databases>
