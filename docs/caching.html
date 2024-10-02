@@ -67,6 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./session_state.html" rel="next">
 <link href="./custom_page_navigation.html" rel="prev">
 <link href="./resources/logos/hsma_logo_transparent_background_large.png" rel="icon" type="image/png">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,18 +109,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-973P3EMW72"></script>
 
-<script type="text/javascript">
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
- 
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied'
-  });
 gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 </script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"dark",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -712,7 +727,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 <h2 data-number="35.1" class="anchored" data-anchor-id="a-caching-code-example"><span class="header-section-number">35.1</span> A Caching Code Example</h2>
 <section id="without-caching" class="level3" data-number="35.1.1">
 <h3 data-number="35.1.1" class="anchored" data-anchor-id="without-caching"><span class="header-section-number">35.1.1</span> Without Caching</h3>
-<div id="39eee8db" class="cell" data-execution_count="1">
+<div id="a75aa9ba" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -723,7 +738,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 </section>
 <section id="loading-in-the-same-dataset-with-caching" class="level3" data-number="35.1.2">
 <h3 data-number="35.1.2" class="anchored" data-anchor-id="loading-in-the-same-dataset-with-caching"><span class="header-section-number">35.1.2</span> Loading in the Same Dataset with Caching</h3>
-<div id="8379609d" class="cell" data-execution_count="2">
+<div id="be0098e7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -771,7 +786,7 @@ Note
 <h2 data-number="35.3" class="anchored" data-anchor-id="caching-other-steps"><span class="header-section-number">35.3</span> Caching Other Steps</h2>
 <p>If you have certain actions that take a long time, then you may wish to cache those too.</p>
 <p>For example, if you had a long-running data cleaning step that you ran when the data was loaded into the app, then you could cache that as well.</p>
-<div id="72ad2715" class="cell" data-execution_count="3">
+<div id="cc59262e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -817,7 +832,7 @@ Note
 <h3 data-number="35.6.1" class="anchored" data-anchor-id="ttl-time-to-live"><span class="header-section-number">35.6.1</span> TTL (time to live)</h3>
 <p>TTL determines how long to keep cached data before rerunning it.</p>
 <p>For example, if data is likely to change over time, you could set the ttl parameter to set the number of seconds to keep cached data for.</p>
-<div id="7e214c01" class="cell" data-execution_count="4">
+<div id="27ae8f82" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">@st.cache_data</span>(ttl<span class="op">=</span><span class="dv">3600</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> your_function_here():</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    …</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -827,7 +842,7 @@ Note
 <section id="max_entries" class="level3" data-number="35.6.2">
 <h3 data-number="35.6.2" class="anchored" data-anchor-id="max_entries"><span class="header-section-number">35.6.2</span> max_entries</h3>
 <p>Once the cache contains the maximum number of objects you have specified, the oldest ones will be deleted to make way for new ones.</p>
-<div id="af7007fb" class="cell" data-execution_count="5">
+<div id="9ce7cc6c" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">@st.cache_data</span>(max_entries<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> your_function_here():</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    …</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1746,6 +1761,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

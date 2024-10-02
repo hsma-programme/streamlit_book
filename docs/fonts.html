@@ -67,6 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./forms_and_run_buttons.html" rel="next">
 <link href="./logos.html" rel="prev">
 <link href="./resources/logos/hsma_logo_transparent_background_large.png" rel="icon" type="image/png">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,18 +109,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-973P3EMW72"></script>
 
-<script type="text/javascript">
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
- 
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied'
-  });
 gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 </script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"dark",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -675,7 +690,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 <p>We can create our own .css file and force Streamlit to load it in.</p>
 <p><img src="assets/2024-09-16-22-37-35.png" class="img-fluid"></p>
 <p>To load the file into the app, we need to include the following command:</p>
-<div id="e5789e53" class="cell" data-execution_count="1">
+<div id="2e2bdc66" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"style.css"</span>) <span class="im">as</span> css:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    st.markdown(<span class="ss">f'&lt;style&gt;</span><span class="sc">{</span>css<span class="sc">.</span>read()<span class="sc">}</span><span class="ss">&lt;/style&gt;'</span>, unsafe_allow_html<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1649,6 +1664,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

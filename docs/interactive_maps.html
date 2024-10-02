@@ -67,6 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./custom_components.html" rel="next">
 <link href="./static_maps.html" rel="prev">
 <link href="./resources/logos/hsma_logo_transparent_background_large.png" rel="icon" type="image/png">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,18 +109,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-973P3EMW72"></script>
 
-<script type="text/javascript">
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
- 
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied'
-  });
 gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 </script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"dark",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -684,7 +699,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 <h2 data-number="11.1" class="anchored" data-anchor-id="interactive-maps-with-folium"><span class="header-section-number">11.1</span> Interactive maps with Folium</h2>
 <p>Folium is an easy way to make interactive maps.</p>
 <p>While they are not natively supported in streamlit, the st-folium component is a powerful custom component that is being actively supported and developed.</p>
-<div id="a98a34ef" class="cell" data-execution_count="1">
+<div id="90ec4fa8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
@@ -822,7 +837,7 @@ Tip
 <h3 data-number="11.1.1" class="anchored" data-anchor-id="sneak-peak---updating-the-map-based-on-inputs"><span class="header-section-number">11.1.1</span> Sneak Peak - Updating the map based on inputs</h3>
 <p>Let’s use a simple text input to filter the dataframe we are passing to the map.</p>
 <p>What happens to the map when we do this?</p>
-<div id="20d1fa48" class="cell" data-execution_count="2">
+<div id="373565ed" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas</span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
@@ -1847,6 +1862,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

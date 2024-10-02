@@ -7,7 +7,11 @@ book:
   date: 2024/07/31
   google-analytics:
     tracking-id: "G-973P3EMW72"
-    storage: none
+    anonymize-ip: true
+  cookie-consent:
+    type: express
+    style: simple
+    palette: dark
   chapters:
   - index.qmd
   - part: An Introduction to Streamlit

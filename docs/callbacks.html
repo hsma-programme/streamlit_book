@@ -67,6 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./memory_management.html" rel="next">
 <link href="./session_state.html" rel="prev">
 <link href="./resources/logos/hsma_logo_transparent_background_large.png" rel="icon" type="image/png">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,18 +109,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-973P3EMW72"></script>
 
-<script type="text/javascript">
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
- 
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied'
-  });
 gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 </script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"dark",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -698,12 +713,12 @@ Tip
 <section id="callbacks-code-example" class="level2" data-number="37.1">
 <h2 data-number="37.1" class="anchored" data-anchor-id="callbacks-code-example"><span class="header-section-number">37.1</span> Callbacks Code Example</h2>
 <p>To begin, we initialise our session state variable like before.</p>
-<div id="9c17efdc" class="cell" data-execution_count="1">
+<div id="970b5088" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'button_click_count'</span> <span class="kw">not</span> <span class="kw">in</span> st.session_state:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  st.session_state.button_click_count <span class="op">=</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we define our callback function.</p>
-<div id="a8a53881" class="cell" data-execution_count="2">
+<div id="455924fd" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> button_action():</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  st.session_state.button_click_count <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -722,14 +737,14 @@ Warning
 <p>The value of the <code>button_click_count</code> session state variable will reset when the user closes the browser tab or refreshes it.</p>
 </div>
 </div>
-<div id="937634cd" class="cell" data-execution_count="3">
+<div id="b0d4f54f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>add_number_button <span class="op">=</span> st.button(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Click me!"</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  on_click<span class="op">=</span>button_action</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, we use our session state variable as we want to!</p>
-<div id="c8a4e391" class="cell" data-execution_count="4">
+<div id="0de75beb" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>st.write(<span class="ss">f"You've clicked the button </span><span class="sc">{</span>st<span class="sc">.</span>session_state<span class="sc">.</span>button_click_count<span class="sc">}</span><span class="ss"> times"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <iframe width="780" height="500" src="https://hsma-session-state-callbacks.streamlit.app?embed=true" title="Session State and Callbacks App Example"></iframe>
@@ -1650,6 +1665,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

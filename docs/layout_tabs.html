@@ -67,6 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./layout_expander.html" rel="next">
 <link href="./layout_sidebar.html" rel="prev">
 <link href="./resources/logos/hsma_logo_transparent_background_large.png" rel="icon" type="image/png">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,18 +112,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-973P3EMW72"></script>
 
-<script type="text/javascript">
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
- 
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied'
-  });
 gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 </script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"dark",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -690,7 +705,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 <h2 data-number="26.1" class="anchored" data-anchor-id="tabs-in-streamlit"><span class="header-section-number">26.1</span> Tabs in Streamlit</h2>
 <p>Tabs are an extremely useful way to organise your page into something that is easier to navigate.</p>
 <p>Tabs look like this in a Streamlit app.</p>
-<div id="04c9592a" class="cell" data-execution_count="1">
+<div id="5066e546" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>tab1, tab2, tab3 <span class="op">=</span> st.tabs([<span class="st">"This is Tab 1"</span>, <span class="st">"This is the Second Tab"</span>, <span class="st">"Tab 3 is Here!"</span>])</span>
@@ -727,7 +742,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 <ol type="1">
 <li>Using a ‘with’ statement and indenting the code that should sit within the tab.</li>
 </ol>
-<div id="f9bdae5d" class="cell" data-execution_count="2">
+<div id="bc848a68" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tab_a, tab_b <span class="op">=</span> st.tabs([<span class="st">"A Tab"</span>, <span class="st">"Another Tab"</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -740,7 +755,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 <ol start="2" type="1">
 <li>Replacing the <code>st</code> in sections like <code>st.text()</code> with the variable name for the given tab.</li>
 </ol>
-<div id="0ebd48e8" class="cell" data-execution_count="3">
+<div id="bf1d91d5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tab_a, tab_b <span class="op">=</span> st.tabs([<span class="st">"A Tab"</span>, <span class="st">"Another Tab"</span>])</span>
@@ -758,7 +773,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 <p>In this example, notice what happens to the random numbers as you change the number of tabs being generated.</p>
 <section id="using-the-tab.-syntax" class="level3" data-number="26.3.1">
 <h3 data-number="26.3.1" class="anchored" data-anchor-id="using-the-tab.-syntax"><span class="header-section-number">26.3.1</span> Using the ‘tab.’ syntax</h3>
-<div id="e25cb92f" class="cell" data-execution_count="4">
+<div id="22d6d072" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -779,7 +794,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 <p>It’s also possible to do this using the ‘with’ syntax.</p>
 <p>In this example, in every separate tab, we pull back a random wikipedia page.</p>
 <p>(However, due to the way this works behind the scenes, we don’t get a new page on changing the number of tabs even though the app is rerunning each time)</p>
-<div id="b327bf9d" class="cell" data-execution_count="5">
+<div id="76622c62" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit.components.v1 <span class="im">as</span> components</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -813,7 +828,7 @@ Warning
 <p>This is not a supported part of Streamlit - the ways in which streamlit internally names these tabs may change over time, causing this code to no longer work.</p>
 </div>
 </div>
-<div id="0304a110" class="cell" data-execution_count="6">
+<div id="6e017638" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Credit to user 'Dallas on https://discuss.streamlit.io/t/customizing-the-appearance-of-tabs/48913</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
@@ -1762,6 +1777,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

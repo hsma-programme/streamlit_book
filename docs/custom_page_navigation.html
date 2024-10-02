@@ -67,6 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./caching.html" rel="next">
 <link href="./partial_reruns.html" rel="prev">
 <link href="./resources/logos/hsma_logo_transparent_background_large.png" rel="icon" type="image/png">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,18 +109,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-973P3EMW72"></script>
 
-<script type="text/javascript">
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
- 
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied'
-  });
 gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 </script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"dark",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -682,7 +697,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 <p>The <code>st.switch_page()</code> function allows for additional custom navigation within an app.</p>
 <p>This can be useful to help guide users through a particular journey, directing their actions more than if you just let them use the sidebar.</p>
 <p><code>st.switch_page</code> is generally paired with <code>st.button</code> using the following syntax:</p>
-<div id="5243c605" class="cell" data-execution_count="1">
+<div id="5380eaa1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> st.button(<span class="st">"String denoting what appears on the button"</span>):</span>
@@ -700,7 +715,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 <section id="app.py" class="level3" data-number="34.0.2">
 <h3 data-number="34.0.2" class="anchored" data-anchor-id="app.py"><span class="header-section-number">34.0.2</span> app.py</h3>
 <p><em>This is unchanged from our original multipage app</em></p>
-<div id="5d7bc4f1" class="cell" data-execution_count="2">
+<div id="46acb227" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pg <span class="op">=</span> st.navigation([</span>
@@ -713,7 +728,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 </section>
 <section id="home_page.py" class="level3" data-number="34.0.3">
 <h3 data-number="34.0.3" class="anchored" data-anchor-id="home_page.py"><span class="header-section-number">34.0.3</span> home_page.py</h3>
-<div id="69f59c96" class="cell" data-execution_count="3">
+<div id="a377dde0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Clinic Simulation App"</span>)</span>
@@ -726,7 +741,7 @@ gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 </section>
 <section id="des_page.py" class="level3" data-number="34.0.4">
 <h3 data-number="34.0.4" class="anchored" data-anchor-id="des_page.py"><span class="header-section-number">34.0.4</span> des_page.py</h3>
-<div id="b1e42490" class="cell" data-execution_count="4">
+<div id="0a549a25" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> simpy</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -1650,6 +1665,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

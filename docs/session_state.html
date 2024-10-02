@@ -67,6 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./callbacks.html" rel="next">
 <link href="./caching.html" rel="prev">
 <link href="./resources/logos/hsma_logo_transparent_background_large.png" rel="icon" type="image/png">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,18 +109,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-973P3EMW72"></script>
 
-<script type="text/javascript">
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
- 
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied'
-  });
 gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
 </script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"dark",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -721,7 +736,7 @@ Tip
 </ul>
 </div>
 </div>
-<div id="7240e3c5" class="cell" data-execution_count="1">
+<div id="08a4e558" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'your_number'</span> <span class="kw">not</span> <span class="kw">in</span> st.session_state:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    st.session_state.your_number <span class="op">=</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -730,7 +745,7 @@ Tip
 <h2 data-number="36.2" class="anchored" data-anchor-id="assigning-to-session-state-keys"><span class="header-section-number">36.2</span> Assigning to session state keys</h2>
 <p>Session state can be used to store a range of things.</p>
 <p>It can store the input given in a user input widget:</p>
-<div id="b7f78bdc" class="cell" data-execution_count="2">
+<div id="9ac5bad4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>st.session_state.your_number <span class="op">=</span> st.number_input(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Pick a number between 1 and 100"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    min_value<span class="op">=</span><span class="dv">1</span>, max_value<span class="op">=</span><span class="dv">100</span>, value<span class="op">=</span><span class="va">None</span></span>
@@ -755,11 +770,11 @@ A note about assigning inputs to session state like this
 </div>
 </div>
 <p>Or the result of a calculation (whether that’s a number, a dataframe, a graph, or something else)</p>
-<div id="35f68624" class="cell" data-execution_count="3">
+<div id="a775a5e9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>st.session_state.the_final_answer <span class="op">=</span> result <span class="op">*</span> <span class="dv">42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The thing you’re saving to the state could itself optionally use something stored in the session state!</p>
-<div id="a2f56762" class="cell" data-execution_count="4">
+<div id="ffb27cfa" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>st.session_state.the_final_answer <span class="op">=</span> st.session_state.your_number <span class="op">*</span> <span class="dv">42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -777,7 +792,7 @@ A note about assigning inputs to session state like this
 <p>Try comparing the behaviour when moving between the different pages of the app.</p>
 <section id="app.py" class="level3" data-number="36.4.1">
 <h3 data-number="36.4.1" class="anchored" data-anchor-id="app.py"><span class="header-section-number">36.4.1</span> app.py</h3>
-<div id="3cec9b1e" class="cell" data-execution_count="6">
+<div id="f6958606" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pg <span class="op">=</span> st.navigation([</span>
@@ -790,7 +805,7 @@ A note about assigning inputs to session state like this
 </section>
 <section id="page_1.py" class="level3" data-number="36.4.2">
 <h3 data-number="36.4.2" class="anchored" data-anchor-id="page_1.py"><span class="header-section-number">36.4.2</span> page_1.py</h3>
-<div id="7924882a" class="cell" data-execution_count="7">
+<div id="9a3b35a2" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'your_number'</span> <span class="kw">not</span> <span class="kw">in</span> st.session_state:</span>
@@ -817,7 +832,7 @@ A note about assigning inputs to session state like this
 </section>
 <section id="page_2.py" class="level3" data-number="36.4.3">
 <h3 data-number="36.4.3" class="anchored" data-anchor-id="page_2.py"><span class="header-section-number">36.4.3</span> page_2.py</h3>
-<div id="58e1a0c0" class="cell" data-execution_count="8">
+<div id="fdaf9bc5" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'your_number'</span> <span class="kw">not</span> <span class="kw">in</span> st.session_state:</span>
@@ -1765,6 +1780,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
