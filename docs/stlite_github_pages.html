@@ -105,6 +105,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-973P3EMW72"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+ 
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied'
+  });
+gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
+</script>
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -886,7 +900,7 @@ Warning
 <ul>
 <li>The ‘spinner’ does not work in stlite by default. This can be a problem with long-running calculations that occur after clicking something as it is not obvious to your user that something is going on. Instead, you must make sure you run <code>import asyncio</code> and then use it as follows.</li>
 </ul>
-<div id="f79e2e19" class="cell" data-execution_count="1">
+<div id="267db71c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> st.spinner(<span class="st">'Running a long-running calculation..'</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.sleep(<span class="fl">0.1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>

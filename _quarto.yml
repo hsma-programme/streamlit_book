@@ -5,6 +5,9 @@ book:
   title: HSMA - Web Apps with Streamlit
   author: Sammi Rosser
   date: 2024/07/31
+  google-analytics:
+    tracking-id: "G-973P3EMW72"
+    storage: none
   chapters:
   - index.qmd
   - part: An Introduction to Streamlit

@@ -108,6 +108,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-973P3EMW72"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+ 
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied'
+  });
+gtag('config', 'G-973P3EMW72', { 'anonymize_ip': true});
+</script>
 
 
 <link rel="stylesheet" href="include/webex.css">
@@ -702,7 +716,7 @@ Note
 </div>
 </div>
 <p>The final step to ensure the plot is actually displayed is to pass the <code>fig</code> variable to <code>st.pyplot</code>.</p>
-<div id="99ea920b" class="cell" data-execution_count="1">
+<div id="cb79b5b9" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -784,7 +798,7 @@ Note
 <section id="an-alternative-way-of-displaying-charts-made-with-matplotlib" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="an-alternative-way-of-displaying-charts-made-with-matplotlib"><span class="header-section-number">7.2</span> An alternative way of displaying charts made with matplotlib</h2>
 <p>Instead of using the <code>st.pyplot()</code> function, we may find it easier in some cases to save the output figure and serve that to the user using the <code>st.image()</code> function instead.</p>
-<div id="4e76d542" class="cell" data-execution_count="2">
+<div id="e115ba9e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -836,7 +850,7 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>We could also write the last 3 lines of code above as</p>
-<div id="13df8b0a" class="cell" data-execution_count="3">
+<div id="885571b6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'penguins_scatter_method_1.png'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>st.image(<span class="st">'penguins_scatter_method_1.png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -867,7 +881,7 @@ Tip
 <p>This can become particularly valuable when we start to explore layout options like columns later in the book.</p>
 </div>
 </div>
-<div id="6d97a47c" class="cell" data-execution_count="4">
+<div id="512724d9" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
