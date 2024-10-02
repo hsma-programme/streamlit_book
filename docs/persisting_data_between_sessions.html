@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HSMA - Web Apps with Streamlit - 51&nbsp; Exercise 5: DEStiny’s Child</title>
+<title>HSMA - Web Apps with Streamlit - 41&nbsp; Persisting data between sessions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./exercise_6_des_part_3_advanced_streamlit.html" rel="next">
-<link href="./exercise_4_des_part_1.html" rel="prev">
+<link href="./streamlit_community_cloud.html" rel="next">
+<link href="./secrets.html" rel="prev">
 <link href="./resources/logos/hsma_logo_transparent_background_large.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -110,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_1_identifying_opportunities.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise_5_des_part_2_multipage.html"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Exercise 5: DEStiny’s Child</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./caching.html">Advanced Concepts</a></li><li class="breadcrumb-item"><a href="./persisting_data_between_sessions.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Persisting data between sessions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -469,7 +503,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./persisting_data_between_sessions.html" class="sidebar-item-text sidebar-link">
+  <a href="./persisting_data_between_sessions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Persisting data between sessions</span></span></a>
   </div>
 </li>
@@ -551,7 +585,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise_5_des_part_2_multipage.html" class="sidebar-item-text sidebar-link active">
+  <a href="./exercise_5_des_part_2_multipage.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Exercise 5: DEStiny’s Child</span></span></a>
   </div>
 </li>
@@ -602,16 +636,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#bonus-tasks" id="toc-bonus-tasks" class="nav-link active" data-scroll-target="#bonus-tasks"><span class="header-section-number">51.1</span> Bonus Tasks</a></li>
+  <li><a href="#tidb-cloud" id="toc-tidb-cloud" class="nav-link active" data-scroll-target="#tidb-cloud"><span class="header-section-number">41.1</span> TiDB cloud</a></li>
+  <li><a href="#supabase" id="toc-supabase" class="nav-link" data-scroll-target="#supabase"><span class="header-section-number">41.2</span> Supabase</a></li>
+  <li><a href="#google-sheets" id="toc-google-sheets" class="nav-link" data-scroll-target="#google-sheets"><span class="header-section-number">41.3</span> Google Sheets</a>
+  <ul class="collapse">
+  <li><a href="#reading" id="toc-reading" class="nav-link" data-scroll-target="#reading"><span class="header-section-number">41.3.1</span> Reading</a></li>
+  <li><a href="#app-code" id="toc-app-code" class="nav-link" data-scroll-target="#app-code"><span class="header-section-number">41.3.2</span> App Code</a></li>
+  <li><a href="#example-secrets-file" id="toc-example-secrets-file" class="nav-link" data-scroll-target="#example-secrets-file"><span class="header-section-number">41.3.3</span> Example secrets file</a></li>
+  <li><a href="#writing-private-sheets" id="toc-writing-private-sheets" class="nav-link" data-scroll-target="#writing-private-sheets"><span class="header-section-number">41.3.4</span> Writing + Private Sheets</a></li>
+  <li><a href="#app-code-1" id="toc-app-code-1" class="nav-link" data-scroll-target="#app-code-1"><span class="header-section-number">41.3.5</span> App Code</a></li>
+  <li><a href="#example-secrets-file-1" id="toc-example-secrets-file-1" class="nav-link" data-scroll-target="#example-secrets-file-1"><span class="header-section-number">41.3.6</span> Example Secrets File</a></li>
+  </ul></li>
+  <li><a href="#writing-to-an-internal-database" id="toc-writing-to-an-internal-database" class="nav-link" data-scroll-target="#writing-to-an-internal-database"><span class="header-section-number">41.4</span> Writing to an internal database</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_1_identifying_opportunities.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise_5_des_part_2_multipage.html"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Exercise 5: DEStiny’s Child</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./caching.html">Advanced Concepts</a></li><li class="breadcrumb-item"><a href="./persisting_data_between_sessions.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Persisting data between sessions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Exercise 5: DEStiny’s Child</span></h1>
+<h1 class="title"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Persisting data between sessions</span></h1>
 </div>
 
 
@@ -628,25 +673,212 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>It’s time to enhance our DES app a bit!</p>
-<p>Take a copy of your original version first and store it somewhere safe!</p>
-<p>Do these steps in the order listed, and take the time to make sure it’s working after each step.</p>
-<ul>
-<li><p>Add a run button</p></li>
-<li><p>Split your code out into separate files for the web app and the DES classes, then import the DES classes where you need them and update how the g class values are set</p></li>
-<li><p>Turn your app into a multipage app</p>
-<ul>
-<li>Make the first page give a brief explanation of what the app actually is</li>
-<li>Make the second page allow people to run the simulation</li>
-</ul></li>
-</ul>
-<section id="bonus-tasks" class="level2" data-number="51.1">
-<h2 data-number="51.1" class="anchored" data-anchor-id="bonus-tasks"><span class="header-section-number">51.1</span> Bonus Tasks</h2>
-<ul>
-<li><p>Add the HSMA logo to your app (it’s provided in the exercise_2 folder)</p></li>
-<li><p>Create a custom colourscheme for your app using a config.toml file in a .streamlit subfolder</p></li>
-<li><p>Import the file style.css into your app to change the font of your app</p></li>
-</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This section is a work in progress - it will be enhanced further with detailed instructions at a later date</p>
+</div>
+</div>
+<p>Because of how Streamlit apps run when deployed on something like Streamlit cloud or an alternative platform like Heroku - data you write to something like a csv in a relative folder to your app will not persist indefinitely.</p>
+<p>This means that for some apps you may find yourself in the situation of needing a place to read and write from outside of the Streamlit ecosystem.</p>
+<section id="tidb-cloud" class="level2" data-number="41.1">
+<h2 data-number="41.1" class="anchored" data-anchor-id="tidb-cloud"><span class="header-section-number">41.1</span> TiDB cloud</h2>
+<p>Here are some details from the Kailo dashboard project on how TiDB cloud was used for this purpose.</p>
+<p><a href="https://kailo-beewell-dashboard.readthedocs.io/en/latest/hosting_data.html">Documentation</a> <a href="https://github.com/kailo-beewell/kailo_beewell_dashboard_package/blob/main/kailo_beewell_dashboard/import_data.py">Code example</a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>TiDB cloud has been certified to a range of standards including SOC 1 Type 2, SOC 2 Type 2, SOC 3, ISO 27001, ISO 27701, PCI DSS, GDPR, and HIPAA standards and requirements.</p>
+<p>However, you should still consult with all relevant departments in your organisation before using it for any data of a sensitive nature.</p>
+</div>
+</div>
+</section>
+<section id="supabase" class="level2" data-number="41.2">
+<h2 data-number="41.2" class="anchored" data-anchor-id="supabase"><span class="header-section-number">41.2</span> Supabase</h2>
+<p>Supabase has been confirmed recently as a working option. A code example will follow shortly.</p>
+</section>
+<section id="google-sheets" class="level2" data-number="41.3">
+<h2 data-number="41.3" class="anchored" data-anchor-id="google-sheets"><span class="header-section-number">41.3</span> Google Sheets</h2>
+<section id="reading" class="level3" data-number="41.3.1">
+<h3 data-number="41.3.1" class="anchored" data-anchor-id="reading"><span class="header-section-number">41.3.1</span> Reading</h3>
+<p>Public google sheets can be easily read from using the <code>st-gsheets-connection</code> extension.</p>
+<p><a href="https://github.com/streamlit/gsheets-connection/tree/main?tab=readme-ov-file" class="uri">https://github.com/streamlit/gsheets-connection/tree/main?tab=readme-ov-file</a></p>
+<p>This app shows an example of reading from a google sheet.</p>
+<iframe width="780" height="500" src="https://hsma-g-sheets-app-read.streamlit.app/" title="Quarto Components"></iframe>
+<p>In this example app, the URL to the sheet is stored inside a <code>secrets.toml</code> file, which is stored in a <code>.streamlit</code> folder when running locally and would generally not be committed to github.</p>
+<p>When deploying this to the community cloud, you click into ‘advanced settings’ when deploying your app and paste the contents of the secrets file there.</p>
+</section>
+<section id="app-code" class="level3" data-number="41.3.2">
+<h3 data-number="41.3.2" class="anchored" data-anchor-id="app-code"><span class="header-section-number">41.3.2</span> App Code</h3>
+<div id="31c2d95b" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> streamlit_gsheets <span class="im">import</span> GSheetsConnection <span class="co"># this doesn't exist in the hsma_webdev environment</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># would need to be installed with</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install st-gsheets-connection</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm access to the secrets file</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>st.write(<span class="st">"The secret word is:"</span>, st.secrets[<span class="st">"test_secret"</span>])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a connection object.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> st.connection(<span class="st">"gsheets"</span>, <span class="bu">type</span><span class="op">=</span>GSheetsConnection)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Passing in 'Sheet1' returns a '400 resource not found error'</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Passing in the index of the sheet as an integer works!</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> conn.read(worksheet<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>st.dataframe(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-secrets-file" class="level3" data-number="41.3.3">
+<h3 data-number="41.3.3" class="anchored" data-anchor-id="example-secrets-file"><span class="header-section-number">41.3.3</span> Example secrets file</h3>
+<pre><code>test_secret = "llama"
+
+[connections.gsheets]
+spreadsheet = "https://docs.google.com/spreadsheets/d/1IrzMP1httjxBFOSmTQGKg-V7Uzpw06YkPCeP7YimSQE/edit?usp=sharing"</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If deploying to community cloud, you will also need to provide a <code>requirements.txt</code> file containing the following line (plus any other packages you require):</p>
+<pre><code>st-gsheets-connection</code></pre>
+</div>
+</div>
+</section>
+<section id="writing-private-sheets" class="level3" data-number="41.3.4">
+<h3 data-number="41.3.4" class="anchored" data-anchor-id="writing-private-sheets"><span class="header-section-number">41.3.4</span> Writing + Private Sheets</h3>
+<p>To either read from a private sheet, or write to a public or private sheet, you will need to undertake some additional steps using the Google</p>
+<iframe width="780" height="500" src="https://hsma-g-sheets-app-write.streamlit.app/" title="Quarto Components"></iframe>
+</section>
+<section id="app-code-1" class="level3" data-number="41.3.5">
+<h3 data-number="41.3.5" class="anchored" data-anchor-id="app-code-1"><span class="header-section-number">41.3.5</span> App Code</h3>
+<div id="e53e2ac0" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> streamlit_gsheets <span class="im">import</span> GSheetsConnection <span class="co"># this doesn't exist in the hsma_webdev environment</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># would need to be installed with</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install st-gsheets-connection</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm access to the secrets file</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>st.write(<span class="st">"The secret word is:"</span>, st.secrets[<span class="st">"test_secret"</span>])</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a connection object.</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> st.connection(<span class="st">"gsheets"</span>, <span class="bu">type</span><span class="op">=</span>GSheetsConnection)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Passing in 'Sheet1' returns a '400 resource not found error'</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Passing in the index of the sheet as an integer works!</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> conn.read(worksheet<span class="op">=</span><span class="dv">0</span>, ttl<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>st.dataframe(df.sort_values(<span class="st">"Added"</span>, ascending<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> st.button(<span class="st">"Update worksheet"</span>):</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update the dataframe before overwriting in case any actions have been undertaken since the user first loaded the page</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> conn.read(worksheet<span class="op">=</span><span class="dv">0</span>, ttl<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate an additional data field</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    units <span class="op">=</span> random.randint(<span class="dv">100</span>, <span class="dv">5000</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    unit_cost <span class="op">=</span> np.<span class="bu">round</span>((random.random() <span class="op">+</span> random.randint(<span class="dv">1</span>, <span class="dv">10</span>)), <span class="dv">2</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    additional_row <span class="op">=</span> [</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'Item'</span>: <span class="st">"Additional HSMA Merchandise"</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Category"</span>: random.choice([<span class="st">"Stickers"</span>, <span class="st">"Pets"</span>, <span class="st">"Clothing"</span>, <span class="st">"Mugs"</span>]),</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Units"</span>: units,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Unit Cost"</span>: unit_cost,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Total"</span>: units <span class="op">*</span> unit_cost,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Added"</span>: datetime.now().strftime(<span class="st">"</span><span class="sc">%d</span><span class="st">/%m/%Y %H:%M:%S"</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    df_updated <span class="op">=</span> pd.concat(</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        [df,</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>        pd.DataFrame(additional_row)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> conn.update(</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>        worksheet<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        data<span class="op">=</span>df_updated,</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    st.cache_data.clear()</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    st.rerun()</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># st.dataframe(df.sort_values("Added", ascending=False))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-secrets-file-1" class="level3" data-number="41.3.6">
+<h3 data-number="41.3.6" class="anchored" data-anchor-id="example-secrets-file-1"><span class="header-section-number">41.3.6</span> Example Secrets File</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The credentials in this code snippet aren’t real - this is just to give you an idea of the file structure.</p>
+<p>Full details of how to populate this file for your spreadsheet can be found in the <a href="https://github.com/streamlit/gsheets-connection/tree/main?tab=readme-ov-file#service-account--crud-example">Streamlit GSheetsConnection readme</a>.</p>
+</div>
+</div>
+<pre><code>test_secret = "llama"
+
+[connections.gsheets]
+spreadsheet = "https://docs.google.com/spreadsheets/d/1IrzMP1httjxBFOSmTQGKg-V7Uzpw06YkPCeP7YimSQE/edit?usp=sharing"
+type = "service_account"
+project_id = "streamlit-test-1-437411"
+private_key_id = "ae7269b75e7631f5f0886cc15a74165e7c1f2f4b"
+private_key = "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDp39piasbcAy1N\nRAHot6tBACMoAXRN5Lz8hKU7GC6dy9gs49+Ksv+Jc9xrvdksM5Al6bCVQK1qjvL/\n5whtf7XkNWEEb3n8Ol7QCT75F0BLDhGLU9o9AlR0ed7D1cjYWw+3S+l2QqW0xpEP\ne+saa4ZiKRLDO87c4eqeuM9xToO1uL1lgnJQuK0mqRxS5KHQRbHhbiAA18sx6shw\nksDVjXfg2Y+bSggEuKrupilU6ZF7j7/uryReZBp2m4oAecJEx6fLyxGS6O3hA/fY\n3GQGJk9H+xoByTno4aueBp6hyk3XQiHM3/ET0I5MmVpf1CjYbj2poOYP7L//sd4h\noDbiwekJAgMBAAECggEABoTXlr4wsFHDWb+/SOATvTJWiIcv2Xr6fJRq8aB9LidQ\nLYIliT1vi4KH/pXSX53JUxE2O5bLrqhw5AqpzLmOVZ/aRjAgR5RN78EOOQ25nE32\nVbqe3uv5dCywdad4G3XAVKTgS0xUx5rwUKzs0vXzzzkjXX9Fhxkh+84ddCRS3gYM\nVDPgAeCY1Jzjxqoqux0PolAv1ndV2/9F91+3LcUMA+FIVGCEN8/6BOwaO9e8KHQo\nLvozfJec6wiVYCIcXw85ksrULc2TqbpXB6yFnji6j+iyNh4wbGolYUrtm65Z1IoA\nMNfowyarP4fC4UsF/D0f0+M9Rv+tP1gerLH/nXXHLQKBgQD/XGup9uP9iqxxfdyk\nyzgri99emhBuYlq7Yob7T/mvuviUYV8iQzk2jW1jhSSOfJ7CjhdYFJHg4lIH+nVG\nZgzahR61V1Xnj6qY03n06xZtBwf+1UXlshWam4sbU7Nwd3x5mZDVUcf+1JXD1bv/\nWpHzSpd4riRFuAni1tkvKpYKvQKBgQDqdaspONktJR4kJn7Oa0deIbsol8SwdmpS\n0uGv8T4vypsyjxvl4oslEy6XOQ3HcfOrD7+jQaTjaGxYaB39FwRtNT1WtrifM9B0\nJSdk8k2KXeweCarOt29/e7rnqiqxYr0cgMrNRXV/gAAqzKyZ2Mu1rnOYTSdsOlyM\ngKwCgUliPQKBgD/Z2SXnkPx9pz69jOU71zC0Scb62O7w8uT17vB5/+Hb63oWmtYT\nXwPv+xEuYoSqTnwxUU753bwQexh5nMdcjww4ywPm8Zj0CGEsR8tg2PusDWi/5TlY\n/SPqjq7nj++oQNya9GcSiuKCP2x3Tgm8mM/vr85CJNm1+erZc/biPCA1AoGBAKgj\nwJ6sVRsKDmaQcMnpp2G7QPQoevatxSwmbZF2qUkuvEPy22fuIilxay0pzlbkwoE/\npwgWMIChR2nTKQZytkr3Lkj8esQ5LVnNt0WueqsrFgSonCTo6f37ppsyrrFNhR9m\nwYmaMVxBWF1ZMMKX9ecR93YWhpoX9H0SXcjiHNVlAoGBAKARbqCbt60s/XEFt71i\nagDTG29IdL1iD3xWxSx2cBbvu1Ca2YBATHqu4gtXEiZyKODECKiA68DBgEoMHtXS\nuE4x9Pm5ChMZ7JteuB/SiF139B9kZex1IkZuwtZf7MgqsRAoIGxQzB6UyT+OiP9I\nVhWqHMNXme27/cBgEGLesu4e\n-----END PRIVATE KEY-----\n"
+client_email = "hsma-test@streamlit-test-1-437411.iam.gserviceaccount.com"
+client_id = "116859493615236501584"
+auth_uri = "https://accounts.google.com/o/oauth2/auth"
+token_uri = "https://oauth2.googleapis.com/token"
+auth_provider_x509_cert_url = "https://www.googleapis.com/oauth2/v1/certs"
+client_x509_cert_url = "https://www.googleapis.com/robot/v1/metadata/x509/hsma-test%40streamlit-test-1-437411.iam.gserviceaccount.com"
+universe_domain = "googleapis.com"
+</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If deploying to community cloud, you will also need to provide a <code>requirements.txt</code> file containing the following line (plus any other packages you require):</p>
+<pre><code>st-gsheets-connection</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="writing-to-an-internal-database" class="level2" data-number="41.4">
+<h2 data-number="41.4" class="anchored" data-anchor-id="writing-to-an-internal-database"><span class="header-section-number">41.4</span> Writing to an internal database</h2>
+<p>For an internal tool that is deployed on internal server infrastructure, you may wish to write to an existing database in your organisation.</p>
+<p>Streamlit provides details around how to do this with a range of providers, such as <a href="https://docs.streamlit.io/develop/tutorials/databases/mssql">Microsoft SQL Server</a></p>
+<p>Details for different databases can be found here: <a href="https://docs.streamlit.io/develop/tutorials/databases" class="uri">https://docs.streamlit.io/develop/tutorials/databases</a></p>
 
 
 </section>
@@ -1544,13 +1776,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./exercise_4_des_part_1.html" class="pagination-link" aria-label="Exercise 4: Fulfil your DEStiny">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Exercise 4: Fulfil your DEStiny</span></span>
+      <a href="./secrets.html" class="pagination-link" aria-label="(Coming Soon!) Secrets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">(Coming Soon!) Secrets</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./exercise_6_des_part_3_advanced_streamlit.html" class="pagination-link" aria-label="Exercise 6: DESpite Everything, It’s Still You">
-        <span class="nav-page-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Exercise 6: DESpite Everything, It’s Still You</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./streamlit_community_cloud.html" class="pagination-link" aria-label="Deploying to Streamlit Community Cloud">
+        <span class="nav-page-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Deploying to Streamlit Community Cloud</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

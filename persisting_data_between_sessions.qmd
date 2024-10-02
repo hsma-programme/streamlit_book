@@ -29,7 +29,168 @@ Supabase has been confirmed recently as a working option. A code example will fo
 
 ## Google Sheets
 
-While a public google sheets is a good option for persisting data that needs to be read, writing back to the sheet is anecdotally far more difficult, and tutorials on the subject appear to be outdated. Using an alternative approach is recommended.
+### Reading
+
+Public google sheets can be easily read from using the `st-gsheets-connection` extension.
+
+<https://github.com/streamlit/gsheets-connection/tree/main?tab=readme-ov-file>
+
+This app shows an example of reading from a google sheet.
+
+```{=html}
+<iframe width="780" height="500" src="https://hsma-g-sheets-app-read.streamlit.app/" title="Quarto Components"></iframe>
+```
+In this example app, the URL to the sheet is stored inside a `secrets.toml` file, which is stored in a `.streamlit` folder when running locally and would generally not be committed to github.
+
+When deploying this to the community cloud, you click into 'advanced settings' when deploying your app and paste the contents of the secrets file there.
+
+### App Code
+
+```{python}
+#| eval: false
+
+import streamlit as st
+from streamlit_gsheets import GSheetsConnection # this doesn't exist in the hsma_webdev environment
+# would need to be installed with
+# !pip install st-gsheets-connection
+
+# Confirm access to the secrets file
+st.write("The secret word is:", st.secrets["test_secret"])
+
+# Create a connection object.
+conn = st.connection("gsheets", type=GSheetsConnection)
+
+# Passing in 'Sheet1' returns a '400 resource not found error'
+# Passing in the index of the sheet as an integer works!
+df = conn.read(worksheet=0)
+
+st.dataframe(df)
+
+```
+
+### Example secrets file
+
+```
+test_secret = "llama"
+
+[connections.gsheets]
+spreadsheet = "https://docs.google.com/spreadsheets/d/1IrzMP1httjxBFOSmTQGKg-V7Uzpw06YkPCeP7YimSQE/edit?usp=sharing"
+```
+
+:::{.callout-tip}
+If deploying to community cloud, you will also need to provide a  `requirements.txt` file containing the following line (plus any other packages you require):
+
+```
+st-gsheets-connection
+```
+
+:::
+
+### Writing + Private Sheets
+
+To either read from a private sheet, or write to a public or private sheet, you will need to undertake some additional steps using the Google
+
+```{=html}
+<iframe width="780" height="500" src="https://hsma-g-sheets-app-write.streamlit.app/" title="Quarto Components"></iframe>
+```
+
+### App Code
+
+```{python}
+#| eval: false
+
+import streamlit as st
+from streamlit_gsheets import GSheetsConnection # this doesn't exist in the hsma_webdev environment
+import random
+import numpy as np
+import pandas as pd
+from datetime import datetime
+# would need to be installed with
+# !pip install st-gsheets-connection
+
+# Confirm access to the secrets file
+st.write("The secret word is:", st.secrets["test_secret"])
+
+# Create a connection object.
+conn = st.connection("gsheets", type=GSheetsConnection)
+
+# Passing in 'Sheet1' returns a '400 resource not found error'
+# Passing in the index of the sheet as an integer works!
+df = conn.read(worksheet=0, ttl=0)
+st.dataframe(df.sort_values("Added", ascending=False))
+
+if st.button("Update worksheet"):
+    # Update the dataframe before overwriting in case any actions have been undertaken since the user first loaded the page
+    df = conn.read(worksheet=0, ttl=0)
+
+    # Generate an additional data field
+    units = random.randint(100, 5000)
+    unit_cost = np.round((random.random() + random.randint(1, 10)), 2)
+
+    additional_row = [
+        {'Item': "Additional HSMA Merchandise",
+        "Category": random.choice(["Stickers", "Pets", "Clothing", "Mugs"]),
+        "Units": units,
+        "Unit Cost": unit_cost,
+        "Total": units * unit_cost,
+        "Added": datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        }
+    ]
+
+    df_updated = pd.concat(
+        [df,
+        pd.DataFrame(additional_row)
+        ]
+    )
+
+    df = conn.update(
+        worksheet=0,
+        data=df_updated,
+    )
+    st.cache_data.clear()
+    st.rerun()
+
+    # st.dataframe(df.sort_values("Added", ascending=False))
+
+```
+
+
+### Example Secrets File
+
+:::{.callout-warning}
+The credentials in this code snippet aren't real - this is just to give you an idea of the file structure.
+
+Full details of how to populate this file for your spreadsheet can be found in the [Streamlit GSheetsConnection readme](https://github.com/streamlit/gsheets-connection/tree/main?tab=readme-ov-file#service-account--crud-example).
+:::
+
+```
+test_secret = "llama"
+
+[connections.gsheets]
+spreadsheet = "https://docs.google.com/spreadsheets/d/1IrzMP1httjxBFOSmTQGKg-V7Uzpw06YkPCeP7YimSQE/edit?usp=sharing"
+type = "service_account"
+project_id = "streamlit-test-1-437411"
+private_key_id = "ae7269b75e7631f5f0886cc15a74165e7c1f2f4b"
+private_key = "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDp39piasbcAy1N\nRAHot6tBACMoAXRN5Lz8hKU7GC6dy9gs49+Ksv+Jc9xrvdksM5Al6bCVQK1qjvL/\n5whtf7XkNWEEb3n8Ol7QCT75F0BLDhGLU9o9AlR0ed7D1cjYWw+3S+l2QqW0xpEP\ne+saa4ZiKRLDO87c4eqeuM9xToO1uL1lgnJQuK0mqRxS5KHQRbHhbiAA18sx6shw\nksDVjXfg2Y+bSggEuKrupilU6ZF7j7/uryReZBp2m4oAecJEx6fLyxGS6O3hA/fY\n3GQGJk9H+xoByTno4aueBp6hyk3XQiHM3/ET0I5MmVpf1CjYbj2poOYP7L//sd4h\noDbiwekJAgMBAAECggEABoTXlr4wsFHDWb+/SOATvTJWiIcv2Xr6fJRq8aB9LidQ\nLYIliT1vi4KH/pXSX53JUxE2O5bLrqhw5AqpzLmOVZ/aRjAgR5RN78EOOQ25nE32\nVbqe3uv5dCywdad4G3XAVKTgS0xUx5rwUKzs0vXzzzkjXX9Fhxkh+84ddCRS3gYM\nVDPgAeCY1Jzjxqoqux0PolAv1ndV2/9F91+3LcUMA+FIVGCEN8/6BOwaO9e8KHQo\nLvozfJec6wiVYCIcXw85ksrULc2TqbpXB6yFnji6j+iyNh4wbGolYUrtm65Z1IoA\nMNfowyarP4fC4UsF/D0f0+M9Rv+tP1gerLH/nXXHLQKBgQD/XGup9uP9iqxxfdyk\nyzgri99emhBuYlq7Yob7T/mvuviUYV8iQzk2jW1jhSSOfJ7CjhdYFJHg4lIH+nVG\nZgzahR61V1Xnj6qY03n06xZtBwf+1UXlshWam4sbU7Nwd3x5mZDVUcf+1JXD1bv/\nWpHzSpd4riRFuAni1tkvKpYKvQKBgQDqdaspONktJR4kJn7Oa0deIbsol8SwdmpS\n0uGv8T4vypsyjxvl4oslEy6XOQ3HcfOrD7+jQaTjaGxYaB39FwRtNT1WtrifM9B0\nJSdk8k2KXeweCarOt29/e7rnqiqxYr0cgMrNRXV/gAAqzKyZ2Mu1rnOYTSdsOlyM\ngKwCgUliPQKBgD/Z2SXnkPx9pz69jOU71zC0Scb62O7w8uT17vB5/+Hb63oWmtYT\nXwPv+xEuYoSqTnwxUU753bwQexh5nMdcjww4ywPm8Zj0CGEsR8tg2PusDWi/5TlY\n/SPqjq7nj++oQNya9GcSiuKCP2x3Tgm8mM/vr85CJNm1+erZc/biPCA1AoGBAKgj\nwJ6sVRsKDmaQcMnpp2G7QPQoevatxSwmbZF2qUkuvEPy22fuIilxay0pzlbkwoE/\npwgWMIChR2nTKQZytkr3Lkj8esQ5LVnNt0WueqsrFgSonCTo6f37ppsyrrFNhR9m\nwYmaMVxBWF1ZMMKX9ecR93YWhpoX9H0SXcjiHNVlAoGBAKARbqCbt60s/XEFt71i\nagDTG29IdL1iD3xWxSx2cBbvu1Ca2YBATHqu4gtXEiZyKODECKiA68DBgEoMHtXS\nuE4x9Pm5ChMZ7JteuB/SiF139B9kZex1IkZuwtZf7MgqsRAoIGxQzB6UyT+OiP9I\nVhWqHMNXme27/cBgEGLesu4e\n-----END PRIVATE KEY-----\n"
+client_email = "hsma-test@streamlit-test-1-437411.iam.gserviceaccount.com"
+client_id = "116859493615236501584"
+auth_uri = "https://accounts.google.com/o/oauth2/auth"
+token_uri = "https://oauth2.googleapis.com/token"
+auth_provider_x509_cert_url = "https://www.googleapis.com/oauth2/v1/certs"
+client_x509_cert_url = "https://www.googleapis.com/robot/v1/metadata/x509/hsma-test%40streamlit-test-1-437411.iam.gserviceaccount.com"
+universe_domain = "googleapis.com"
+
+```
+
+:::{.callout-tip}
+If deploying to community cloud, you will also need to provide a  `requirements.txt` file containing the following line (plus any other packages you require):
+
+```
+st-gsheets-connection
+```
+
+:::
+
 
 ## Writing to an internal database
 
