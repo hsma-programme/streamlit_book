@@ -77,6 +77,15 @@ book:
     - stlite_github_pages.qmd
     - stlite_desktop.qmd
     - local_server.qmd
+  - part: Project 1 - DES App
+    chapters:
+    - p1_0_des_code.qmd
+    - p1_1_simplest_des_frontend.qmd
+    - p1_2_run_buttons_spinners_des.qmd
+    # - p1_3_detailed_outputs.qmd
+    # - p1_4_summarising_outputs.qmd
+    # - p1_5_input_graphs.qmd
+    - p1_6_splitting_app_des_code.qmd
   - part: Exercises
     chapters:
     - exercise_1_identifying_opportunities.qmd
