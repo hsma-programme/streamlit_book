@@ -45,7 +45,7 @@ The only class we will edit is the g class.
 
 Instead of passing in predefined values, we'll create a series of sliders and save the outputs to variables that get passed into the g class.
 
-:::{.callout-info}
+:::{.callout-note}
 Remember - this is what our g class looked like in the original code.
 
 ```{python}
@@ -115,7 +115,7 @@ Static matplotlib or seaborn plots are displayed with `st.pyplot()`
 
 ### Putting it together - the full code
 
-:::{.callout-info collapse="true"}
+:::{.callout-note collapse="true"}
 ### Click here to view the full code
 
 ```{python}
@@ -331,6 +331,8 @@ Here, you can see and run the app we have created.
 Try running the code and see how things change.
 
 ```{stlite-python}
+import micropip
+await micropip.install("simpy)
 import streamlit as st
 import simpy
 import random

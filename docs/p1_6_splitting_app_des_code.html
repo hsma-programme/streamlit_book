@@ -748,7 +748,7 @@ Note
 <p>In the model code, we need to import any libraries required in this section of the code - in this case <code>simpy</code>, <code>pandas</code> and the <code>random</code> library.</p>
 <p>We also set up the g class with some default values. These values do not matter as we will override them in our web app with defaults that we set there, but it is important for ensuring all of the app code works and imports correctly.</p>
 <p>We save this into a <code>.py</code> file with a name of our choice - though avoiding spaces and instead using <code>_</code> is a good idea to make the next step of importing this file into our web app easier.</p>
-<div id="49a0dac1" class="cell" data-execution_count="1">
+<div id="91d40b2b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> simpy</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -931,8 +931,18 @@ Note
 <section id="the-init.py-file" class="level3" data-number="49.0.2">
 <h3 data-number="49.0.2" class="anchored" data-anchor-id="the-init.py-file"><span class="header-section-number">49.0.2</span> The <strong>init</strong>.py file</h3>
 <p>To allow Python to find our model code file and import the relevant classes into the web app, we need to create an empty file called <code>__init__.py</code> in the folder with the des model code.</p>
-<div class="callout-info">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>While this is not <em>strictly</em> necessary since Python 3.4, there are some nuances around the type of imports that mean it is generally a good idea to provide <code>__init__.py</code>.</p>
+</div>
 </div>
 </section>
 <section id="the-app-code" class="level3" data-number="49.0.3">
@@ -943,7 +953,7 @@ Note
 <p><code>g.model_parameter = relevant_input</code></p>
 <p>e.g.&nbsp;<code>g.patient_inter = patient_iat_slider</code></p>
 <p>We then run the code as before - and the resulting app is unchanged from the user’s perspective.</p>
-<div id="0a107093" class="cell" data-execution_count="2">
+<div id="4342e5de" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>

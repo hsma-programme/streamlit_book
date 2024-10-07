@@ -203,7 +203,7 @@ class Trial:
 
 To allow Python to find our model code file and import the relevant classes into the web app, we need to create an empty file called `__init__.py` in the folder with the des model code.
 
-:::{.callout-info}
+:::{.callout-note}
 While this is not _strictly_ necessary since Python 3.4, there are some nuances around the type of imports that mean it is generally a good idea to provide `__init__.py`.
 :::
 

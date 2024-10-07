@@ -38,7 +38,7 @@ if button_run_pressed:
 
 ### The full code
 
-:::{.callout-info collapse="true"}
+:::{.callout-note collapse="true"}
 ### Click here to view the full code
 ```{python}
 import streamlit as st
@@ -263,6 +263,8 @@ An alternative way to approach this would be with the [`st.form`](https://docs.s
 :::
 
 ```{stlite-python}
+import micropip
+await micropip.install("simpy)
 import streamlit as st
 import simpy
 import random
@@ -520,7 +522,7 @@ if button_run_pressed:
 
 ### The full code
 
-:::{.callout-info collapse="true"}
+:::{.callout-note collapse="true"}
 ### Click here to view the full code
 ```{python}
 import streamlit as st
@@ -742,6 +744,8 @@ if button_run_pressed:
 ### The app
 
 ```{stlite-python}
+import micropip
+await micropip.install("simpy)
 import streamlit as st
 import simpy
 import random
