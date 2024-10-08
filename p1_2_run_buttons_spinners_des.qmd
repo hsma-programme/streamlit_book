@@ -1,4 +1,8 @@
-# Adding a Run Button
+---
+title: Adding a run button
+filters:
+  - whitphx/stlite
+---
 
 ## The run button
 
@@ -264,7 +268,7 @@ An alternative way to approach this would be with the [`st.form`](https://docs.s
 
 ```{stlite-python}
 import micropip
-await micropip.install("simpy)
+await micropip.install("simpy")
 import streamlit as st
 import simpy
 import random
@@ -745,7 +749,7 @@ if button_run_pressed:
 
 ```{stlite-python}
 import micropip
-await micropip.install("simpy)
+await micropip.install("simpy")
 import streamlit as st
 import simpy
 import random
@@ -953,6 +957,7 @@ button_run_pressed = st.button("Run simulation")
 
 if button_run_pressed:
     with st.spinner('Simulating the system...'):
+        await asyncio.sleep(0.1)
         results_df = Trial().run_trial()
 
         st.dataframe(results_df)

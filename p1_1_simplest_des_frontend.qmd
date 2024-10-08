@@ -332,7 +332,7 @@ Try running the code and see how things change.
 
 ```{stlite-python}
 import micropip
-await micropip.install("simpy)
+await micropip.install("simpy")
 import streamlit as st
 import simpy
 import random
