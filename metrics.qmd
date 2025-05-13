@@ -128,7 +128,7 @@ st.plotly_chart(   # <5>
 import streamlit as st
 import micropip
 await micropip.install("plotly")
-import plotly.express as px
+from plotly import express as px
 import pandas as pd
 
 st.set_page_config(layout="wide") # <1>
@@ -220,10 +220,59 @@ You can also just go to google and seach 'hex colour picker' to bring up an inte
 import streamlit as st
 import micropip
 await micropip.install("plotly")
-await micropip.install("streamlit-extras")
-import plotly.express as px
+from plotly import express as px
 import pandas as pd
-from streamlit_extras.metric_cards import style_metric_cards
+
+# Code from https://github.com/arnaudmiribel/streamlit-extras/blob/6a333adc47accc5bbd81b3f2e83230c555fef8a7/src/streamlit_extras/metric_cards/__init__.py#L32
+# Can't easily run in stlite due to non-pure dependency
+DEFAULT_BACKGROUND_COLOR_LIGHT = "#FFF"
+DEFAULT_BORDER_COLOR_LIGHT = "#CCC"
+
+DEFAULT_BACKGROUND_COLOR = DEFAULT_BACKGROUND_COLOR_LIGHT
+DEFAULT_BORDER_COLOR = DEFAULT_BORDER_COLOR_LIGHT
+
+def style_metric_cards(
+    background_color: str = DEFAULT_BACKGROUND_COLOR,
+    border_size_px: int = 1,
+    border_color: str = DEFAULT_BORDER_COLOR,
+    border_radius_px: int = 5,
+    border_left_color: str = "#9AD8E1",
+    box_shadow: bool = True,
+) -> None:
+    """
+    Applies a custom style to st.metrics in the page
+
+    Args:
+        background_color (str, optional): Background color. Defaults to "#FFF" or "#292D34" in dark mode.
+        border_size_px (int, optional): Border size in pixels. Defaults to 1.
+        border_color (str, optional): Border color. Defaults to "#CCC" or "#292D34" in dark mode.
+        border_radius_px (int, optional): Border radius in pixels. Defaults to 5.
+        border_left_color (str, optional): Borfer left color. Defaults to "#9AD8E1".
+        box_shadow (bool, optional): Whether a box shadow is applied. Defaults to True.
+    """
+
+    box_shadow_str = (
+        "box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;"
+        if box_shadow
+        else "box-shadow: none !important;"
+    )
+    st.markdown(
+        f"""
+        <style>
+            div[data-testid="stMetric"],
+            div[data-testid="metric-container"] {{
+                background-color: {background_color};
+                border: {border_size_px}px solid {border_color};
+                padding: 5% 5% 5% 10%;
+                border-radius: {border_radius_px}px;
+                border-left: 0.5rem solid {border_left_color} !important;
+                {box_shadow_str}
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 st.set_page_config(layout="wide")
 
@@ -308,7 +357,7 @@ st.plotly_chart(
 import streamlit as st
 import micropip
 await micropip.install("plotly")
-import plotly.graph_objects as go
+from plotly import graph_objects as go
 
 def indicator(value, title, lower_limit=0, upper_limit=1):
     return go.Figure(go.Indicator(

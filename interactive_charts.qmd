@@ -69,7 +69,7 @@ await micropip.install("palmerpenguins")
 await micropip.install("plotly")
 import streamlit as st
 from palmerpenguins import load_penguins
-import plotly.express as px
+from plotly import express as px
 
 penguins = load_penguins()
 
@@ -118,11 +118,11 @@ fig = px.scatter(
 
 st.subheader("use_container_width=False")
 
-st.plotly_chart(fig)
+st.plotly_chart(fig, key="plot_1")
 
 st.subheader("use_container_width=True")
 
-st.plotly_chart(fig, use_container_width = True)
+st.plotly_chart(fig, use_container_width = True, key="plot_2")
 ```
 
 ```{stlite-python}
@@ -132,7 +132,7 @@ await micropip.install("palmerpenguins")
 await micropip.install("plotly")
 import streamlit as st
 from palmerpenguins import load_penguins
-import plotly.express as px
+from plotly import express as px
 
 penguins = load_penguins()
 
@@ -143,11 +143,11 @@ title=f"Penguins Dataset - Bill Length (mm) vs Bill Depth (mm), coloured by Sex"
 
 st.subheader("use_container_width=False")
 
-st.plotly_chart(fig)
+st.plotly_chart(fig, key="plot_1")
 
 st.subheader("use_container_width=True")
 
-st.plotly_chart(fig, use_container_width = True)
+st.plotly_chart(fig, use_container_width = True, key="plot_2")
 ```
 
 
@@ -159,7 +159,7 @@ While we haven't gone into detail about user inputs yet, here is an example of a
 #| eval: False
 import streamlit as st
 from palmerpenguins import load_penguins
-import plotly.express as px
+from plotly import express as px
 
 penguins = load_penguins()
 
@@ -194,7 +194,7 @@ await micropip.install("palmerpenguins")
 await micropip.install("plotly")
 import streamlit as st
 from palmerpenguins import load_penguins
-import plotly.express as px
+from plotly import express as px
 
 penguins = load_penguins()
 

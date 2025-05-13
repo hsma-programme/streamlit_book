@@ -1,0 +1,12 @@
+{
+  "hash": "0d6db6dfdc344a37d3d8b15675d3dda9",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Wide Layout, Page Tab Titles and Favicons\"\nfilters:\n  - whitphx/stlite\n---\n\nYou may have noticed that Streamlit apps only seem to use part of the screen.\n\nWe can override this with the `st.set_page_config(layout=\"wide\")` command.\n\n:::{.callout-warning}\nThis must be the first Streamlit command used on an app page (after importing streamlit)!\n\nYou must only set it once per page.\n:::\n\n```{stlite-python}\nimport streamlit as st\n\nst.title(\"App not using full width\")\n\nst.write(\"Look at all this space we're wasting!\")\n```\n\n```{stlite-python}\nimport streamlit as st\n\nst.set_page_config(layout=\"wide\")\n\nst.title(\"App using full width\")\n\nst.write(\"Look at all this space we're using!\")\n```\n\n::: {#6ab018bb .cell execution_count=1}\n``` {.python .cell-code}\nimport streamlit as st\n\nst.set_page_config(layout=\"wide\")\n\nst.title(\"App using full width\")\n\nst.write(\"Look at all this space we're using!\")\n```\n:::\n\n\n## Other settings in set_page_config\n\nWithin st.set_page_config, you can also\n\n- Set the page title that is shown in the browser tab\n- Set an icon that is used within the browser tab and if the user favourites the page\n- If using a sidebar, determines whether the sidebar starts opened, closed, or whether it's determined by the width of the page\n- Set up links to 'get help', 'report a bug' and 'about' that will appear within the menu at the top-right of the app.\n\nSee the documentation for details on each of these.\n\n<https://docs.streamlit.io/develop/api-reference/configuration/st.set_page_config>\n\n",
+    "supporting": [
+      "wide_layout_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

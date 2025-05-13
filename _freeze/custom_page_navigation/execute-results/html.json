@@ -1,0 +1,12 @@
+{
+  "hash": "106c62f2f1c913559bc1c0110220a53a",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Custom Page Navigation Buttons\"\nfilters:\n  - whitphx/stlite\n---\n\nThe `st.switch_page()` function allows for additional custom navigation within an app.\n\nThis can be useful to help guide users through a particular journey, directing their actions more than if you just let them use the sidebar.\n\n`st.switch_page` is generally paired with `st.button` using the following syntax:\n\n::: {#d17afab5 .cell execution_count=1}\n``` {.python .cell-code}\nimport streamlit as st\n\nif st.button(\"String denoting what appears on the button\"):\n  st.switch_page(\"page_to_switch_to.py\")\n```\n:::\n\n\n### Example App Using st.switch_page\n\nHere is an example app.\n\n```{=html}\n<iframe width=\"780\" height=\"500\" src=\"https://hsma-multipage-custom-navigation-buttons.streamlit.app?embed=true\" title=\"Session State and Callbacks App Example\"></iframe>\n```\n\n[Click here to load the app in a new page](https://hsma-multipage-custom-navigation-buttons.streamlit.app/)\n\nIn this app, we have a folder structure like so:\n\n![](assets/2024-09-30-14-52-45.png)\n\nWe then set up each page as follows:\n\n### app.py\n\n*This is unchanged from our original multipage app*\n\n::: {#0da364b4 .cell execution_count=2}\n``` {.python .cell-code}\nimport streamlit as st\n\npg = st.navigation([\n        st.Page(\"home_page.py\", title=\"Welcome!\", icon=\":material/add_circle:\"),\n        st.Page(\"des_page.py\", title=\"Run Simulation\", icon=\":material/laptop:\")\n     ])\n\npg.run()\n```\n:::\n\n\n### home_page.py\n\n::: {#03d23747 .cell execution_count=3}\n``` {.python .cell-code}\nimport streamlit as st\n\nst.title(\"Clinic Simulation App\")\n\nst.write(\"Welcome to the clinic simulation app!\")\n\nif st.button(\"Click here to head to the simulation page\"):\n    st.switch_page(\"des_page.py\")\n```\n:::\n\n\n### des_page.py\n\n::: {#0550ca5d .cell execution_count=4}\n``` {.python .cell-code}\nimport streamlit as st\nimport simpy\nimport random\nimport pandas as pd\n\nst.title(\"Simple One-Step DES\")\n\nif st.button(\"Click here to return to the homepage\"):\n    st.switch_page(\"home_page.py\")\n\npatient_iat_slider = st.slider(\"What is the average length of time between patients arriving?\",\n                               min_value=1, max_value=30, value=5)\n\n# Remaining code here...\n```\n:::\n\n\n",
+    "supporting": [
+      "custom_page_navigation_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

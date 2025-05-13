@@ -30,6 +30,7 @@ The final step to ensure the plot is actually displayed is to pass the `fig` var
 
 ```{python}
 #| eval: false
+
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt # <1>
@@ -69,12 +70,15 @@ Note that we don't have to specify the axis we are plotting on within our `plt.s
 
 ```{stlite-python}
 import micropip
+
 await micropip.install("setuptools")
 await micropip.install("palmerpenguins")
+await micropip.install("matplotlib")
+
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 from palmerpenguins import load_penguins
+from matplotlib import pyplot as plt
 
 penguins = load_penguins()
 
@@ -88,7 +92,6 @@ st.pyplot(fig)
 
 ```
 
-
 ## An alternative way of displaying charts made with matplotlib
 
 Instead of using the `st.pyplot()` function, we may find it easier in some cases to save the output figure and serve that to the user using the `st.image()` function instead.
@@ -97,7 +100,8 @@ Instead of using the `st.pyplot()` function, we may find it easier in some cases
 #| eval: false
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
+# import matplotlib.pyplot as plt
 from palmerpenguins import load_penguins
 
 penguins = load_penguins()
@@ -147,7 +151,8 @@ await micropip.install("setuptools")
 await micropip.install("palmerpenguins")
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
+# import matplotlib.pyplot as plt
 from palmerpenguins import load_penguins
 
 penguins = load_penguins()
@@ -187,7 +192,8 @@ This can become particularly valuable when we start to explore layout options li
 #| eval: false
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from palmerpenguins import load_penguins
 
 penguins = load_penguins()
@@ -221,7 +227,8 @@ await micropip.install("setuptools")
 await micropip.install("palmerpenguins")
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from palmerpenguins import load_penguins
 
 penguins = load_penguins()

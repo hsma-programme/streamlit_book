@@ -35,7 +35,8 @@ book:
     - introduction_to_inputs.qmd
     - text_numeric_and_selection_inputs.qmd
     - file_uploads.qmd
-    - bidirectional_plots_and_maps.qmd
+    - bidirectional_plots.qmd
+    - bidirectional_maps.qmd
     - editable_dataframes.qmd
   - part: Downloading Outputs
     chapters:
@@ -126,6 +127,8 @@ book:
 bibliography: references.bib
 format:
   html:
+    execute:
+      freeze: auto
     css: include/webex.css
     include-after-body: include/webex.js
     theme:

@@ -60,23 +60,31 @@ st_folium(gp_map_tooltip) # <11>
 10. In Folium, if we don't specify an icon to use for the marker, it will choose a default. However, this doesn't seem to reliably work in all instances of Streamlit, so you may need to specify a custom icon instead using the folium.Icon class to select an icon from a web service such as font awesome. More about this can be found in the [HSMA geographic book](https://hsma-programme.github.io/hsma6_geographic_optimisation_and_visualisation_book/python_geopandas_folium_point_data.html#web-markers).
 11. Finally, we pass our map to the `st_folium()` function.
 
-<!-- ```{stlite-python}
+```{stlite-python}
 import micropip
+await micropip.install("folium")
 await micropip.install("geopandas")
+await micropip.install("matplotlib")
 await micropip.install("streamlit-folium")
-import geopandas
-import pandas as pd
-import matplotlib.pyplot as plt
+
 import streamlit as st
+import pandas as pd
 import folium
+import geopandas
+from matplotlib import pyplot as plt
 from streamlit_folium import st_folium
 
-gp_list_gdf_sw = geopandas.read_file("https://files.catbox.moe/atzk26.gpkg")
+from pyodide.http import pyfetch
+import geopandas as gpd
 
-# Filter out instances with no geometry
+res = await pyfetch("https://files.catbox.moe/wtglio.geojson")
+data = await res.json()
+gp_list_gdf_sw = gpd.GeoDataFrame.from_features(data)
+
+# # Filter out instances with no geometry
 gp_list_gdf_sw = gp_list_gdf_sw[~gp_list_gdf_sw['geometry'].is_empty]
 
-# Create a geometry list from the GeoDataFrame
+# # Create a geometry list from the GeoDataFrame
 geo_df_list = [[point.xy[1][0], point.xy[0][0]] for point in gp_list_gdf_sw.geometry]
 
 gp_map_tooltip = folium.Map(
@@ -97,7 +105,7 @@ for i, coordinates in enumerate(geo_df_list):
 
 st_folium(gp_map_tooltip)
 
-``` -->
+```
 
 :::{.callout-tip}
 Take a look at the [HSMA geographic modelling and visualisation book](https://hsma-programme.github.io/hsma6_geographic_optimisation_and_visualisation_book/python_geopandas_folium_intro.html) to find out more about creating and modifying interactive maps in Python.
@@ -159,23 +167,31 @@ st_folium(gp_map_tooltip)
 4. Here, we add in a display of the filtered dataframe, restricting it to only the columns specified in the list.
 5. All of our Folium code is unchanged; we just pass the filtered (or unfiltered, if no search string is entered) dataframe instead.
 
-<!-- ```{stlite-python}
+```{stlite-python}
 import micropip
+await micropip.install("folium")
 await micropip.install("geopandas")
+await micropip.install("matplotlib")
 await micropip.install("streamlit-folium")
-import geopandas
-import pandas as pd
-import matplotlib.pyplot as plt
+
 import streamlit as st
+import pandas as pd
 import folium
+import geopandas
+from matplotlib import pyplot as plt
 from streamlit_folium import st_folium
 
-search_string = st.text_input("Enter a string to search the practice name field by")
+from pyodide.http import pyfetch
+import geopandas as gpd
 
-gp_list_gdf_sw = geopandas.read_file("https://files.catbox.moe/atzk26.gpkg")
+res = await pyfetch("https://files.catbox.moe/wtglio.geojson")
+data = await res.json()
+gp_list_gdf_sw = gpd.GeoDataFrame.from_features(data)
 
 # Filter out instances with no geometry
 gp_list_gdf_sw = gp_list_gdf_sw[~gp_list_gdf_sw['geometry'].is_empty]
+
+search_string = st.text_input("Enter a search string")
 
 # Filter to just the practice of interest (if given)
 if search_string is not None:
@@ -204,10 +220,10 @@ for i, coordinates in enumerate(geo_df_list):
 
 st_folium(gp_map_tooltip)
 
-``` -->
+```
 
 ### Updating the app based on the map zoom
 
 You can do things like filter a dataframe down to only the subset of points that are on the screen within the Folium component.
 
-To find out more about this, head to the chapter [Bidirectional Inputs - Charts and Maps](bidirectional_plots_and_maps.qmd#maps)
+To find out more about this, head to the chapter [Bidirectional Inputs - Charts and Maps](bidirectional_maps.qmd)

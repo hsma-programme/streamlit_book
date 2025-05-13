@@ -1,0 +1,267 @@
+---
+title: "Bidirectional Inputs - Dataframes and Charts"
+filters:
+  - whitphx/stlite
+---
+
+In more recent versions of Streamlit, it has become possible to feed certain interactions with graphs - like selecting a series of points on a scatterplot - or with maps - like zooming to focus in on a subset of markers - back into the app.
+
+This can allow you to do things like provide a dataframe below a map that responsively filters to only show the data relating to the points currently visible on a map.
+
+:::{.callout-warning}
+This is a more advanced topic. It is recommended that you have become comfortable with inputs and outputs in Streamlit before attempting to use the contents of this chapter.
+:::
+
+## Dataframes
+
+In the case of dataframes, maybe we want to allow users to easily select a subset of rows to be plotted on a graph or map, or use this subset of rows to calculate some summary statistics.
+
+Let's load in the penguins dataset.
+
+Notice that we have now saved the output of `st.dataframe` to a variable, and also added the parameter `on_select="rerun"`.
+
+Before we start filtering by what is returned, let's first just see what actually is returned and explore how this updates.
+
+```{python}
+#| eval: false
+
+import streamlit as st
+import pandas as pd
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+
+st.header("Penguin Dataset Explorer")
+
+selected_rows = st.dataframe(penguins, on_select="rerun")
+
+st.write(selected_rows)
+```
+
+```{stlite-python}
+import micropip
+await micropip.install("setuptools")
+await micropip.install("palmerpenguins")
+await micropip.install("pandas")
+
+import streamlit as st
+import pandas as pd
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+
+st.header("Penguin Dataset Explorer")
+
+selected_rows = st.dataframe(penguins, on_select="rerun")
+
+st.write(selected_rows)
+```
+
+:::{.callout-tip}
+Note that selecting a subset of cells like this is not sufficient.
+
+![](assets/2024-08-19-15-10-02.png)
+
+You must select the full rows using the dataset column at the far left, to the left of the index column if displayed.
+
+![](assets/2024-08-19-15-11-10.png)
+:::
+
+We can then use the selected row indices to restrict the rows we use for subsequent calculations.
+
+```{python}
+#| eval: false
+
+import streamlit as st
+import pandas as pd
+import numpy as np
+import plotly.express as px
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+
+st.header("Penguin Dataset Explorer")
+
+selected_rows = st.dataframe(penguins, on_select="rerun")
+
+row_indices = selected_rows["selection"]["rows"]
+
+print(f"You've selected {len(row_indices)} penguins")
+
+filtered_df = penguins.iloc[row_indices]
+
+st.write(f"Mean Weight: {np.mean(filtered_df['body_mass_g'])}")
+
+st.plotly_chart(px.pie(
+                pd.DataFrame(filtered_df['sex']).value_counts(dropna=False).reset_index(),
+                values='count', names='sex', title="Sex of Selected Penguins")
+                )
+
+st.subheader("Your Filtered Dataframe")
+
+st.dataframe(filtered_df)
+
+```
+
+
+```{stlite-python}
+import micropip
+await micropip.install("setuptools")
+await micropip.install("palmerpenguins")
+await micropip.install("plotly")
+
+import streamlit as st
+import pandas as pd
+import numpy as np
+from plotly import express as px
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+
+st.header("Penguin Dataset Explorer")
+
+selected_rows = st.dataframe(penguins, on_select="rerun")
+
+row_indices = selected_rows["selection"]["rows"]
+
+print(f"You've selected {len(row_indices)} penguins")
+
+filtered_df = penguins.iloc[row_indices]
+
+st.write(f"Mean Weight: {np.mean(filtered_df['body_mass_g'])}")
+
+st.plotly_chart(px.pie(
+                pd.DataFrame(filtered_df['sex']).value_counts(dropna=False).reset_index(),
+                values='count', names='sex', title="Sex of Selected Penguins")
+                )
+
+st.subheader("Your Filtered Dataframe")
+
+st.dataframe(filtered_df)
+
+```
+
+:::{.callout-note}
+The `selection_mode` parameter can be passed to `st.dataframe` to allow selection of single or multiple rows, single or multiple columns, or some combination of the two.
+
+Note that enabling column selection disables column sorting.
+:::
+
+## Graphs
+
+Streamlit also supports monitoring `st.plotly_chart`, `st.altair_chart`, and `st.vega_lite_chart` for point selections and using this as an input for further actions.
+
+:::{.callout-note}
+In this book we focus on the use of plotly; take a look at the Streamlit documentation to see how this could work with the Altair and Vega Lite plotting libraries instead.
+:::
+
+When hovering over the plot, users are given options such as 'box select' (to choose a box-shaped subset of points) or lasso select (to select an irregular set of points.)
+
+![](assets/2024-08-19-14-41-40.png)
+
+Let's start by creating a scatterplot of the penguins dataset.
+
+Notice that we have now saved the output of `st.plotly_chart` to a variable, and also added the parameter `on_select="rerun"`.
+
+```{python}
+#| eval: false
+
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+
+fig = px.scatter(penguins, x="body_mass_g", y="bill_length_mm", color="species")
+
+selected_data = st.plotly_chart(fig, on_select="rerun")
+
+st.write(selected_data)
+
+```
+
+```{stlite-python}
+import micropip
+await micropip.install("setuptools")
+await micropip.install("palmerpenguins")
+await micropip.install("plotly")
+
+import streamlit as st
+import pandas as pd
+from plotly import express as px
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+
+fig = px.scatter(penguins, x="body_mass_g", y="bill_length_mm", color="species")
+
+selected_data = st.plotly_chart(fig, on_select="rerun")
+
+st.write(selected_data)
+
+```
+
+
+Now let's see how we could use this to update some outputs.
+
+```{python}
+#| eval: false
+
+import streamlit as st
+import pandas as pd
+from plotly import express as px
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+
+fig = px.scatter(penguins, x="body_mass_g", y="bill_length_mm")
+
+selected_data = st.plotly_chart(fig, on_select="rerun")
+
+selected_point_indices = [
+    point
+    for point
+    in selected_data["selection"]["point_indices"]
+    ]
+
+st.dataframe(
+    penguins.iloc[selected_point_indices, :]
+)
+
+```
+
+```{stlite-python}
+import micropip
+await micropip.install("setuptools")
+await micropip.install("palmerpenguins")
+await micropip.install("plotly")
+
+import streamlit as st
+import pandas as pd
+from plotly import express as px
+from palmerpenguins import load_penguins
+
+penguins = load_penguins()
+
+fig = px.scatter(penguins, x="body_mass_g", y="bill_length_mm")
+
+selected_data = st.plotly_chart(fig, on_select="rerun")
+
+selected_point_indices = [point for point in selected_data["selection"]["point_indices"]]
+
+st.dataframe(
+    penguins.iloc[selected_point_indices, :]
+)
+
+```
+
+:::{.callout-warning}
+Here, we've just chosen a very simple example where there is no colour applied to the points in the graph.
+
+If the `color` parameter is passed to `px.scatter` then the resulting point indices are related to the rows for that colour only - e.g. if we coloured by the species, then a `point_index` parameter of `139` wouldn't relate back to an index of `139` in the original dataset - it would be point `139` for that particular species.
+
+Always explore and test the outputs of your filtering carefully to ensure it's returning what you think it's returning!
+
+As of the time of writing (August 2024), this feature is quite new and there are not many examples of more advanced usage of it.
+:::

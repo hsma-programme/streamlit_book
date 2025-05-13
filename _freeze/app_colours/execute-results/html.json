@@ -1,0 +1,12 @@
+{
+  "hash": "3619c5dcec89fbc09866bd1ecc0fa3c8",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"App Colours\"\nfilters:\n  - whitphx/stlite\n---\n\nThere are a few parts of Streamlit’s theming that we can officially change using a configuration file.\n\nThis file needs to be called config.toml and lives inside a subfolder called .streamlit\n\n![](assets/2024-09-16-22-11-49.png)\n\nThe config.toml file contains a variable number of parameters.\n\nIt can determine whether the default colourscheme is light or dark, and whether the default streamlit colours are overridden.\n\nYou can create a template config.toml from within streamlit, then paste the output into a config.toml file you create yourself.\n\n![](assets/firefox_qB7kSDDCyA.gif)\n\nLet's look at an example app.\n\n### config.toml\n\n```\n[theme]\nbase=\"light\"\nprimaryColor=\"#005EB8\"\nsecondaryBackgroundColor=\"#00e0ff\"\n```\n\n### app.py\n\n::: {#3b45ae5a .cell execution_count=1}\n``` {.python .cell-code}\nimport streamlit as st\n\nst.title('Simple Calculator App')\n\nnum_1 = st.number_input(label=\"First Number\")\n\nnum_2 = st.number_input(label=\"Second Number\")\n\noperator = st.selectbox(label=\"Operation\", options=[\"Add\", \"Subtract\", \"Multiply\", \"Divide\"])\n\nif operator == \"Add\":\n    output = num_1 + num_2\nelif operator == \"Subtract\":\n    output = num_1 - num_2\nelif operator == \"Multiply\":\n    output = num_1 * num_2\nelif operator == \"Divide\":\n    output = num_1 / num_2\n\nst.text(f\"The answer is {output}\")\n```\n:::\n\n\n![](assets/2024-09-16-22-22-29.png)\n\n",
+    "supporting": [
+      "app_colours_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
