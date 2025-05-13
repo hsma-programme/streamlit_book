@@ -82,6 +82,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-7d7b71aa436639b0d2ad25d8faaf8df5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-ea00ba3fa115e83be9451ad118e1dfe2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/stlite/iframeResizer.min.js"></script>
+<script src="site_libs/quarto-contrib/stlite/stlite.js"></script>
+<link href="site_libs/quarto-contrib/stlite/style.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -909,20 +912,20 @@ cookieconsent.run({
 <h2 data-number="10.1" class="anchored" data-anchor-id="static-maps"><span class="header-section-number">10.1</span> Static maps</h2>
 <p>In the HSMA course, we have generally used the geopandas plot method - which is using matplotlib behind the scenes - to produce static maps.</p>
 <p>This means that maps are simple to display as we can just use the <code>st.pyplot()</code> function that we used for standard matplotlib charts.</p>
-<div id="94f46bff" class="cell" data-execution_count="1">
+<div id="4fd38a4c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Crime in Devon by Type"</span>)</span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Crime in Cornwall by Type"</span>)</span>
 <span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-1-8"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#########################################################</span></span>
 <span id="annotated-cell-1-9"><a href="#annotated-cell-1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the geopandas file and create a matplotlib figure</span></span>
 <span id="annotated-cell-1-10"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#########################################################</span></span>
 <span id="annotated-cell-1-11"><a href="#annotated-cell-1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-1-12"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a>lsoa_2011_crime_figures_df <span class="op">=</span> geopandas.read_file(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-13" class="code-annotation-target"><a href="#annotated-cell-1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://files.catbox.moe/4o0go1.gpkg"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-13" class="code-annotation-target"><a href="#annotated-cell-1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://files.catbox.moe/o94mgi.gpkg"</span></span>
 <span id="annotated-cell-1-14"><a href="#annotated-cell-1-14" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-16" class="code-annotation-target"><a href="#annotated-cell-1-16" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
@@ -975,36 +978,9 @@ cookieconsent.run({
 </dl>
 </div>
 </div>
-<!-- ```{stlite-python}
-import micropip
-await micropip.install("geopandas")
-await micropip.install("matplotlib")
-await micropip.install("fiona")
-import geopandas
-import matplotlib.pyplot as plt
-import pandas as pd
-import streamlit as st
+<iframe src="https://share.stlite.net/?embed=true#code=import%20micropip%0Aawait%20micropip.install%28%22geopandas%22%29%0Aawait%20micropip.install%28%22matplotlib%22%29%0Aawait%20micropip.install%28%22fiona%22%29%0Aimport%20geopandas%0Afrom%20matplotlib%20import%20pyplot%20as%20plt%0Aimport%20pandas%20as%20pd%0Aimport%20streamlit%20as%20st%0A%0Ast.title%28%22Crime%20in%20Cornwall%20by%20Type%22%29%0A%0A%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%0A%23%20Read%20the%20geopandas%20file%20and%20create%20a%20matplotlib%20figure%0A%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%23%0A%0Afrom%20pyodide.http%20import%20pyfetch%0Aimport%20geopandas%20as%20gpd%0A%0Ares%20%3D%20await%20pyfetch%28%22https%3A//files.catbox.moe/a0lcsn.geojson%22%29%0Adata%20%3D%20await%20res.json%28%29%0Alsoa_2011_crime_figures_df%20%3D%20gpd.GeoDataFrame.from_features%28data%29%0A%0Afig%2C%20ax%20%3D%20plt.subplots%28%29%0A%0Alsoa_2011_crime_figures_df.plot%28%0A%20%20column%3D%22sw_5forces_street_by_lsoa_Other%20crime%22%2C%0A%20%20legend%3DTrue%2C%0A%20%20ax%3Dax%0A%20%20%29%0A%0Ast.pyplot%28fig%29
 
-st.title("Crime in Devon by Type")
-
-#########################################################
-# Read the geopandas file and create a matplotlib figure
-#########################################################
-
-lsoa_2011_crime_figures_df = geopandas.read_file(
-  "https://files.catbox.moe/4o0go1.gpkg"
-  )
-
-fig, ax = plt.subplots()
-
-lsoa_2011_crime_figures_df.plot(
-  column="sw_5forces_street_by_lsoa_Other crime",
-  legend=True,
-  ax=ax
-  )
-
-st.pyplot(fig)
-``` -->
+" class="stlite"></iframe>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
