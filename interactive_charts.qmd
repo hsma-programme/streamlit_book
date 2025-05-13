@@ -87,7 +87,7 @@ We showed the impact of this parameter on static charts in the previous chapter.
 
 When set to `True` in something like `st.plotly_chart`, it ensures the output is rescaled to use the maximum available width of the screen.
 
-The parameter is set to `False` by default, which will result in outputs often not optimally using the available space.
+The parameter is set to `True` by default in newer versions of Streamlit - but you may wish to use 'False' in certain cases.
 
 :::{.callout-tip}
 This can become particularly valuable when we start to explore layout options like columns later in the book.
@@ -118,7 +118,7 @@ fig = px.scatter(
 
 st.subheader("use_container_width=False")
 
-st.plotly_chart(fig, key="plot_1")
+st.plotly_chart(fig, use_container_width = False, key="plot_1")
 
 st.subheader("use_container_width=True")
 
@@ -143,7 +143,7 @@ title=f"Penguins Dataset - Bill Length (mm) vs Bill Depth (mm), coloured by Sex"
 
 st.subheader("use_container_width=False")
 
-st.plotly_chart(fig, key="plot_1")
+st.plotly_chart(fig, use_container_width = False, key="plot_1")
 
 st.subheader("use_container_width=True")
 

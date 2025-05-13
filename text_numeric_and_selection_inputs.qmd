@@ -658,6 +658,10 @@ New official ones are sometimes added, and there are additional ones made by the
 <iframe width="780" height="500" src="https://docs.streamlit.io/develop/api-reference/widgets" title="Webpage example"></iframe>
 ```
 
+:::{.callout-note}
+Embedded page not working? Use the following link instead: [https://docs.streamlit.io/develop/api-reference/widgets](https://docs.streamlit.io/develop/api-reference/widgets)
+:::
+
 ## Next steps with inputs
 
 In the rest of this section, we'll look at some of the parameters for inputs that will allow you to refine what your users will be allowed to enter, improving the usability of your app (and reducing the number of edge cases you need to account for in your programming!).
