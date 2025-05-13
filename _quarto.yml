@@ -116,9 +116,13 @@ book:
     search: false
     background: '#8A1E1E'
     right:
-    - icon: github
-      href: https://github.com/hsma-programme/
-      aria-label: GitHub
+      - icon: github
+        aria-label: GitHub
+        menu:
+          - text: View the HSMA Github
+            href:  https://github.com/hsma-programme
+          - text: View the code for this book
+            href:  https://github.com/hsma-programme/streamlit_book
   sidebar:
     search: true
     style: docked
