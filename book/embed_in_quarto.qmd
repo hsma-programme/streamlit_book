@@ -1,0 +1,118 @@
+---
+title: Embedding apps in Quarto
+---
+
+If you write documentation, reports or teaching materials in Quarto, you can embed a Streamlit app directly in the page. This lets people try the app without leaving the document.
+
+There are two main approaches:
+
+- **Using iframes** to embed an app that is already hosted somewhere, such as Streamlit Community Cloud or GitHub Pages (stlite).
+- **Using stlite directly** to run an app inside the Quarto page itself, with no separate hosting.
+
+<br>
+
+## Using iframes
+
+An iframe displays another web page inside your page. If your app is already deployed, this is the quickest way to embed it.
+
+<br>
+
+### Streamlit Community Cloud
+
+Wrap this in a raw HTML block (`{=html}`) so Quarto renders the iframe instead of showing it as code.
+
+Add `?embed=true` to the end of a Community Cloud URL to hide some of Streamlit's surrounding interface (such as the menu), so the app fits more cleanly into your page.
+
+::: {.wrap-code}
+```{.html}
+<iframe width="100%" height="600" src="https://hsma-des-simple.streamlit.app/?embed=true" title="DES app"></iframe>
+```
+:::
+
+<iframe width="100%" height="600" src="https://hsma-des-simple.streamlit.app/?embed=true" title="DES app"></iframe>
+
+<br>
+
+### stlite
+
+This is an stlite app hosted on GitHub pages. We can embed it in the same way.
+
+::: {.wrap-code}
+```{.html}
+<iframe width="100%" height="600" src="https://hsma-programme.github.io/hsma7_2g_streamlit_part1/app/singlepage/" title="DES app"></iframe>
+```
+:::
+
+<iframe width="100%" height="600" src="https://hsma-programme.github.io/hsma7_2g_streamlit_part1/app/singlepage/" title="DES app"></iframe>
+
+<br>
+
+## Directly using stlite
+
+You can also run an stlite app inside the Quarto page, with no separate hosting. This uses the [quarto-stlite extension](https://github.com/whitphx/quarto-stlite) from [Yuichiro Tachibana](https://github.com/whitphx), who created stlite.
+
+1. Install the extension by running the following command in your terminal. This will install the extension in an `_extensions` folder.
+
+```{.bash}
+quarto add whitphx/quarto-stlite
+```
+
+2. Add the filter to the header of your `.qmd` file, or to `_quarto.yml` to use it across the whole project.
+
+```{.yaml}
+filters:
+  - whitphx/stlite
+```
+
+3. Put your app code in a code block marked `{stlite-python}`.
+
+````{.markdown}
+```{stlite-python}
+import streamlit as st
+
+st.title("Hello Quarto!")
+```
+````
+
+```{stlite-python}
+import streamlit as st
+
+st.title("Hello Quarto!")
+```
+
+<br>
+
+### Limitation 1: Installing packages
+
+Some packages, such as `streamlit` and `pandas`, are available by default. For others, install them in the page with `micropip` before importing them. For example:
+
+```{.python}
+import micropip
+await micropip.install("folium")
+
+import folium
+```
+
+Some imports need to be written differently when using this extension. Plotly and matplotlib don't work with the `import ... as ...` shorthand you'd normally use:
+
+- Use `from plotly import express as px`, not `import plotly.express as px`.
+- Use `from matplotlib import pyplot as plt`, not `import matplotlib.pyplot as plt`.
+
+For example, for matplotlib:
+
+```{.python}
+import micropip
+await micropip.install("matplotlib")
+
+from matplotlib import pyplot as plt
+```
+
+<br>
+
+### Limitation 2: Multi-page apps and configuration
+
+You can't create multi-page apps with `{stlite-python}` blocks.
+
+You also can't use a `config.toml` file, so settings such as the theme can't be changed this way.
+
+If you need either of these, host the app separately and embed it with an iframe instead.

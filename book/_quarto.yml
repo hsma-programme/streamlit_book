@@ -79,6 +79,7 @@ book:
     chapters:
     - streamlit_community_cloud.qmd
     - stlite_github_pages.qmd
+    - embed_in_quarto.qmd
   - part: Exercises
     chapters:
     - exercise_1_identifying_opportunities.qmd
