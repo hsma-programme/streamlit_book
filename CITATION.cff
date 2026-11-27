@@ -1,0 +1,32 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: HSMA - Web Apps with Streamlit
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Sammi
+    family-names: Rosser
+    orcid: 'https://orcid.org/0000-0002-9552-8988'
+    affiliation: University of Exeter
+    email: s.j.rosser@exeter.ac.uk
+  - given-names: Amy
+    family-names: Heather
+    orcid: 'https://orcid.org/0000-0002-6596-3479'
+    affiliation: University of Exeter
+    email: a.heather2@exeter.ac.uk
+repository-code: 'https://github.com/hsma-programme/streamlit_book'
+url: 'https://webapps.hsma.co.uk/'
+abstract: >-
+  An interactive feature-by-feature guide to building Python web apps with
+  Streamlit. It accompanies the Streamlit sessions in the HSMA programme and
+  works as a reference to revisit, with runnable in-browser examples and
+  additional concepts that wouldn't fit in the course.
+keywords:
+  - app
+  - streamlit
+  - python
+license: MIT
