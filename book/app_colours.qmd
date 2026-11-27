@@ -63,11 +63,7 @@ The `config.toml` file contains a variable number of parameters.
 
 It can determine whether the default colour scheme is light or dark, and whether the default Streamlit colours are overridden.
 
-You can create a template `config.toml` from within Streamlit, then paste the output into a `config.toml` file you create yourself.
-
-![](assets/gif/firefox_qB7kSDDCyA.gif){.box}
-
-You can also generate a template showing all the available configuration options by running `streamlit config show` in your terminal. You can then copy the relevant settings into your own `.streamlit/config.toml` file.
+You can generate a template showing all the available configuration options by running `streamlit config show` in your terminal. You can then copy the relevant settings into your own `.streamlit/config.toml` file.
 
 :::{.callout-tip}
 Newer versions of Streamlit have many more theme options than older ones. If an option in this chapter has no effect, check that your Streamlit version is up to date.
