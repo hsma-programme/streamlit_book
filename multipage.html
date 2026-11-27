@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -75,16 +78,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-447e42e69aaa9833c0ba1b986f430b20.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-78c0241aa7f0eb71cc9ecd214d3058d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-eadb64742107a1e2a19569edb28d6343.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-5537363d5912ba7a5fd516a303c9f4c3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-5be68f7e89068b753bd4407cdd331613.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -166,7 +170,7 @@ cookieconsent.run({
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-dark"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -189,6 +193,7 @@ cookieconsent.run({
       for (let i=0; i < toggles.length; i++) {
         const toggle = toggles[i];
         if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
           if (alternate) {
             toggle.classList.add("alternate");
           } else {
@@ -218,13 +223,19 @@ cookieconsent.run({
       manageTransitions('#quarto-margin-sidebar .nav-link', true);
       // Switch the toggles
       setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
       if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
         manageTransitions("body", false);
-        window.scrollTo(0, 1);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
         setTimeout(() => {
-          window.scrollTo(0, 0);
+          window.scrollTo(0, scrollY);
           manageTransitions("body", true);
         }, 40);
       }
@@ -316,6 +327,7 @@ cookieconsent.run({
       // Read the current dark / light value
       let toAlternate = !hasAlternateSentinel();
       toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
@@ -330,14 +342,14 @@ cookieconsent.run({
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">HSMA - Web Apps with Streamlit</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -362,17 +374,17 @@ cookieconsent.run({
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./wide_layout.html">Layout</a></li><li class="breadcrumb-item"><a href="./multipage.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Multipage apps</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./wide_layout.html">Layout</a></li><li class="breadcrumb-item"><a href="./multipage.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Multipage apps</span></a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -383,7 +395,7 @@ cookieconsent.run({
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto" aria-label="Section">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./assets/images/hsma_logo_transparent_background_large.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
@@ -405,13 +417,10 @@ cookieconsent.run({
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">An Introduction to Streamlit</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">An Introduction to Streamlit</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hello_world_streamlit.html" class="sidebar-item-text sidebar-link">
@@ -422,13 +431,10 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Outputs</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Outputs</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loading_data.html" class="sidebar-item-text sidebar-link">
@@ -499,13 +505,10 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">User Inputs</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">User Inputs</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction_to_inputs.html" class="sidebar-item-text sidebar-link">
@@ -546,13 +549,10 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Downloading Outputs</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Downloading Outputs</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./file_downloads_tabular.html" class="sidebar-item-text sidebar-link">
@@ -581,13 +581,10 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Layout</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Layout</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wide_layout.html" class="sidebar-item-text sidebar-link">
@@ -634,13 +631,10 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Styling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Styling</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./app_colours.html" class="sidebar-item-text sidebar-link">
@@ -663,13 +657,10 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Controlling Application Flow</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Controlling Application Flow</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./forms_and_run_buttons.html" class="sidebar-item-text sidebar-link">
@@ -692,13 +683,10 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Advanced Concepts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Advanced Concepts</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./caching.html" class="sidebar-item-text sidebar-link">
@@ -727,13 +715,10 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
- <span class="menu-text">Deployment</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-controls="quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-9-label">Deployment</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" aria-labelledby="quarto-sidebar-section-9-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./streamlit_community_cloud.html" class="sidebar-item-text sidebar-link">
@@ -750,13 +735,10 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text">Exercises</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-controls="quarto-sidebar-section-10" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-10-label">Exercises</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" aria-labelledby="quarto-sidebar-section-10-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_1_identifying_opportunities.html" class="sidebar-item-text sidebar-link">
@@ -791,13 +773,10 @@ cookieconsent.run({
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
- <span class="menu-text">Additional Resources</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-controls="quarto-sidebar-section-11" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-11-label">Additional Resources</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-11" aria-labelledby="quarto-sidebar-section-11-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cheat_sheet.html" class="sidebar-item-text sidebar-link">
@@ -812,7 +791,7 @@ cookieconsent.run({
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -825,10 +804,10 @@ cookieconsent.run({
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./wide_layout.html">Layout</a></li><li class="breadcrumb-item"><a href="./multipage.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Multipage apps</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./wide_layout.html">Layout</a></li><li class="breadcrumb-item"><a href="./multipage.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Multipage apps</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Multipage apps</span></h1>
 </div>
@@ -901,18 +880,18 @@ Tip
 <p><br></p>
 <p>When starting up the app, we will simply be running <code>streamlit run app.py</code> from within the folder.</p>
 <p>Let’s take a look at the contents of <code>app.py</code>…</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>pg <span class="op">=</span> st.navigation(</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    [st.Page(<span class="st">"Homepage.py"</span>, title<span class="op">=</span><span class="st">"Welcome!"</span>, icon<span class="op">=</span><span class="st">":material/add_circle:"</span>),</span>
-<span id="cb1-5"><a href="#cb1-5"></a>     st.Page(<span class="st">"Penguin_Information.py"</span>),</span>
-<span id="cb1-6"><a href="#cb1-6"></a>     st.Page(<span class="st">"Penguin_Trends.py"</span>),</span>
-<span id="cb1-7"><a href="#cb1-7"></a>     st.Page(<span class="st">"Interactive_Data_Explorer.py"</span>),</span>
-<span id="cb1-8"><a href="#cb1-8"></a>     st.Page(<span class="st">"Sidebar_Theming.py"</span>),</span>
-<span id="cb1-9"><a href="#cb1-9"></a>     ]</span>
-<span id="cb1-10"><a href="#cb1-10"></a>     )</span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a>pg.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>pg <span class="op">=</span> st.navigation(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>    [st.Page(<span class="st">"Homepage.py"</span>, title<span class="op">=</span><span class="st">"Welcome!"</span>, icon<span class="op">=</span><span class="st">":material/add_circle:"</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>     st.Page(<span class="st">"Penguin_Information.py"</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>     st.Page(<span class="st">"Penguin_Trends.py"</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>     st.Page(<span class="st">"Interactive_Data_Explorer.py"</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>     st.Page(<span class="st">"Sidebar_Theming.py"</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>     ]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>     )</span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>pg.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Let’s now look at the code for one of the other pages: <code>Interactive_Data_Explorer.py</code>, which appears as “Interactive Data Explorer” in the sidebar of the app.</p>
 <p>Note that it looks like a completely standard streamlit app - in fact, this particular page could run completely fine by itself!</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -925,59 +904,59 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a>st.title(<span class="st">"Interactive Data Explorer"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a>st.write(</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="st">"Here, let's explore what happens to values we've input when moving to a different page."</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>)</span>
-<span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a>st.write(<span class="st">"If you enter your name on this page, the rest of the page will load."</span>)</span>
-<span id="cb2-12"><a href="#cb2-12"></a></span>
-<span id="cb2-13"><a href="#cb2-13"></a>st.write(</span>
-<span id="cb2-14"><a href="#cb2-14"></a>    <span class="st">"Try then moving to a different page using the navigation sidebar before returning to this page."</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>)</span>
-<span id="cb2-16"><a href="#cb2-16"></a></span>
-<span id="cb2-17"><a href="#cb2-17"></a>st.write(<span class="st">"What do you notice?"</span>)</span>
-<span id="cb2-18"><a href="#cb2-18"></a></span>
-<span id="cb2-19"><a href="#cb2-19"></a>user_name <span class="op">=</span> st.text_input(<span class="st">"Enter Your Name"</span>, <span class="va">None</span>)</span>
-<span id="cb2-20"><a href="#cb2-20"></a></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="cf">if</span> user_name <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb2-22"><a href="#cb2-22"></a>    st.write(<span class="st">"Please enter your name to load the rest of the page"</span>)</span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="cf">else</span>:</span>
-<span id="cb2-24"><a href="#cb2-24"></a>    st.write(<span class="ss">f"Welcome to the interactive penguin data explorer, </span><span class="sc">{</span>user_name<span class="sc">}</span><span class="ss">!"</span>)</span>
-<span id="cb2-25"><a href="#cb2-25"></a></span>
-<span id="cb2-26"><a href="#cb2-26"></a>    penguins <span class="op">=</span> load_penguins()</span>
-<span id="cb2-27"><a href="#cb2-27"></a></span>
-<span id="cb2-28"><a href="#cb2-28"></a>    axis_options <span class="op">=</span> [</span>
-<span id="cb2-29"><a href="#cb2-29"></a>        <span class="st">"bill_length_mm"</span>,</span>
-<span id="cb2-30"><a href="#cb2-30"></a>        <span class="st">"bill_depth_mm"</span>,</span>
-<span id="cb2-31"><a href="#cb2-31"></a>        <span class="st">"flipper_length_mm"</span>,</span>
-<span id="cb2-32"><a href="#cb2-32"></a>        <span class="st">"body_mass_g"</span>,</span>
-<span id="cb2-33"><a href="#cb2-33"></a>    ]</span>
-<span id="cb2-34"><a href="#cb2-34"></a></span>
-<span id="cb2-35"><a href="#cb2-35"></a>    col_1 <span class="op">=</span> st.selectbox(<span class="st">"Select the column to use for the x axis"</span>, axis_options)</span>
-<span id="cb2-36"><a href="#cb2-36"></a></span>
-<span id="cb2-37"><a href="#cb2-37"></a>    axis_options.remove(col_1)</span>
-<span id="cb2-38"><a href="#cb2-38"></a></span>
-<span id="cb2-39"><a href="#cb2-39"></a>    col_2 <span class="op">=</span> st.selectbox(<span class="st">"Select the column to use for the x axis"</span>, axis_options)</span>
-<span id="cb2-40"><a href="#cb2-40"></a></span>
-<span id="cb2-41"><a href="#cb2-41"></a>    color_factor <span class="op">=</span> st.selectbox(</span>
-<span id="cb2-42"><a href="#cb2-42"></a>        <span class="st">"Select the column to colour the chart by"</span>, [<span class="st">"species"</span>, <span class="st">"sex"</span>, <span class="st">"island"</span>]</span>
-<span id="cb2-43"><a href="#cb2-43"></a>    )</span>
-<span id="cb2-44"><a href="#cb2-44"></a></span>
-<span id="cb2-45"><a href="#cb2-45"></a>    fig <span class="op">=</span> px.scatter(</span>
-<span id="cb2-46"><a href="#cb2-46"></a>        penguins,</span>
-<span id="cb2-47"><a href="#cb2-47"></a>        x<span class="op">=</span>col_1,</span>
-<span id="cb2-48"><a href="#cb2-48"></a>        y<span class="op">=</span>col_2,</span>
-<span id="cb2-49"><a href="#cb2-49"></a>        color<span class="op">=</span>color_factor,</span>
-<span id="cb2-50"><a href="#cb2-50"></a>        title<span class="op">=</span><span class="ss">f"Penguins Dataset - </span><span class="sc">{</span>col_1<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>col_2<span class="sc">}</span><span class="ss">, coloured by </span><span class="sc">{</span>color_factor<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb2-51"><a href="#cb2-51"></a>    )</span>
-<span id="cb2-52"><a href="#cb2-52"></a></span>
-<span id="cb2-53"><a href="#cb2-53"></a>    st.plotly_chart(fig)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>st.title(<span class="st">"Interactive Data Explorer"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>st.write(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>    <span class="st">"Here, let's explore what happens to values we've input when moving to a different page."</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a>st.write(<span class="st">"If you enter your name on this page, the rest of the page will load."</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-label="12"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-label="13"></a>st.write(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-label="14"></a>    <span class="st">"Try then moving to a different page using the navigation sidebar before returning to this page."</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-label="15"></a>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-label="16"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-label="17"></a>st.write(<span class="st">"What do you notice?"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-label="18"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-label="19"></a>user_name <span class="op">=</span> st.text_input(<span class="st">"Enter Your Name"</span>, <span class="va">None</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-label="20"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-label="21"></a><span class="cf">if</span> user_name <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb2-22"><a href="#cb2-22" aria-label="22"></a>    st.write(<span class="st">"Please enter your name to load the rest of the page"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-label="23"></a><span class="cf">else</span>:</span>
+<span id="cb2-24"><a href="#cb2-24" aria-label="24"></a>    st.write(<span class="ss">f"Welcome to the interactive penguin data explorer, </span><span class="sc">{</span>user_name<span class="sc">}</span><span class="ss">!"</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-label="25"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-label="26"></a>    penguins <span class="op">=</span> load_penguins()</span>
+<span id="cb2-27"><a href="#cb2-27" aria-label="27"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-label="28"></a>    axis_options <span class="op">=</span> [</span>
+<span id="cb2-29"><a href="#cb2-29" aria-label="29"></a>        <span class="st">"bill_length_mm"</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-label="30"></a>        <span class="st">"bill_depth_mm"</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-label="31"></a>        <span class="st">"flipper_length_mm"</span>,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-label="32"></a>        <span class="st">"body_mass_g"</span>,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-label="33"></a>    ]</span>
+<span id="cb2-34"><a href="#cb2-34" aria-label="34"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-label="35"></a>    col_1 <span class="op">=</span> st.selectbox(<span class="st">"Select the column to use for the x axis"</span>, axis_options)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-label="36"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-label="37"></a>    axis_options.remove(col_1)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-label="38"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-label="39"></a>    col_2 <span class="op">=</span> st.selectbox(<span class="st">"Select the column to use for the x axis"</span>, axis_options)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-label="40"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-label="41"></a>    color_factor <span class="op">=</span> st.selectbox(</span>
+<span id="cb2-42"><a href="#cb2-42" aria-label="42"></a>        <span class="st">"Select the column to colour the chart by"</span>, [<span class="st">"species"</span>, <span class="st">"sex"</span>, <span class="st">"island"</span>]</span>
+<span id="cb2-43"><a href="#cb2-43" aria-label="43"></a>    )</span>
+<span id="cb2-44"><a href="#cb2-44" aria-label="44"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-label="45"></a>    fig <span class="op">=</span> px.scatter(</span>
+<span id="cb2-46"><a href="#cb2-46" aria-label="46"></a>        penguins,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-label="47"></a>        x<span class="op">=</span>col_1,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-label="48"></a>        y<span class="op">=</span>col_2,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-label="49"></a>        color<span class="op">=</span>color_factor,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-label="50"></a>        title<span class="op">=</span><span class="ss">f"Penguins Dataset - </span><span class="sc">{</span>col_1<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>col_2<span class="sc">}</span><span class="ss">, coloured by </span><span class="sc">{</span>color_factor<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb2-51"><a href="#cb2-51" aria-label="51"></a>    )</span>
+<span id="cb2-52"><a href="#cb2-52" aria-label="52"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-label="53"></a>    st.plotly_chart(fig)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -998,23 +977,23 @@ Note
 <section id="nested-sidebars" class="level3" data-number="29.1.1">
 <h3 data-number="29.1.1" class="anchored" data-anchor-id="nested-sidebars"><span class="header-section-number">29.1.1</span> Nested sidebars</h3>
 <p>By modifying our main page’s code, we can create subsections within our navigation bars, which can be very helpful for more complex apps.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3"></a>homepage <span class="op">=</span> st.Page(<span class="st">"Homepage.py"</span>, title<span class="op">=</span><span class="st">"Welcome!"</span>, icon<span class="op">=</span><span class="st">":material/add_circle:"</span>)</span>
-<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4"></a>info_page <span class="op">=</span> st.Page(<span class="st">"Penguin_Information.py"</span>)</span>
-<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5"></a>trends_page <span class="op">=</span> st.Page(<span class="st">"Penguin_Trends.py"</span>)</span>
-<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6"></a>explorer_page <span class="op">=</span> st.Page(<span class="st">"Interactive_Data_Explorer.py"</span>)</span>
-<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7"></a>theming_page <span class="op">=</span> st.Page(<span class="st">"Sidebar_Theming.py"</span>)</span>
-<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-9" class="code-annotation-target"><a href="#annotated-cell-2-9"></a>pg <span class="op">=</span> st.navigation(</span>
-<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10"></a>    {</span>
-<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11"></a>        <span class="st">"Section 1"</span>: [homepage],</span>
-<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12"></a>        <span class="st">"Section 2"</span>: [info_page, trends_page],</span>
-<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13"></a>        <span class="st">"Section 3"</span>: [explorer_page, theming_page]</span>
-<span id="annotated-cell-2-14"><a href="#annotated-cell-2-14"></a>    }</span>
-<span id="annotated-cell-2-15"><a href="#annotated-cell-2-15"></a>     )</span>
-<span id="annotated-cell-2-16"><a href="#annotated-cell-2-16"></a></span>
-<span id="annotated-cell-2-17"><a href="#annotated-cell-2-17"></a>pg.run()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-label="1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-label="2"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-label="3"></a>homepage <span class="op">=</span> st.Page(<span class="st">"Homepage.py"</span>, title<span class="op">=</span><span class="st">"Welcome!"</span>, icon<span class="op">=</span><span class="st">":material/add_circle:"</span>)</span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-label="4"></a>info_page <span class="op">=</span> st.Page(<span class="st">"Penguin_Information.py"</span>)</span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-label="5"></a>trends_page <span class="op">=</span> st.Page(<span class="st">"Penguin_Trends.py"</span>)</span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-label="6"></a>explorer_page <span class="op">=</span> st.Page(<span class="st">"Interactive_Data_Explorer.py"</span>)</span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-label="7"></a>theming_page <span class="op">=</span> st.Page(<span class="st">"Sidebar_Theming.py"</span>)</span>
+<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-label="8"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-9" class="code-annotation-target"><a href="#annotated-cell-2-9" aria-label="9"></a>pg <span class="op">=</span> st.navigation(</span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-label="10"></a>    {</span>
+<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-label="11"></a>        <span class="st">"Section 1"</span>: [homepage],</span>
+<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-label="12"></a>        <span class="st">"Section 2"</span>: [info_page, trends_page],</span>
+<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-label="13"></a>        <span class="st">"Section 3"</span>: [explorer_page, theming_page]</span>
+<span id="annotated-cell-2-14"><a href="#annotated-cell-2-14" aria-label="14"></a>    }</span>
+<span id="annotated-cell-2-15"><a href="#annotated-cell-2-15" aria-label="15"></a>     )</span>
+<span id="annotated-cell-2-16"><a href="#annotated-cell-2-16" aria-label="16"></a></span>
+<span id="annotated-cell-2-17"><a href="#annotated-cell-2-17" aria-label="17"></a>pg.run()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
@@ -1069,40 +1048,40 @@ Warning
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>, page_title<span class="op">=</span><span class="st">"Homepage"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a>st.title(<span class="st">"Welcome to the penguin app!"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a>species_options <span class="op">=</span> [<span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Adelie"</span>]</span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a>chosen_species <span class="op">=</span> st.selectbox(</span>
-<span id="cb3-10"><a href="#cb3-10"></a>    <span class="st">"Which penguin species are you interested in finding out more about?"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11"></a>    species_options,</span>
-<span id="cb3-12"><a href="#cb3-12"></a>)</span>
-<span id="cb3-13"><a href="#cb3-13"></a></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="cf">if</span> chosen_species <span class="op">==</span> <span class="st">"Gentoo"</span>:</span>
-<span id="cb3-15"><a href="#cb3-15"></a>    st.write(</span>
-<span id="cb3-16"><a href="#cb3-16"></a>        <span class="st">"""</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="st">        The gentoo penguin (JEN-too) (Pygoscelis papua) is a penguin species (or possibly a species complex) in the genus Pygoscelis, most closely related to the Adélie penguin (P. adeliae) and the chinstrap penguin (P. antarcticus). The earliest scientific description was made in 1781 by Johann Reinhold Forster with a type locality in the Falkland Islands. The species calls in a variety of ways, but the most frequently heard is a loud trumpeting, which the bird emits with its head thrown back.</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="st">        """</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a>    )</span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="cf">elif</span> chosen_species <span class="op">==</span> <span class="st">"Chinstrap"</span>:</span>
-<span id="cb3-21"><a href="#cb3-21"></a>    st.write(</span>
-<span id="cb3-22"><a href="#cb3-22"></a>        <span class="st">"""</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="st">The chinstrap penguin (Pygoscelis antarcticus) is a species of penguin that inhabits a variety of islands and shores in the Southern Pacific and the Antarctic Oceans. Its name stems from the narrow black band under its head, which makes it appear as if it were wearing a black helmet, making it easy to identify.[2] Other common names include ringed penguin, bearded penguin, and stonecracker penguin, due to its loud, harsh call.[3]</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a><span class="st">        """</span></span>
-<span id="cb3-25"><a href="#cb3-25"></a>    )</span>
-<span id="cb3-26"><a href="#cb3-26"></a></span>
-<span id="cb3-27"><a href="#cb3-27"></a><span class="cf">elif</span> chosen_species <span class="op">==</span> <span class="st">"Adelie"</span>:</span>
-<span id="cb3-28"><a href="#cb3-28"></a>    st.write(</span>
-<span id="cb3-29"><a href="#cb3-29"></a>        <span class="st">"""</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a><span class="st">        The Adélie penguin (Pygoscelis adeliae) is a species of penguin common along the entire coast of the Antarctic continent, which is the only place where it is found. It is the most widespread penguin species, and, along with the emperor penguin, is the most southerly distributed of all penguins. It is named after Adélie Land, in turn, named for Adèle Dumont d'Urville, who was married to French explorer Jules Dumont d'Urville, who first discovered this penguin in 1840. Adélie penguins obtain their food by both predation and foraging, with a diet of mainly krill and fish.</span></span>
-<span id="cb3-31"><a href="#cb3-31"></a><span class="st">        """</span></span>
-<span id="cb3-32"><a href="#cb3-32"></a>    )</span>
-<span id="cb3-33"><a href="#cb3-33"></a></span>
-<span id="cb3-34"><a href="#cb3-34"></a>st.markdown(<span class="st">"*All information from wikipedia*"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>, page_title<span class="op">=</span><span class="st">"Homepage"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>st.title(<span class="st">"Welcome to the penguin app!"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>species_options <span class="op">=</span> [<span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Adelie"</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a>chosen_species <span class="op">=</span> st.selectbox(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a>    <span class="st">"Which penguin species are you interested in finding out more about?"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-label="11"></a>    species_options,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-label="12"></a>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-label="13"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-label="14"></a><span class="cf">if</span> chosen_species <span class="op">==</span> <span class="st">"Gentoo"</span>:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-label="15"></a>    st.write(</span>
+<span id="cb3-16"><a href="#cb3-16" aria-label="16"></a>        <span class="st">"""</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-label="17"></a><span class="st">        The gentoo penguin (JEN-too) (Pygoscelis papua) is a penguin species (or possibly a species complex) in the genus Pygoscelis, most closely related to the Adélie penguin (P. adeliae) and the chinstrap penguin (P. antarcticus). The earliest scientific description was made in 1781 by Johann Reinhold Forster with a type locality in the Falkland Islands. The species calls in a variety of ways, but the most frequently heard is a loud trumpeting, which the bird emits with its head thrown back.</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-label="18"></a><span class="st">        """</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-label="19"></a>    )</span>
+<span id="cb3-20"><a href="#cb3-20" aria-label="20"></a><span class="cf">elif</span> chosen_species <span class="op">==</span> <span class="st">"Chinstrap"</span>:</span>
+<span id="cb3-21"><a href="#cb3-21" aria-label="21"></a>    st.write(</span>
+<span id="cb3-22"><a href="#cb3-22" aria-label="22"></a>        <span class="st">"""</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-label="23"></a><span class="st">The chinstrap penguin (Pygoscelis antarcticus) is a species of penguin that inhabits a variety of islands and shores in the Southern Pacific and the Antarctic Oceans. Its name stems from the narrow black band under its head, which makes it appear as if it were wearing a black helmet, making it easy to identify.[2] Other common names include ringed penguin, bearded penguin, and stonecracker penguin, due to its loud, harsh call.[3]</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-label="24"></a><span class="st">        """</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-label="25"></a>    )</span>
+<span id="cb3-26"><a href="#cb3-26" aria-label="26"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-label="27"></a><span class="cf">elif</span> chosen_species <span class="op">==</span> <span class="st">"Adelie"</span>:</span>
+<span id="cb3-28"><a href="#cb3-28" aria-label="28"></a>    st.write(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-label="29"></a>        <span class="st">"""</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-label="30"></a><span class="st">        The Adélie penguin (Pygoscelis adeliae) is a species of penguin common along the entire coast of the Antarctic continent, which is the only place where it is found. It is the most widespread penguin species, and, along with the emperor penguin, is the most southerly distributed of all penguins. It is named after Adélie Land, in turn, named for Adèle Dumont d'Urville, who was married to French explorer Jules Dumont d'Urville, who first discovered this penguin in 1840. Adélie penguins obtain their food by both predation and foraging, with a diet of mainly krill and fish.</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-label="31"></a><span class="st">        """</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-label="32"></a>    )</span>
+<span id="cb3-33"><a href="#cb3-33" aria-label="33"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-label="34"></a>st.markdown(<span class="st">"*All information from wikipedia*"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1118,52 +1097,52 @@ Warning
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>st.write(<span class="st">"Let's try loading in a variable from the previous page."</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="cf">with</span> st.expander(<span class="st">"Click here to see the code that made the homepage"</span>):</span>
-<span id="cb4-6"><a href="#cb4-6"></a>    st.code(<span class="st">"""</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="st">            import streamlit as st</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="st">st.set_page_config(layout="wide", page_title="Homepage")</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="st">st.title("Welcome to the penguin app!")</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="st">species_options = ["Gentoo", "Chinstrap", "Adelie"]</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="st">chosen_species = st.selectbox("Which penguin species are you interested in finding out more about?", species_options)</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="st">if chosen_species == "Gentoo":</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="st">    st.write(</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="st">        '''</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="st">        The gentoo penguin (JEN-too) (Pygoscelis papua) is a penguin species (or possibly a species complex) in the genus Pygoscelis, most closely related to the Adélie penguin (P. adeliae) and the chinstrap penguin (P. antarcticus). The earliest scientific description was made in 1781 by Johann Reinhold Forster with a type locality in the Falkland Islands. The species calls in a variety of ways, but the most frequently heard is a loud trumpeting, which the bird emits with its head thrown back.</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="st">        '''</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="st">    )</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="st">elif chosen_species == "Chinstrap":</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="st">    st.write(</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="st">        '''</span></span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="st">The chinstrap penguin (Pygoscelis antarcticus) is a species of penguin that inhabits a variety of islands and shores in the Southern Pacific and the Antarctic Oceans. Its name stems from the narrow black band under its head, which makes it appear as if it were wearing a black helmet, making it easy to identify.[2] Other common names include ringed penguin, bearded penguin, and stonecracker penguin, due to its loud, harsh call.[3]</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a><span class="st">        '''</span></span>
-<span id="cb4-28"><a href="#cb4-28"></a><span class="st">    )</span></span>
-<span id="cb4-29"><a href="#cb4-29"></a></span>
-<span id="cb4-30"><a href="#cb4-30"></a><span class="st">elif chosen_species == "Adelie":</span></span>
-<span id="cb4-31"><a href="#cb4-31"></a><span class="st">    st.write(</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a><span class="st">        '''</span></span>
-<span id="cb4-33"><a href="#cb4-33"></a><span class="st">        The Adélie penguin (Pygoscelis adeliae) is a species of penguin common along the entire coast of the Antarctic continent, which is the only place where it is found. It is the most widespread penguin species, and, along with the emperor penguin, is the most southerly distributed of all penguins. It is named after Adélie Land, in turn, named for Adèle Dumont d'Urville, who was married to French explorer Jules Dumont d'Urville, who first discovered this penguin in 1840. Adélie penguins obtain their food by both predation and foraging, with a diet of mainly krill and fish.</span></span>
-<span id="cb4-34"><a href="#cb4-34"></a><span class="st">        '''</span></span>
-<span id="cb4-35"><a href="#cb4-35"></a><span class="st">    )</span></span>
-<span id="cb4-36"><a href="#cb4-36"></a></span>
-<span id="cb4-37"><a href="#cb4-37"></a><span class="st">st.markdown("*All information from wikipedia*")</span></span>
-<span id="cb4-38"><a href="#cb4-38"></a><span class="st">"""</span>)</span>
-<span id="cb4-39"><a href="#cb4-39"></a></span>
-<span id="cb4-40"><a href="#cb4-40"></a>st.write(<span class="st">"We're going to try loading the `species_options` list in, which just contains the strings 'Gentoo', 'Adelie' and 'Chinstrap'."</span>)</span>
-<span id="cb4-41"><a href="#cb4-41"></a></span>
-<span id="cb4-42"><a href="#cb4-42"></a>st.write(<span class="st">"What we'll see is that it doesn't work and instead returns an error. This is because the variables on the other pages are completely separate and can't be accessed on this page."</span>)</span>
-<span id="cb4-43"><a href="#cb4-43"></a></span>
-<span id="cb4-44"><a href="#cb4-44"></a>st.write(<span class="st">"This is a key thing to be aware of within multipage apps. Without using things like session state, we can't use information from other pages on this page, and vice-versa"</span>)</span>
-<span id="cb4-45"><a href="#cb4-45"></a></span>
-<span id="cb4-46"><a href="#cb4-46"></a>chosen_species <span class="op">=</span> st.selectbox(<span class="st">"Which penguin species are you interested in finding out more about?"</span>, species_options)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>st.write(<span class="st">"Let's try loading in a variable from the previous page."</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a><span class="cf">with</span> st.expander(<span class="st">"Click here to see the code that made the homepage"</span>):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>    st.code(<span class="st">"""</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a><span class="st">            import streamlit as st</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a><span class="st">st.set_page_config(layout="wide", page_title="Homepage")</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a><span class="st">st.title("Welcome to the penguin app!")</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-label="13"></a><span class="st">species_options = ["Gentoo", "Chinstrap", "Adelie"]</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-label="14"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-label="15"></a><span class="st">chosen_species = st.selectbox("Which penguin species are you interested in finding out more about?", species_options)</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-label="16"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-label="17"></a><span class="st">if chosen_species == "Gentoo":</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-label="18"></a><span class="st">    st.write(</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-label="19"></a><span class="st">        '''</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-label="20"></a><span class="st">        The gentoo penguin (JEN-too) (Pygoscelis papua) is a penguin species (or possibly a species complex) in the genus Pygoscelis, most closely related to the Adélie penguin (P. adeliae) and the chinstrap penguin (P. antarcticus). The earliest scientific description was made in 1781 by Johann Reinhold Forster with a type locality in the Falkland Islands. The species calls in a variety of ways, but the most frequently heard is a loud trumpeting, which the bird emits with its head thrown back.</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-label="21"></a><span class="st">        '''</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-label="22"></a><span class="st">    )</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-label="23"></a><span class="st">elif chosen_species == "Chinstrap":</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-label="24"></a><span class="st">    st.write(</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-label="25"></a><span class="st">        '''</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-label="26"></a><span class="st">The chinstrap penguin (Pygoscelis antarcticus) is a species of penguin that inhabits a variety of islands and shores in the Southern Pacific and the Antarctic Oceans. Its name stems from the narrow black band under its head, which makes it appear as if it were wearing a black helmet, making it easy to identify.[2] Other common names include ringed penguin, bearded penguin, and stonecracker penguin, due to its loud, harsh call.[3]</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-label="27"></a><span class="st">        '''</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-label="28"></a><span class="st">    )</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-label="29"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-label="30"></a><span class="st">elif chosen_species == "Adelie":</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-label="31"></a><span class="st">    st.write(</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-label="32"></a><span class="st">        '''</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-label="33"></a><span class="st">        The Adélie penguin (Pygoscelis adeliae) is a species of penguin common along the entire coast of the Antarctic continent, which is the only place where it is found. It is the most widespread penguin species, and, along with the emperor penguin, is the most southerly distributed of all penguins. It is named after Adélie Land, in turn, named for Adèle Dumont d'Urville, who was married to French explorer Jules Dumont d'Urville, who first discovered this penguin in 1840. Adélie penguins obtain their food by both predation and foraging, with a diet of mainly krill and fish.</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-label="34"></a><span class="st">        '''</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-label="35"></a><span class="st">    )</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-label="36"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-label="37"></a><span class="st">st.markdown("*All information from wikipedia*")</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-label="38"></a><span class="st">"""</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-label="39"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-label="40"></a>st.write(<span class="st">"We're going to try loading the `species_options` list in, which just contains the strings 'Gentoo', 'Adelie' and 'Chinstrap'."</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-label="41"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-label="42"></a>st.write(<span class="st">"What we'll see is that it doesn't work and instead returns an error. This is because the variables on the other pages are completely separate and can't be accessed on this page."</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-label="43"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-label="44"></a>st.write(<span class="st">"This is a key thing to be aware of within multipage apps. Without using things like session state, we can't use information from other pages on this page, and vice-versa"</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-label="45"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-label="46"></a>chosen_species <span class="op">=</span> st.selectbox(<span class="st">"Which penguin species are you interested in finding out more about?"</span>, species_options)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1179,60 +1158,60 @@ Warning
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a>st.write(<span class="st">"All of the things we've learned about so far can be used within a multipage app!"</span>)</span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a>st.write(<span class="st">"Just remember that each page is effectively a self-contained app - without using things like session state, we can't use information from other pages on this page, and vice-versa."</span>)</span>
-<span id="cb5-10"><a href="#cb5-10"></a></span>
-<span id="cb5-11"><a href="#cb5-11"></a>tab1, tab2 <span class="op">=</span> st.tabs([<span class="st">"Penguin Graphs"</span>, <span class="st">"Video"</span>])</span>
-<span id="cb5-12"><a href="#cb5-12"></a></span>
-<span id="cb5-13"><a href="#cb5-13"></a>penguins <span class="op">=</span> load_penguins()</span>
-<span id="cb5-14"><a href="#cb5-14"></a></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="cf">with</span> tab1:</span>
-<span id="cb5-16"><a href="#cb5-16"></a></span>
-<span id="cb5-17"><a href="#cb5-17"></a>    col1, col2 <span class="op">=</span> st.columns(<span class="dv">2</span>)</span>
-<span id="cb5-18"><a href="#cb5-18"></a></span>
-<span id="cb5-19"><a href="#cb5-19"></a>    <span class="cf">with</span> col1:</span>
-<span id="cb5-20"><a href="#cb5-20"></a>        fig <span class="op">=</span> px.scatter(penguins, x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>, color<span class="op">=</span><span class="st">"sex"</span>,</span>
-<span id="cb5-21"><a href="#cb5-21"></a>        title<span class="op">=</span><span class="ss">f"Penguins Dataset - Bill Length (mm) vs Bill Depth (mm), coloured by Sex"</span>)</span>
-<span id="cb5-22"><a href="#cb5-22"></a></span>
-<span id="cb5-23"><a href="#cb5-23"></a>        st.plotly_chart(fig)</span>
-<span id="cb5-24"><a href="#cb5-24"></a></span>
-<span id="cb5-25"><a href="#cb5-25"></a>        <span class="cf">with</span> st.expander(<span class="st">"Click here to see the code for the graph"</span>):</span>
-<span id="cb5-26"><a href="#cb5-26"></a>            st.code(</span>
-<span id="cb5-27"><a href="#cb5-27"></a>              <span class="st">"""</span></span>
-<span id="cb5-28"><a href="#cb5-28"></a><span class="st">              fig = px.scatter(penguins, x='bill_length_mm', y='bill_depth_mm', color="sex",</span></span>
-<span id="cb5-29"><a href="#cb5-29"></a><span class="st">                    title=f"Penguins Dataset - Bill Length (mm) vs Bill Depth (mm), coloured by Sex")</span></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="st">              """</span></span>
-<span id="cb5-31"><a href="#cb5-31"></a>            )</span>
-<span id="cb5-32"><a href="#cb5-32"></a></span>
-<span id="cb5-33"><a href="#cb5-33"></a>    <span class="cf">with</span> col2:</span>
-<span id="cb5-34"><a href="#cb5-34"></a>        fig <span class="op">=</span> px.scatter(penguins, x<span class="op">=</span><span class="st">'flipper_length_mm'</span>, y<span class="op">=</span><span class="st">'body_mass_g'</span>, color<span class="op">=</span><span class="st">"species"</span>,</span>
-<span id="cb5-35"><a href="#cb5-35"></a>                    title<span class="op">=</span><span class="ss">f"Penguins Dataset - Flipper Length (mm) vs Body Weight(g), coloured by Species"</span>)</span>
-<span id="cb5-36"><a href="#cb5-36"></a></span>
-<span id="cb5-37"><a href="#cb5-37"></a>        st.plotly_chart(fig)</span>
-<span id="cb5-38"><a href="#cb5-38"></a></span>
-<span id="cb5-39"><a href="#cb5-39"></a>        <span class="cf">with</span> st.expander(<span class="st">"Click here to see the code for the graph"</span>):</span>
-<span id="cb5-40"><a href="#cb5-40"></a>            st.code(</span>
-<span id="cb5-41"><a href="#cb5-41"></a>              <span class="st">"""</span></span>
-<span id="cb5-42"><a href="#cb5-42"></a><span class="st">              fig = px.scatter(penguins, x='flipper_length_mm', y='body_mass_g', color="species",</span></span>
-<span id="cb5-43"><a href="#cb5-43"></a><span class="st">                    title=f"Penguins Dataset - Flipper Length (mm) vs Body Weight(g), coloured by Species")</span></span>
-<span id="cb5-44"><a href="#cb5-44"></a><span class="st">              """</span></span>
-<span id="cb5-45"><a href="#cb5-45"></a>            )</span>
-<span id="cb5-46"><a href="#cb5-46"></a></span>
-<span id="cb5-47"><a href="#cb5-47"></a>    <span class="cf">with</span> st.expander(<span class="st">"Click here to see the underlying data"</span>):</span>
-<span id="cb5-48"><a href="#cb5-48"></a>        st.dataframe(penguins)</span>
-<span id="cb5-49"><a href="#cb5-49"></a></span>
-<span id="cb5-50"><a href="#cb5-50"></a><span class="cf">with</span> tab2:</span>
-<span id="cb5-51"><a href="#cb5-51"></a>    st.header(<span class="st">"Penguin Video"</span>)</span>
-<span id="cb5-52"><a href="#cb5-52"></a></span>
-<span id="cb5-53"><a href="#cb5-53"></a>    expander_video <span class="op">=</span> st.expander(<span class="st">"Click here to watch a penguin video"</span>)</span>
-<span id="cb5-54"><a href="#cb5-54"></a>    expander_video.video(<span class="st">"https://www.youtube.com/watch?v=nFAK8Vj62WM"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>st.write(<span class="st">"All of the things we've learned about so far can be used within a multipage app!"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>st.write(<span class="st">"Just remember that each page is effectively a self-contained app - without using things like session state, we can't use information from other pages on this page, and vice-versa."</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a>tab1, tab2 <span class="op">=</span> st.tabs([<span class="st">"Penguin Graphs"</span>, <span class="st">"Video"</span>])</span>
+<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-label="13"></a>penguins <span class="op">=</span> load_penguins()</span>
+<span id="cb5-14"><a href="#cb5-14" aria-label="14"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-label="15"></a><span class="cf">with</span> tab1:</span>
+<span id="cb5-16"><a href="#cb5-16" aria-label="16"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-label="17"></a>    col1, col2 <span class="op">=</span> st.columns(<span class="dv">2</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-label="18"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-label="19"></a>    <span class="cf">with</span> col1:</span>
+<span id="cb5-20"><a href="#cb5-20" aria-label="20"></a>        fig <span class="op">=</span> px.scatter(penguins, x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>, color<span class="op">=</span><span class="st">"sex"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-label="21"></a>        title<span class="op">=</span><span class="ss">f"Penguins Dataset - Bill Length (mm) vs Bill Depth (mm), coloured by Sex"</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-label="22"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-label="23"></a>        st.plotly_chart(fig)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-label="24"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-label="25"></a>        <span class="cf">with</span> st.expander(<span class="st">"Click here to see the code for the graph"</span>):</span>
+<span id="cb5-26"><a href="#cb5-26" aria-label="26"></a>            st.code(</span>
+<span id="cb5-27"><a href="#cb5-27" aria-label="27"></a>              <span class="st">"""</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-label="28"></a><span class="st">              fig = px.scatter(penguins, x='bill_length_mm', y='bill_depth_mm', color="sex",</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-label="29"></a><span class="st">                    title=f"Penguins Dataset - Bill Length (mm) vs Bill Depth (mm), coloured by Sex")</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-label="30"></a><span class="st">              """</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-label="31"></a>            )</span>
+<span id="cb5-32"><a href="#cb5-32" aria-label="32"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-label="33"></a>    <span class="cf">with</span> col2:</span>
+<span id="cb5-34"><a href="#cb5-34" aria-label="34"></a>        fig <span class="op">=</span> px.scatter(penguins, x<span class="op">=</span><span class="st">'flipper_length_mm'</span>, y<span class="op">=</span><span class="st">'body_mass_g'</span>, color<span class="op">=</span><span class="st">"species"</span>,</span>
+<span id="cb5-35"><a href="#cb5-35" aria-label="35"></a>                    title<span class="op">=</span><span class="ss">f"Penguins Dataset - Flipper Length (mm) vs Body Weight(g), coloured by Species"</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-label="36"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-label="37"></a>        st.plotly_chart(fig)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-label="38"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-label="39"></a>        <span class="cf">with</span> st.expander(<span class="st">"Click here to see the code for the graph"</span>):</span>
+<span id="cb5-40"><a href="#cb5-40" aria-label="40"></a>            st.code(</span>
+<span id="cb5-41"><a href="#cb5-41" aria-label="41"></a>              <span class="st">"""</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-label="42"></a><span class="st">              fig = px.scatter(penguins, x='flipper_length_mm', y='body_mass_g', color="species",</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-label="43"></a><span class="st">                    title=f"Penguins Dataset - Flipper Length (mm) vs Body Weight(g), coloured by Species")</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-label="44"></a><span class="st">              """</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-label="45"></a>            )</span>
+<span id="cb5-46"><a href="#cb5-46" aria-label="46"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-label="47"></a>    <span class="cf">with</span> st.expander(<span class="st">"Click here to see the underlying data"</span>):</span>
+<span id="cb5-48"><a href="#cb5-48" aria-label="48"></a>        st.dataframe(penguins)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-label="49"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-label="50"></a><span class="cf">with</span> tab2:</span>
+<span id="cb5-51"><a href="#cb5-51" aria-label="51"></a>    st.header(<span class="st">"Penguin Video"</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-label="52"></a></span>
+<span id="cb5-53"><a href="#cb5-53" aria-label="53"></a>    expander_video <span class="op">=</span> st.expander(<span class="st">"Click here to watch a penguin video"</span>)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-label="54"></a>    expander_video.video(<span class="st">"https://www.youtube.com/watch?v=nFAK8Vj62WM"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1248,59 +1227,59 @@ Warning
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a>st.title(<span class="st">"Interactive Data Explorer"</span>)</span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a>st.write(</span>
-<span id="cb6-8"><a href="#cb6-8"></a>    <span class="st">"Here, let's explore what happens to values we've input when moving to a different page."</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>)</span>
-<span id="cb6-10"><a href="#cb6-10"></a></span>
-<span id="cb6-11"><a href="#cb6-11"></a>st.write(<span class="st">"If you enter your name on this page, the rest of the page will load."</span>)</span>
-<span id="cb6-12"><a href="#cb6-12"></a></span>
-<span id="cb6-13"><a href="#cb6-13"></a>st.write(</span>
-<span id="cb6-14"><a href="#cb6-14"></a>    <span class="st">"Try then moving to a different page using the navigation sidebar before returning to this page."</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a>)</span>
-<span id="cb6-16"><a href="#cb6-16"></a></span>
-<span id="cb6-17"><a href="#cb6-17"></a>st.write(<span class="st">"What do you notice?"</span>)</span>
-<span id="cb6-18"><a href="#cb6-18"></a></span>
-<span id="cb6-19"><a href="#cb6-19"></a>user_name <span class="op">=</span> st.text_input(<span class="st">"Enter Your Name"</span>, <span class="va">None</span>)</span>
-<span id="cb6-20"><a href="#cb6-20"></a></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="cf">if</span> user_name <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb6-22"><a href="#cb6-22"></a>    st.write(<span class="st">"Please enter your name to load the rest of the page"</span>)</span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="cf">else</span>:</span>
-<span id="cb6-24"><a href="#cb6-24"></a>    st.write(<span class="ss">f"Welcome to the interactive penguin data explorer, </span><span class="sc">{</span>user_name<span class="sc">}</span><span class="ss">!"</span>)</span>
-<span id="cb6-25"><a href="#cb6-25"></a></span>
-<span id="cb6-26"><a href="#cb6-26"></a>    penguins <span class="op">=</span> load_penguins()</span>
-<span id="cb6-27"><a href="#cb6-27"></a></span>
-<span id="cb6-28"><a href="#cb6-28"></a>    axis_options <span class="op">=</span> [</span>
-<span id="cb6-29"><a href="#cb6-29"></a>        <span class="st">"bill_length_mm"</span>,</span>
-<span id="cb6-30"><a href="#cb6-30"></a>        <span class="st">"bill_depth_mm"</span>,</span>
-<span id="cb6-31"><a href="#cb6-31"></a>        <span class="st">"flipper_length_mm"</span>,</span>
-<span id="cb6-32"><a href="#cb6-32"></a>        <span class="st">"body_mass_g"</span>,</span>
-<span id="cb6-33"><a href="#cb6-33"></a>    ]</span>
-<span id="cb6-34"><a href="#cb6-34"></a></span>
-<span id="cb6-35"><a href="#cb6-35"></a>    col_1 <span class="op">=</span> st.selectbox(<span class="st">"Select the column to use for the x axis"</span>, axis_options)</span>
-<span id="cb6-36"><a href="#cb6-36"></a></span>
-<span id="cb6-37"><a href="#cb6-37"></a>    axis_options.remove(col_1)</span>
-<span id="cb6-38"><a href="#cb6-38"></a></span>
-<span id="cb6-39"><a href="#cb6-39"></a>    col_2 <span class="op">=</span> st.selectbox(<span class="st">"Select the column to use for the x axis"</span>, axis_options)</span>
-<span id="cb6-40"><a href="#cb6-40"></a></span>
-<span id="cb6-41"><a href="#cb6-41"></a>    color_factor <span class="op">=</span> st.selectbox(</span>
-<span id="cb6-42"><a href="#cb6-42"></a>        <span class="st">"Select the column to colour the chart by"</span>, [<span class="st">"species"</span>, <span class="st">"sex"</span>, <span class="st">"island"</span>]</span>
-<span id="cb6-43"><a href="#cb6-43"></a>    )</span>
-<span id="cb6-44"><a href="#cb6-44"></a></span>
-<span id="cb6-45"><a href="#cb6-45"></a>    fig <span class="op">=</span> px.scatter(</span>
-<span id="cb6-46"><a href="#cb6-46"></a>        penguins,</span>
-<span id="cb6-47"><a href="#cb6-47"></a>        x<span class="op">=</span>col_1,</span>
-<span id="cb6-48"><a href="#cb6-48"></a>        y<span class="op">=</span>col_2,</span>
-<span id="cb6-49"><a href="#cb6-49"></a>        color<span class="op">=</span>color_factor,</span>
-<span id="cb6-50"><a href="#cb6-50"></a>        title<span class="op">=</span><span class="ss">f"Penguins Dataset - </span><span class="sc">{</span>col_1<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>col_2<span class="sc">}</span><span class="ss">, coloured by </span><span class="sc">{</span>color_factor<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb6-51"><a href="#cb6-51"></a>    )</span>
-<span id="cb6-52"><a href="#cb6-52"></a></span>
-<span id="cb6-53"><a href="#cb6-53"></a>    st.plotly_chart(fig)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>st.title(<span class="st">"Interactive Data Explorer"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>st.write(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>    <span class="st">"Here, let's explore what happens to values we've input when moving to a different page."</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a>st.write(<span class="st">"If you enter your name on this page, the rest of the page will load."</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-label="12"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-label="13"></a>st.write(</span>
+<span id="cb6-14"><a href="#cb6-14" aria-label="14"></a>    <span class="st">"Try then moving to a different page using the navigation sidebar before returning to this page."</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-label="15"></a>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-label="16"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-label="17"></a>st.write(<span class="st">"What do you notice?"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-label="18"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-label="19"></a>user_name <span class="op">=</span> st.text_input(<span class="st">"Enter Your Name"</span>, <span class="va">None</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-label="20"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-label="21"></a><span class="cf">if</span> user_name <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-label="22"></a>    st.write(<span class="st">"Please enter your name to load the rest of the page"</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-label="23"></a><span class="cf">else</span>:</span>
+<span id="cb6-24"><a href="#cb6-24" aria-label="24"></a>    st.write(<span class="ss">f"Welcome to the interactive penguin data explorer, </span><span class="sc">{</span>user_name<span class="sc">}</span><span class="ss">!"</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-label="25"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-label="26"></a>    penguins <span class="op">=</span> load_penguins()</span>
+<span id="cb6-27"><a href="#cb6-27" aria-label="27"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-label="28"></a>    axis_options <span class="op">=</span> [</span>
+<span id="cb6-29"><a href="#cb6-29" aria-label="29"></a>        <span class="st">"bill_length_mm"</span>,</span>
+<span id="cb6-30"><a href="#cb6-30" aria-label="30"></a>        <span class="st">"bill_depth_mm"</span>,</span>
+<span id="cb6-31"><a href="#cb6-31" aria-label="31"></a>        <span class="st">"flipper_length_mm"</span>,</span>
+<span id="cb6-32"><a href="#cb6-32" aria-label="32"></a>        <span class="st">"body_mass_g"</span>,</span>
+<span id="cb6-33"><a href="#cb6-33" aria-label="33"></a>    ]</span>
+<span id="cb6-34"><a href="#cb6-34" aria-label="34"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-label="35"></a>    col_1 <span class="op">=</span> st.selectbox(<span class="st">"Select the column to use for the x axis"</span>, axis_options)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-label="36"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-label="37"></a>    axis_options.remove(col_1)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-label="38"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-label="39"></a>    col_2 <span class="op">=</span> st.selectbox(<span class="st">"Select the column to use for the x axis"</span>, axis_options)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-label="40"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-label="41"></a>    color_factor <span class="op">=</span> st.selectbox(</span>
+<span id="cb6-42"><a href="#cb6-42" aria-label="42"></a>        <span class="st">"Select the column to colour the chart by"</span>, [<span class="st">"species"</span>, <span class="st">"sex"</span>, <span class="st">"island"</span>]</span>
+<span id="cb6-43"><a href="#cb6-43" aria-label="43"></a>    )</span>
+<span id="cb6-44"><a href="#cb6-44" aria-label="44"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-label="45"></a>    fig <span class="op">=</span> px.scatter(</span>
+<span id="cb6-46"><a href="#cb6-46" aria-label="46"></a>        penguins,</span>
+<span id="cb6-47"><a href="#cb6-47" aria-label="47"></a>        x<span class="op">=</span>col_1,</span>
+<span id="cb6-48"><a href="#cb6-48" aria-label="48"></a>        y<span class="op">=</span>col_2,</span>
+<span id="cb6-49"><a href="#cb6-49" aria-label="49"></a>        color<span class="op">=</span>color_factor,</span>
+<span id="cb6-50"><a href="#cb6-50" aria-label="50"></a>        title<span class="op">=</span><span class="ss">f"Penguins Dataset - </span><span class="sc">{</span>col_1<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>col_2<span class="sc">}</span><span class="ss">, coloured by </span><span class="sc">{</span>color_factor<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb6-51"><a href="#cb6-51" aria-label="51"></a>    )</span>
+<span id="cb6-52"><a href="#cb6-52" aria-label="52"></a></span>
+<span id="cb6-53"><a href="#cb6-53" aria-label="53"></a>    st.plotly_chart(fig)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1316,76 +1295,76 @@ Warning
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>st.markdown(</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="st">"""</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="st">&lt;style&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="st">/* Sidebar font color as default is to set non-selected to more transparent */</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="st">[data-testid=stSidebarNavItems] &gt; li &gt; div &gt; a &gt; span</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="st">{</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="st">    color: #05291F;</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="st">}</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="st">/* Sidebar font size */</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="st">    [data-testid=stSidebarNavItems]</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="st">    {</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="st">        font-size: 20px;</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="st">    }</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="st">&lt;/style&gt;</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="st">  """</span>,</span>
-<span id="cb7-20"><a href="#cb7-20"></a>    unsafe_allow_html<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb7-21"><a href="#cb7-21"></a>)</span>
-<span id="cb7-22"><a href="#cb7-22"></a></span>
-<span id="cb7-23"><a href="#cb7-23"></a></span>
-<span id="cb7-24"><a href="#cb7-24"></a>st.title(<span class="st">"Sidebar Theming and Additions"</span>)</span>
-<span id="cb7-25"><a href="#cb7-25"></a></span>
-<span id="cb7-26"><a href="#cb7-26"></a>st.write(<span class="st">"Finally, let's look at the impact of some custom CSS on the sidebar."</span>)</span>
-<span id="cb7-27"><a href="#cb7-27"></a></span>
-<span id="cb7-28"><a href="#cb7-28"></a>st.write(</span>
-<span id="cb7-29"><a href="#cb7-29"></a>    <span class="st">"We've embedded some code when the page first loads that should increase the size of the page names in the sidebar, and also make the page names in the sidebar darker."</span></span>
-<span id="cb7-30"><a href="#cb7-30"></a>)</span>
-<span id="cb7-31"><a href="#cb7-31"></a></span>
-<span id="cb7-32"><a href="#cb7-32"></a><span class="cf">with</span> st.expander(<span class="st">"Click here to view the code"</span>):</span>
-<span id="cb7-33"><a href="#cb7-33"></a>    st.code(</span>
-<span id="cb7-34"><a href="#cb7-34"></a>        <span class="st">"""</span></span>
-<span id="cb7-35"><a href="#cb7-35"></a><span class="st">&lt;style&gt;</span></span>
-<span id="cb7-36"><a href="#cb7-36"></a><span class="st">/* Sidebar font color as default is to set non-selected to more transparent */</span></span>
-<span id="cb7-37"><a href="#cb7-37"></a><span class="st">[data-testid=stSidebarNavItems] &gt; li &gt; div &gt; a &gt; span</span></span>
-<span id="cb7-38"><a href="#cb7-38"></a><span class="st">{</span></span>
-<span id="cb7-39"><a href="#cb7-39"></a><span class="st">    color: #05291F;</span></span>
-<span id="cb7-40"><a href="#cb7-40"></a><span class="st">}</span></span>
-<span id="cb7-41"><a href="#cb7-41"></a></span>
-<span id="cb7-42"><a href="#cb7-42"></a><span class="st">/* Sidebar font size */</span></span>
-<span id="cb7-43"><a href="#cb7-43"></a><span class="st">    [data-testid=stSidebarNavItems]</span></span>
-<span id="cb7-44"><a href="#cb7-44"></a><span class="st">    {</span></span>
-<span id="cb7-45"><a href="#cb7-45"></a><span class="st">        font-size: 20px;</span></span>
-<span id="cb7-46"><a href="#cb7-46"></a><span class="st">    }</span></span>
-<span id="cb7-47"><a href="#cb7-47"></a></span>
-<span id="cb7-48"><a href="#cb7-48"></a><span class="st">&lt;/style&gt;</span></span>
-<span id="cb7-49"><a href="#cb7-49"></a><span class="st">    """</span></span>
-<span id="cb7-50"><a href="#cb7-50"></a>    )</span>
-<span id="cb7-51"><a href="#cb7-51"></a></span>
-<span id="cb7-52"><a href="#cb7-52"></a></span>
-<span id="cb7-53"><a href="#cb7-53"></a><span class="cf">with</span> st.sidebar:</span>
-<span id="cb7-54"><a href="#cb7-54"></a>    st.write(</span>
-<span id="cb7-55"><a href="#cb7-55"></a>        <span class="st">"Let's also explore what happens when we add additional things to the sidebar"</span></span>
-<span id="cb7-56"><a href="#cb7-56"></a>    )</span>
-<span id="cb7-57"><a href="#cb7-57"></a></span>
-<span id="cb7-58"><a href="#cb7-58"></a>    st.write(<span class="st">"It looks like it automatically appears below the navigation"</span>)</span>
-<span id="cb7-59"><a href="#cb7-59"></a></span>
-<span id="cb7-60"><a href="#cb7-60"></a>    num_repeats <span class="op">=</span> st.slider(<span class="st">"Pick a number"</span>, <span class="dv">1</span>, <span class="dv">50</span>, <span class="dv">2</span>)</span>
-<span id="cb7-61"><a href="#cb7-61"></a></span>
-<span id="cb7-62"><a href="#cb7-62"></a>    text_repeats <span class="op">=</span> st.text_input(<span class="st">"Enter some text"</span>, <span class="va">None</span>)</span>
-<span id="cb7-63"><a href="#cb7-63"></a></span>
-<span id="cb7-64"><a href="#cb7-64"></a></span>
-<span id="cb7-65"><a href="#cb7-65"></a><span class="cf">if</span> text_repeats <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb7-66"><a href="#cb7-66"></a>    st.write(<span class="st">"Enter some text in the box in the sidebar"</span>)</span>
-<span id="cb7-67"><a href="#cb7-67"></a><span class="cf">else</span>:</span>
-<span id="cb7-68"><a href="#cb7-68"></a>    st.write(<span class="st">"Here is your text repeated that many times!"</span>)</span>
-<span id="cb7-69"><a href="#cb7-69"></a></span>
-<span id="cb7-70"><a href="#cb7-70"></a>    st.write(text_repeats <span class="op">*</span> num_repeats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>st.markdown(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>    <span class="st">"""</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a><span class="st">&lt;style&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-label="6"></a><span class="st">/* Sidebar font color as default is to set non-selected to more transparent */</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-label="7"></a><span class="st">[data-testid=stSidebarNavItems] &gt; li &gt; div &gt; a &gt; span</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-label="8"></a><span class="st">{</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-label="9"></a><span class="st">    color: #05291F;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-label="10"></a><span class="st">}</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-label="11"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-label="12"></a><span class="st">/* Sidebar font size */</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-label="13"></a><span class="st">    [data-testid=stSidebarNavItems]</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-label="14"></a><span class="st">    {</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-label="15"></a><span class="st">        font-size: 20px;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-label="16"></a><span class="st">    }</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-label="17"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-label="18"></a><span class="st">&lt;/style&gt;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-label="19"></a><span class="st">  """</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-label="20"></a>    unsafe_allow_html<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-label="21"></a>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-label="22"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-label="23"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-label="24"></a>st.title(<span class="st">"Sidebar Theming and Additions"</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-label="25"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-label="26"></a>st.write(<span class="st">"Finally, let's look at the impact of some custom CSS on the sidebar."</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-label="27"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-label="28"></a>st.write(</span>
+<span id="cb7-29"><a href="#cb7-29" aria-label="29"></a>    <span class="st">"We've embedded some code when the page first loads that should increase the size of the page names in the sidebar, and also make the page names in the sidebar darker."</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-label="30"></a>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-label="31"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-label="32"></a><span class="cf">with</span> st.expander(<span class="st">"Click here to view the code"</span>):</span>
+<span id="cb7-33"><a href="#cb7-33" aria-label="33"></a>    st.code(</span>
+<span id="cb7-34"><a href="#cb7-34" aria-label="34"></a>        <span class="st">"""</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-label="35"></a><span class="st">&lt;style&gt;</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-label="36"></a><span class="st">/* Sidebar font color as default is to set non-selected to more transparent */</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-label="37"></a><span class="st">[data-testid=stSidebarNavItems] &gt; li &gt; div &gt; a &gt; span</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-label="38"></a><span class="st">{</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-label="39"></a><span class="st">    color: #05291F;</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-label="40"></a><span class="st">}</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-label="41"></a></span>
+<span id="cb7-42"><a href="#cb7-42" aria-label="42"></a><span class="st">/* Sidebar font size */</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-label="43"></a><span class="st">    [data-testid=stSidebarNavItems]</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-label="44"></a><span class="st">    {</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-label="45"></a><span class="st">        font-size: 20px;</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-label="46"></a><span class="st">    }</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-label="47"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-label="48"></a><span class="st">&lt;/style&gt;</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-label="49"></a><span class="st">    """</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-label="50"></a>    )</span>
+<span id="cb7-51"><a href="#cb7-51" aria-label="51"></a></span>
+<span id="cb7-52"><a href="#cb7-52" aria-label="52"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-label="53"></a><span class="cf">with</span> st.sidebar:</span>
+<span id="cb7-54"><a href="#cb7-54" aria-label="54"></a>    st.write(</span>
+<span id="cb7-55"><a href="#cb7-55" aria-label="55"></a>        <span class="st">"Let's also explore what happens when we add additional things to the sidebar"</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-label="56"></a>    )</span>
+<span id="cb7-57"><a href="#cb7-57" aria-label="57"></a></span>
+<span id="cb7-58"><a href="#cb7-58" aria-label="58"></a>    st.write(<span class="st">"It looks like it automatically appears below the navigation"</span>)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-label="59"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-label="60"></a>    num_repeats <span class="op">=</span> st.slider(<span class="st">"Pick a number"</span>, <span class="dv">1</span>, <span class="dv">50</span>, <span class="dv">2</span>)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-label="61"></a></span>
+<span id="cb7-62"><a href="#cb7-62" aria-label="62"></a>    text_repeats <span class="op">=</span> st.text_input(<span class="st">"Enter some text"</span>, <span class="va">None</span>)</span>
+<span id="cb7-63"><a href="#cb7-63" aria-label="63"></a></span>
+<span id="cb7-64"><a href="#cb7-64" aria-label="64"></a></span>
+<span id="cb7-65"><a href="#cb7-65" aria-label="65"></a><span class="cf">if</span> text_repeats <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb7-66"><a href="#cb7-66" aria-label="66"></a>    st.write(<span class="st">"Enter some text in the box in the sidebar"</span>)</span>
+<span id="cb7-67"><a href="#cb7-67" aria-label="67"></a><span class="cf">else</span>:</span>
+<span id="cb7-68"><a href="#cb7-68" aria-label="68"></a>    st.write(<span class="st">"Here is your text repeated that many times!"</span>)</span>
+<span id="cb7-69"><a href="#cb7-69" aria-label="69"></a></span>
+<span id="cb7-70"><a href="#cb7-70" aria-label="70"></a>    st.write(text_repeats <span class="op">*</span> num_repeats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1393,20 +1372,55 @@ Warning
 
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
       const i = window.document.createElement("i");
       i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
     }
     setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
@@ -1485,7 +1499,8 @@ Warning
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -1494,8 +1509,69 @@ Warning
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -1509,6 +1585,7 @@ Warning
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1671,44 +1748,54 @@ Warning
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1807,7 +1894,10 @@ Warning
     }
   });
   </script>
-<nav class="page-navigation">
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
       <a href="./layout_expander.html" class="pagination-link" aria-label="Expanders">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Expanders</span></span>
