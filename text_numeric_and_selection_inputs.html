@@ -873,7 +873,7 @@ cookieconsent.run({
 <h2 data-number="14.1" class="anchored" data-anchor-id="text-input"><span class="header-section-number">14.1</span> Text input</h2>
 <p>Let’s start by having a text input to greet the user.</p>
 <p>Try changing the value in the input box each time, pressing enter when you have finished typing. Notice how the sentence underneath the text box updates.</p>
-<div id="ae710681" class="cell" data-execution_count="1">
+<div id="f771daac" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> st.text_input(<span class="st">"Enter your name"</span>)</span>
@@ -908,7 +908,7 @@ Tip
 </div>
 <section id="numeric-input" class="level3" data-number="14.2.1">
 <h3 data-number="14.2.1" class="anchored" data-anchor-id="numeric-input"><span class="header-section-number">14.2.1</span> Numeric input</h3>
-<div id="37d37025" class="cell" data-execution_count="2">
+<div id="602e4af5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>st.subheader(<span class="st">"Numeric Input"</span>)</span>
@@ -928,7 +928,7 @@ Tip
 </section>
 <section id="numeric-slider" class="level3" data-number="14.2.2">
 <h3 data-number="14.2.2" class="anchored" data-anchor-id="numeric-slider"><span class="header-section-number">14.2.2</span> Numeric slider</h3>
-<div id="a96a05af" class="cell" data-execution_count="3">
+<div id="a9eef8b1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>st.subheader(<span class="st">"Numeric Slider"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>chosen_number_slider <span class="op">=</span> st.slider(</span>
@@ -976,7 +976,7 @@ Tip
 </div>
 <section id="range-slider" class="level3" data-number="14.3.1">
 <h3 data-number="14.3.1" class="anchored" data-anchor-id="range-slider"><span class="header-section-number">14.3.1</span> Range slider</h3>
-<div id="669c7ec5" class="cell" data-execution_count="4">
+<div id="4512fb8f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lower_value, upper_value <span class="op">=</span> st.slider(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Pick a lower and upper limit"</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    min_value<span class="op">=</span><span class="dv">0</span>,</span>
@@ -987,7 +987,7 @@ Tip
 </section>
 <section id="time-slider" class="level3" data-number="14.3.2">
 <h3 data-number="14.3.2" class="anchored" data-anchor-id="time-slider"><span class="header-section-number">14.3.2</span> Time slider</h3>
-<div id="e73621b8" class="cell" data-execution_count="5">
+<div id="c25e3db9" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>chosen_time <span class="op">=</span> st.slider(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Select a time:"</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    time(<span class="dv">11</span>, <span class="dv">30</span>)</span>
@@ -996,7 +996,7 @@ Tip
 </section>
 <section id="date-slider" class="level3" data-number="14.3.3">
 <h3 data-number="14.3.3" class="anchored" data-anchor-id="date-slider"><span class="header-section-number">14.3.3</span> Date slider</h3>
-<div id="ed0aadf4" class="cell" data-execution_count="6">
+<div id="e07ad480" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>selected_date <span class="op">=</span> st.slider(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Select a date"</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    value<span class="op">=</span>datetime(<span class="dv">2022</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
@@ -1006,7 +1006,7 @@ Tip
 </section>
 <section id="date-range-slider" class="level3" data-number="14.3.4">
 <h3 data-number="14.3.4" class="anchored" data-anchor-id="date-range-slider"><span class="header-section-number">14.3.4</span> Date range slider</h3>
-<div id="05eabb7c" class="cell" data-execution_count="7">
+<div id="ff16b42d" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>start_date, end_date <span class="op">=</span> st.slider(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Select a date"</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    value<span class="op">=</span>(datetime(<span class="dv">2022</span>, <span class="dv">1</span>, <span class="dv">1</span>), datetime(<span class="dv">2023</span>, <span class="dv">6</span>, <span class="dv">1</span>)),</span>
@@ -1016,7 +1016,7 @@ Tip
 </section>
 <section id="time-range-slider" class="level3" data-number="14.3.5">
 <h3 data-number="14.3.5" class="anchored" data-anchor-id="time-range-slider"><span class="header-section-number">14.3.5</span> Time range slider</h3>
-<div id="9f3b427c" class="cell" data-execution_count="8">
+<div id="0c06d1b2" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>start_time, end_time <span class="op">=</span> st.slider(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Select a time:"</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    value<span class="op">=</span>(time(<span class="dv">11</span>, <span class="dv">30</span>), time(<span class="dv">12</span>, <span class="dv">45</span>))</span>
@@ -1025,7 +1025,7 @@ Tip
 </section>
 <section id="datetime-slider" class="level3" data-number="14.3.6">
 <h3 data-number="14.3.6" class="anchored" data-anchor-id="datetime-slider"><span class="header-section-number">14.3.6</span> Datetime slider</h3>
-<div id="4a9df320" class="cell" data-execution_count="9">
+<div id="b0f3a4d6" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>chosen_datetime <span class="op">=</span> st.slider(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Select a date and time"</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    value<span class="op">=</span>datetime(<span class="dv">2022</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">0</span>),</span>
@@ -1035,7 +1035,7 @@ Tip
 </section>
 <section id="date-calendar-picker" class="level3" data-number="14.3.7">
 <h3 data-number="14.3.7" class="anchored" data-anchor-id="date-calendar-picker"><span class="header-section-number">14.3.7</span> Date calendar picker</h3>
-<div id="b13da55d" class="cell" data-execution_count="10">
+<div id="6b6ef643" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>selected_date <span class="op">=</span> st.date_input(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Choose a date on the calendar picker"</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1043,7 +1043,7 @@ Tip
 </section>
 <section id="time-calendar-picker" class="level3" data-number="14.3.8">
 <h3 data-number="14.3.8" class="anchored" data-anchor-id="time-calendar-picker"><span class="header-section-number">14.3.8</span> Time calendar picker</h3>
-<div id="2e82d653" class="cell" data-execution_count="11">
+<div id="76749a50" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>selected_time <span class="op">=</span> st.time_input(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Select a time"</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1075,7 +1075,7 @@ Tip
 </div>
 <section id="long-text" class="level3" data-number="14.4.1">
 <h3 data-number="14.4.1" class="anchored" data-anchor-id="long-text"><span class="header-section-number">14.4.1</span> Long text</h3>
-<div id="95dd7a8f" class="cell" data-execution_count="12">
+<div id="52a1428d" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>longer_text_input <span class="op">=</span> st.text_area(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Use this input to enter a larger piece of text"</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1083,7 +1083,7 @@ Tip
 </section>
 <section id="short-text" class="level3" data-number="14.4.2">
 <h3 data-number="14.4.2" class="anchored" data-anchor-id="short-text"><span class="header-section-number">14.4.2</span> Short text</h3>
-<div id="16af14ea" class="cell" data-execution_count="13">
+<div id="25fbda9d" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>shorter_text_input <span class="op">=</span> st.text_input(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"We saw this before - this is an input for a short bit of text"</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1116,7 +1116,7 @@ Tip
 </div>
 <section id="radio" class="level3" data-number="14.5.1">
 <h3 data-number="14.5.1" class="anchored" data-anchor-id="radio"><span class="header-section-number">14.5.1</span> Radio</h3>
-<div id="1f225420" class="cell" data-execution_count="14">
+<div id="9f7fae65" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>radio_colour_select <span class="op">=</span> st.radio(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Which of these colours is your favourite?"</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    options<span class="op">=</span>[<span class="st">"Green"</span>, <span class="st">"Blue"</span>, <span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Purple"</span>]</span>
@@ -1125,7 +1125,7 @@ Tip
 </section>
 <section id="selectbox" class="level3" data-number="14.5.2">
 <h3 data-number="14.5.2" class="anchored" data-anchor-id="selectbox"><span class="header-section-number">14.5.2</span> Selectbox</h3>
-<div id="6aed1c38" class="cell" data-execution_count="15">
+<div id="616d3a2f" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>selectbox_colour_select <span class="op">=</span> st.selectbox(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Which of these colours is your favourite?"</span>,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    options<span class="op">=</span>[<span class="st">"Green"</span>, <span class="st">"Blue"</span>, <span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Purple"</span>]</span>
@@ -1134,7 +1134,7 @@ Tip
 </section>
 <section id="multiselect" class="level3" data-number="14.5.3">
 <h3 data-number="14.5.3" class="anchored" data-anchor-id="multiselect"><span class="header-section-number">14.5.3</span> Multiselect</h3>
-<div id="76daf5ca" class="cell" data-execution_count="16">
+<div id="f8b1e793" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>multiselect_colour_select <span class="op">=</span> st.multiselect(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Which of these colours are your favourite? You can pick more than one!"</span>,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    options<span class="op">=</span>[<span class="st">"Green"</span>, <span class="st">"Blue"</span>, <span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Purple"</span>]</span>
@@ -1143,7 +1143,7 @@ Tip
 </section>
 <section id="select-slider" class="level3" data-number="14.5.4">
 <h3 data-number="14.5.4" class="anchored" data-anchor-id="select-slider"><span class="header-section-number">14.5.4</span> Select slider</h3>
-<div id="cf0748d4" class="cell" data-execution_count="17">
+<div id="b2617ed1" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>slider_colour_select <span class="op">=</span> st.select_slider(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Which of these colours is your favourite?"</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    options<span class="op">=</span>[<span class="st">"Green"</span>, <span class="st">"Blue"</span>, <span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Purple"</span>]</span>
@@ -1176,13 +1176,13 @@ Tip
 </div>
 <section id="checkbox" class="level3" data-number="14.6.1">
 <h3 data-number="14.6.1" class="anchored" data-anchor-id="checkbox"><span class="header-section-number">14.6.1</span> Checkbox</h3>
-<div id="67e08227" class="cell" data-execution_count="18">
+<div id="df221ae5" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>checkbox_value <span class="op">=</span> st.checkbox(<span class="st">"Tick or untick me!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="toggle" class="level3" data-number="14.6.2">
 <h3 data-number="14.6.2" class="anchored" data-anchor-id="toggle"><span class="header-section-number">14.6.2</span> Toggle</h3>
-<div id="2962a618" class="cell" data-execution_count="19">
+<div id="2caefeab" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>toggle_value <span class="op">=</span> st.toggle(<span class="st">"Tick or untick me!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
