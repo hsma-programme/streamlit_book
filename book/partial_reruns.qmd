@@ -158,3 +158,49 @@ Notice that now when we change the parameters in the drop-down select boxes, onl
 ```{=html}
 <iframe width="100%" height="600" src="https://penguins-partial-rerun-example.streamlit.app?embed=true" title="Partial Rerun Example"></iframe>
 ```
+
+<br>
+
+## Stopping download buttons from rerunning the app
+
+By default, clicking `st.download_button` reruns your whole app. This can be annoying - for example, anything the user had opened or revealed after clicking another button may disappear.
+
+Setting `on_click="ignore"` makes the download happen without a rerun.
+
+```{python}
+#| eval: false
+st.download_button(
+  "Download data",
+  data=df.to_csv(index=False),
+  file_name="data.csv",
+  mime="text/csv",
+  on_click="ignore"
+)
+```
+
+:::{.callout-note}
+With `on_click="ignore"`, no callback function is run. If you need a callback to run when the user downloads, use the default behaviour instead.
+:::
+
+:::{.callout-tip collapse="true" title="Solution for Streamlit < 1.43.0"}
+
+`on_click="ignore"` needs Streamlit 1.43.0 or newer.
+
+On older versions, you can use a fragment workaround. Wrap only the download button in a fragment. Clicking it then reruns only that fragment.
+
+```{python}
+#| eval: false
+
+@st.fragment
+def download_section(csv_data):
+    st.download_button(
+        "Download data",
+        data=csv_data,
+        file_name="data.csv",
+        mime="text/csv"
+    )
+
+download_section(df.to_csv(index=False))
+```
+
+:::
