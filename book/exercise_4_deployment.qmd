@@ -1,0 +1,16 @@
+# Exercise 4: Take me to the clouds above
+
+<br>
+
+The final task is deploying an app.
+
+- Create a new repository and upload one of the apps you've created in the last few exercises to GitHub.
+
+- Deploy your app to the streamlit community cloud
+    - Remember to include a `requirements.txt` file
+
+If you finish this,
+
+- Try uploading some more apps
+- Go back to any exercises you want to spend more time on
+- Or start building an app of your choice!

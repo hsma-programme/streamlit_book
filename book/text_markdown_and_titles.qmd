@@ -1,0 +1,116 @@
+---
+title: "Titles, text, and markdown"
+filters:
+  - whitphx/stlite
+---
+
+<br>
+
+Most apps will require a good amount of titles, subheaders and general text.
+
+<br>
+
+## Titles and text
+
+```{python}
+#| eval: false
+
+import streamlit as st
+
+st.title("This is a title")
+
+st.subheader("This is a subheader")
+
+st.text("This is text displayed with st.text")
+
+st.write("This is text displayed with st.write")
+```
+
+```{stlite-python}
+import streamlit as st
+
+st.title("This is a title")
+
+st.subheader("This is a subheader")
+
+st.text("This is text displayed with st.text")
+
+st.write("This is text displayed with st.write")
+```
+
+<br>
+
+## Markdown
+
+```{python}
+#| eval: false
+
+import streamlit as st
+
+st.markdown("# This is header level 1")
+
+st.markdown("## This is header level 2")
+
+st.markdown("### This is header level 3")
+
+st.markdown("#### This is header level 4")
+
+st.markdown("##### This is header level 5")
+
+st.markdown("This is standard text")
+
+st.markdown("You can use emojis :sunglasses:")
+
+st.markdown("Or Google material icons :material/favorite:")
+
+st.markdown("You can colour text :red[text to be colored]")
+
+st.markdown("Or colour the background of text :blue-background[text to be colored]")
+
+st.markdown("""
+You can also do multiline text.
+
+This allows you to more easily do multi-line text.
+Notice
+the
+impact
+
+of different numbers of newlines between the lines.
+""")
+
+```
+
+```{stlite-python}
+import streamlit as st
+
+st.markdown("# This is header level 1")
+
+st.markdown("## This is header level 2")
+
+st.markdown("### This is header level 3")
+
+st.markdown("#### This is header level 4")
+
+st.markdown("##### This is header level 5")
+
+st.markdown("This is standard text")
+
+st.markdown("You can use emojis :sunglasses:")
+
+st.markdown("Or Google material icons :material/favorite:")
+
+st.markdown("You can colour text :red[text to be colored]")
+
+st.markdown("Or colour the background of text :green-background[text to be colored]")
+
+st.markdown("""
+You can also do multiline text.
+
+This allows you to more easily do multi-line text.
+Notice
+the
+impact
+
+of different numbers of newlines between the lines.
+""")
+```

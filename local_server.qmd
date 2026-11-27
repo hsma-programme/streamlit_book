@@ -1,5 +1,0 @@
----
-title: "(Coming Soon!) Deploying to an On-premises Server"
-filters:
-  - whitphx/stlite
----

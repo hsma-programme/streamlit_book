@@ -1,5 +1,0 @@
----
-title: "(Coming Soon!) A Simple Dashboard"
-filters:
-  - whitphx/stlite
----

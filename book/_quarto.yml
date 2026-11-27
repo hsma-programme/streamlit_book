@@ -1,0 +1,133 @@
+project:
+  type: book
+book:
+  title: HSMA - Web Apps with Streamlit
+  date: today
+  author:
+    - name: Sammi Rosser
+      orcid: /0000-0002-9552-8988
+      website: https://github.com/Bergam0t
+    - name: Amy Heather
+      orcid: 0000-0002-6596-3479
+      website: https://github.com/amyheather
+  google-analytics:
+    tracking-id: "G-973P3EMW72"
+    anonymize-ip: true
+  cookie-consent:
+    type: express
+    style: simple
+    palette: dark
+  chapters:
+  - index.qmd
+  - part: An Introduction to Streamlit
+    chapters:
+    - hello_world_streamlit.qmd
+  - part: Outputs
+    chapters:
+    - loading_data.qmd
+    - text_markdown_and_titles.qmd
+    - images_and_videos.qmd
+    - warnings_errors_success_messages.qmd
+    - dataframes.qmd
+    - static_charts.qmd
+    - interactive_charts.qmd
+    - metrics.qmd
+    - static_maps.qmd
+    - interactive_maps.qmd
+    - custom_components.qmd
+  - part: User Inputs
+    chapters:
+    - introduction_to_inputs.qmd
+    - text_numeric_and_selection_inputs.qmd
+    - file_uploads.qmd
+    - bidirectional_plots.qmd
+    - bidirectional_maps.qmd
+    - editable_dataframes.qmd
+  - part: Downloading Outputs
+    chapters:
+    - file_downloads_tabular.qmd
+    - file_downloads_images_charts.qmd
+    - file_downloads_maps_static.qmd
+    - file_downloads_maps_interactive.qmd
+  - part: Layout
+    chapters:
+    - wide_layout.qmd
+    - layout_divider.qmd
+    - layout_columns.qmd
+    - layout_sidebar.qmd
+    - layout_tabs.qmd
+    - layout_expander.qmd
+    - multipage.qmd
+  - part: Styling
+    chapters:
+    - app_colours.qmd
+    - logos.qmd
+    - fonts.qmd
+  - part: Controlling Application Flow
+    chapters:
+    - forms_and_run_buttons.qmd
+    - partial_reruns.qmd
+    - custom_page_navigation.qmd
+  - part: Advanced Concepts
+    chapters:
+    - caching.qmd
+    - session_state.qmd
+    - callbacks.qmd
+    - persisting_data_between_sessions.qmd
+  - part: Deployment
+    chapters:
+    - streamlit_community_cloud.qmd
+    - stlite_github_pages.qmd
+  - part: Exercises
+    chapters:
+    - exercise_1_identifying_opportunities.qmd
+    - exercise_2a_simple_calculator.qmd
+    - exercise_2b_wordcloud_app.qmd
+    - exercise_3_dashboard.qmd
+    - exercise_4_deployment.qmd
+  - part: Additional Resources
+    chapters:
+    - cheat_sheet.qmd
+  cover-image: assets/images/cover_image_robot.jpeg
+  favicon: assets/images/hsma_logo_transparent_background_large.png
+  search: true
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    search: false
+    background: '#8A1E1E'
+    right:
+      - icon: github
+        aria-label: GitHub
+        menu:
+          - text: View the HSMA Github
+            href:  https://github.com/hsma-programme
+          - text: View the code for this book
+            href:  https://github.com/hsma-programme/streamlit_book
+  sidebar:
+    search: true
+    style: docked
+    logo: assets/images/hsma_logo_transparent_background_large.png
+    background: '#111111'
+format:
+  html:
+    theme:
+      dark:
+      - darkly
+      - assets/css/theme-dark.scss
+      - assets/fonts/css/lexend.css
+      light:
+      - flatly
+      - assets/css/theme-light.scss
+      - assets/fonts/css/lexend.css
+    css:
+      - assets/css/styles.css
+    include-in-header:
+      - assets/html/stlite-wrap.html
+    lightbox: true
+    grid:
+      sidebar-width: 250px
+language:
+  title-block-published: "Book last updated"
+execute:
+  keep-ipynb: False

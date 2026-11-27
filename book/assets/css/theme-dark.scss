@@ -1,0 +1,17 @@
+/*-- scss:defaults --*/
+//https://quarto.org/docs/output-formats/html-themes.html
+// Base document colors
+
+// Inline code: purple text on a white background
+$code-bg: #ffffff;
+$code-color: #7030a0;
+
+// Fenced code blocks
+$code-block-bg-alpha: -.8;
+
+/*-- scss:rules --*/
+
+// Prevent cut-off of final chapters in sidebar
+.sidebar-menu-container {
+    padding-bottom: 10em;
+}

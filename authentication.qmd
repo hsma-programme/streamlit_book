@@ -1,5 +1,0 @@
----
-title: "(Coming Soon!) User Authentication/Login"
-filters:
-  - whitphx/stlite
----

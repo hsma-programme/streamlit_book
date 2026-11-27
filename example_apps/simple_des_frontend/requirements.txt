@@ -1,4 +1,0 @@
-pandas>=2.0
-simpy
-plotly
-sim-tools

@@ -1,0 +1,44 @@
+# Preface {.unnumbered}
+
+Welcome! This book is a feature-by-feature guide to building Python web apps with Streamlit. It accompanies the Streamlit sessions in HSMA-7 (Health Service Modelling Associates Programme 7):
+
+* [Module 2G: Creating a DES interface with Streamlit — Part 1](https://hsma-programme.github.io/hsma7_2g_streamlit_part1)
+* [Module 2H: Creating a DES interface with Streamlit — Part 2](https://hsma-programme.github.io/hsma7_2h_streamlit_part2)
+
+## How to use this book
+
+In the module sessions, we build an interface for a discrete-event simulation (DES) model, introducing Streamlit features as we need them.
+
+This book takes a different approach. It explores individual Streamlit features through focused explanations and examples, with less emphasis on DES. You can use it to revisit a topic from the sessions, try out a particular feature, or find an example to adapt for your own app.
+
+If you are an HSMA student, we recommend following the module sessions to understand how the features fit together into a DES app, and using this book as a reference when you want to explore them individually.
+
+You do not necessarily need to read the book from beginning to end: dip into the topics that are useful to you.
+
+## stlite
+
+Many examples in this book use the  [stlite](https://github.com/whitphx/stlite) framework and the [stlite extension for Quarto](https://github.com/whitphx/quarto-stlite), which allows example streamlit apps to run in your browser.
+
+This does mean that the app examples within each page do take a while to load, and you may not want to read this book cover-to-cover if you are on, say, a mobile network - each example will load several megabytes of data to be able to render.
+
+<br>
+
+::: {.callout-note collapse="true"}
+## Acknowledgements
+
+### Stlite extension for Quarto
+
+The `whitphx/quarto-stlite` Quarto extension has enabled interactivity in this book that greatly improves the reader experience.
+
+We would like to thank [Yuichiro Tachibana (Tsuchiya)](https://github.com/whitphx) for developing this extension, which is available at <https://github.com/whitphx/quarto-stlite>.
+
+### Palmer Penguins
+
+Several examples use the Palmer Penguins dataset, loaded through the [`palmerpenguins` Python package](https://github.com/mcnakhaee/palmerpenguins).
+
+We thank Muhammad Chenariyan Nakhaee for the Python port, and Allison Horst, Alison Hill and Kristen Gorman for the [original R package](https://allisonhorst.github.io/palmerpenguins/). The data were collected and made available by Dr Kristen Gorman and the Palmer Station Antarctica Long Term Ecological Research (LTER) programme.
+
+```
+Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi: 10.5281/zenodo.3960218.
+```
+:::

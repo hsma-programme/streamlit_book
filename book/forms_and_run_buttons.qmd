@@ -1,0 +1,53 @@
+---
+title: "Adding a 'Run' Button"
+filters:
+  - whitphx/stlite
+---
+
+<br>
+
+On this page, we'll explore **buttons** and **forms**. Both are ways of controlling when something runs in your Streamlit app.
+
+This is very relevant when building a discrete event simulation (DES) app. A model can take a while to run, and you don't want it to start every time a user nudges a slider. A button or form lets the user set their parameters first and then choose when to run the model. We cover building streamlit DES apps in HSMA-7 [module 2g](https://github.com/hsma-programme/hsma7_2g_streamlit_part1) and [module 2h](https://github.com/hsma-programme/hsma7_2h_streamlit_part2).
+
+On this page we use a much simpler example that mimics a simulation model without being one. It has a slider for the number of nurses and a slider for the number of runs. It takes a few seconds to produce a table of made-up mean waiting times, one per run. The same approach works for any slow piece of code, including a real simulation model.
+
+<br>
+
+## Buttons
+
+One simple way to control app flow is by using the `st.button`.
+
+Here, by preventing our calculations from running until `if st.button()` is true (i.e., it is pressed), we ensure our calculations don't re-run every time a slider value is adjusted.
+
+:::{.callout-tip}
+When a slider or other user input is next adjusted, any outputs that appeared after the button was pressed will disappear until the run button is pressed again.
+:::
+
+```{.python}
+{{< include snippets/forms_and_buttons/buttonapp.py >}}
+```
+
+```{stlite-python}
+{{< include snippets/forms_and_buttons/buttonapp.py >}}
+```
+
+<br>
+
+## Streamlit forms
+
+An alternative to `st.button` is the official Streamlit component `st.form`. It batches several input widgets together with a single submit button. Streamlit then doesn't send any of the widget values to your app until the user presses that button.
+
+Put the input widgets inside a `with st.form(...)` block. Replace `st.button` with `st.form_submit_button`, which is the button that submits the form.
+
+::: {.callout-tip}
+Unlike the `st.button` approach, outputs shown after submission don't disappear when an input inside the form is changed. They stay until the form is submitted again. The user can edit the inputs without losing the previous result.
+:::
+
+```{.python}
+{{< include snippets/forms_and_buttons/formapp.py >}}
+```
+
+```{stlite-python}
+{{< include snippets/forms_and_buttons/formapp.py >}}
+```

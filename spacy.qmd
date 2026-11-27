@@ -1,5 +1,0 @@
----
-title: "Displaying Natural Language Tagging with SpaCy"
-filters:
-  - whitphx/stlite
----

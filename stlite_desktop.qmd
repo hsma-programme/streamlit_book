@@ -1,5 +1,0 @@
----
-title: "(Coming Soon!) Making a Desktop App with Serverless Streamlit (stlite)"
-filters:
-  - whitphx/stlite
----

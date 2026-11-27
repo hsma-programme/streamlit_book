@@ -1,0 +1,23 @@
+---
+title: "Streamlit cheatsheet"
+---
+
+<br>
+
+There is a custom HSMA cheatsheet here:
+
+<https://command-overview-app-hsma.streamlit.app/>
+
+```{=html}
+<iframe width="100%" height="600" src="https://command-overview-app-hsma.streamlit.app/?embed=True" title="HSMA cheatsheet"></iframe>
+```
+
+<br>
+
+The fantastic cheatsheet from Streamlit is well worth bookmarking!
+
+<https://cheat-sheet.streamlit.app/>
+
+```{=html}
+<iframe width="100%" height="600" src="https://cheat-sheet.streamlit.app/?embed=True" title="Streamlit cheatsheet"></iframe>
+```

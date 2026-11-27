@@ -1,0 +1,24 @@
+# Exercise 2b: Wordcloudy with a chance of meatballs
+
+<br>
+
+You are going to make a web app that allows people to
+
+- Enter some text
+- Generate a wordcloud and display it to the user
+- Download the resulting wordcloud
+
+You can then add in some extra features:
+
+- A way to allow them to select the colourscheme
+- A default wordcloud (hint: think about setting a default value in your text input)
+- An option to upload a text file instead of pasting the text into an input
+- A way to upload an image to use as a mask (I’ve provided a sample image that is in the right format to work)
+- A way to remove words they want excluded (this one’s a bit trickier!)
+
+Some code snippets to help you build this are in [exercises/2b](https://github.com/hsma-programme/h6_7b_web_apps_1/tree/main/exercises/exercise_2b) - but you can also take a look at them below.
+
+```{python}
+#| eval: false
+{{< include ../exercises/exercise_2b/wordcloud_starter_code.py >}}
+```

@@ -1,0 +1,27 @@
+---
+title: "Additional Output Components"
+filters:
+  - whitphx/stlite
+---
+
+<br>
+
+There are a large number of additional third-party components that have been created by the wider streamlit community, with more appearing all the time.
+
+You can take a look at them at <https://streamlit.io/components> to see if what you are looking for is listed.
+
+![Quarto Components library <https://streamlit.io/components>](assets/images/components.png)
+
+<br>
+
+You may also have luck using a search engine like Google when looking for additional components to do something specific. If the result is a github repository, there will generally be details on the command to run to install it to your environment, and details on how to use it.
+
+Just exercise some level of caution whenever you are using a custom component - is it sending your data somewhere, for example? In addition, less popular components may eventually be abandoned by their creators,
+
+<br>
+
+:::{.callout-warning}
+Over time, as new features come to Streamlit, certain components may become obsolete as the feature they are adding becomes part of the core Streamlit features instead. At the time of writing, user authentication is on the horizon, session state has been integrated, and multipage apps have been around for quite some time - but components to do all of these things appear as very popular entries in the page embedded above.
+
+Where a core streamlit implementation of a feature does what you need, stick with that - it will likely be better supported and more stable in the long run.
+:::

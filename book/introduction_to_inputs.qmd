@@ -1,0 +1,184 @@
+---
+title: "Basic inputs"
+filters:
+  - whitphx/stlite
+---
+
+<br>
+
+One of the most important things about Streamlit apps is that they can take and react to user input.
+
+There are a huge range of input types available - but let's start with a simple one.
+
+Let's create a drop-down select box with a couple of options. The function we need is `st.selectbox()`.
+
+<br>
+
+## `st.selectbox`
+
+We first pass in a label that will be displayed to the user so they know what the input is for.
+
+We then pass in a list of possible options as a list (square brackets) or a tuple (curved brackets).
+
+We assign the output of `st.selectbox()` to a variable.
+
+We can then use `st.write()` to print out a string that includes the selected option from our list of options.
+
+We've also got a dictionary of links to the posters for each of these movies -
+
+```{python}
+#| eval: false
+import streamlit as st
+
+chosen_option = st.selectbox( # <1>
+    "What is your favourite movie?", # <2>
+    ["Back to the Future", "Home Alone", "Bicentennial Man"], # <3>
+)
+
+st.write(f"You selected: {chosen_option}") # <4>
+
+image_url = {
+    "Back to the Future": "https://upload.wikimedia.org/wikipedia/en/d/d2/Back_to_the_Future.jpg",
+    "Home Alone": "https://upload.wikimedia.org/wikipedia/en/7/76/Home_alone_poster.jpg",
+    "Bicentennial Man": "https://upload.wikimedia.org/wikipedia/en/f/fc/Bicentennial_man_film_poster.jpg"
+    } # <5>
+
+st.image(image_url[chosen_option]) # <6>
+```
+
+1. We start by creating an instance of `st.selectbox` and assigning it to a variable. This is very similar regardless of the type of user input we choose to make use of.
+2. The first argument to most user input functions is a label that should be displayed above or otherwise near the input so that the user is given an indication of what to enter or what they are selecting.
+3. For st.selectbox we provide a Python list to indicate what the possible inputs should be.
+4. As the user selects different options from that list, the value of the variable `chosen_option` will change (and note that we could have called tht variable anything). Therefore, we can pass it to an f-string and the `st.write()` function will display the user's selection as a string.
+5. Here, we're also going to make streamlit display an image of the poster of the selected movie. We create a dictionary where the keys are the movie name (exactly matching the way the movie name is given in our list of options), and the values on the other side of the `:` are links to images on the web.
+6. Finally, we filter our 'image_url' dictionary to only the instance where the `key` (value on the left of the `:`) matches the chosen movie, and this will then return the relevant url to that movie's poster. We pass this to `st.image()`, which can then display the image that exists at that URL within the app.
+
+Try it out in the interactive version of the app below.
+
+See how the value changes?
+
+```{stlite-python}
+import streamlit as st
+
+chosen_option = st.selectbox(
+    "What is your favourite movie?",
+    ["Back to the Future", "Home Alone", "Bicentennial Man"],
+)
+
+st.write("You selected:", chosen_option)
+
+image_url = {"Back to the Future": "https://upload.wikimedia.org/wikipedia/en/d/d2/Back_to_the_Future.jpg",
+            "Home Alone": "https://upload.wikimedia.org/wikipedia/en/7/76/Home_alone_poster.jpg",
+            "Bicentennial Man": "https://upload.wikimedia.org/wikipedia/en/f/fc/Bicentennial_man_film_poster.jpg"}
+
+st.image(image_url[chosen_option])
+```
+
+<br>
+
+## Streamlit running order
+
+A key concept of Streamlit is that each time something changes, the app reruns from top to bottom.
+
+This is a good thing for simple apps - but it can become problematic as your app becomes more complex and if you have things that take longer to rerun.
+
+Let's make a new app that takes some different inputs.
+
+:::{.callout-note}
+Here we artifically induce a wait for the loading phase so you can more clearly see the process by which the app reruns.
+
+You don't need to do this in your own apps! They will just run as fast as the code possibly can - but that can still not be fast enough if there are lots of things that need to be recalculated.
+:::
+
+Here, despite the fact that the dataframe does not change between runs
+
+```{python}
+#| eval: false
+import streamlit as st
+import time # <1>
+import pandas as pd
+
+st.write("Loading the name popularity lookup")
+time.sleep(3) # <2>
+st.write("Still Loading...")
+time.sleep(4)
+
+url = 'https://www.dropbox.com/scl/fi/yxrc1ll9o3kpg5b1ekm5b/girl_boy_names_2022.csv?rlkey=eq3uv3ms5441gqxchnnom1h6b&st=d53l3q1q&dl=1'
+name_lookup = pd.read_csv(url) # <3>
+st.write("Done!")
+
+input_name = st.text_input("What is your name?") # <4>
+
+boy_name_lookup = name_lookup[name_lookup["Boy Name"] == input_name] # <5>
+girl_name_lookup = name_lookup[name_lookup["Girl Name"] == input_name]
+
+if len(boy_name_lookup) > 0: # <6>
+    st.write(f"{input_name} was in popularity position {boy_name_lookup["Rank"].values[0]} for boys in 2022.") # <7>
+else:
+    st.write(f"{input_name} was not in the most popular 1000 names for boys in 2022.") # <8>
+
+if len(girl_name_lookup) > 0: # <9>
+    st.write(f"{input_name} was in popularity position {girl_name_lookup["Rank"].values[0]} for girls in 2022.")
+else:
+    st.write(f"{input_name} was not in the most popular 1000 names for girls in 2022.")
+
+```
+
+1. Here we import a module called 'time' just to make the loading time artifically longer (for demonstration purposes).
+2. We then run `time.sleep(3)` to make the app pause for 3 seconds at this point in the code. Each time the code reaches this step, it will pause for 3 seconds.
+3. We import a dataframe of the 1000 most popular boy and grl names in 2022. This has three columns - the rank, the boy name in that popularity position for 2022, and the girl name in that position in that year too.
+4. Here, we allow users to enter a string of text and save their string as the variable `input_name`.
+5. We create two variables; we filter the dataframe to rows where the 'Boy Name' column is exactly equal to the input string from the user, and repeat this for the 'Girl Name' column to create a second variable.
+6. If the length of the variable `boy_name_lookup` is greater than 0 (i.e. after filtering the dataframe to only include rows where this name exists), this indicates that the name was in the 1000 most popular names for that year.
+7. If this is the case, display the name and its rank in that year.
+8. If not, display a different message.
+9. Repeat this for the girl name.
+
+
+```{stlite-python}
+# stlite quirks mean we need (in reality) to use await asyncio.sleep instead of time.sleep
+# and we also need to point towards a different file upload service as google drive, dropbox and
+# github raw file storage all return errors when trying to access valid files via the stlite
+# interface
+import streamlit as st
+import asyncio
+import pandas as pd
+
+st.write("Loading the name popularity lookup")
+await asyncio.sleep(3)
+st.write("Still Loading...")
+await asyncio.sleep(3)
+
+url = 'https://files.catbox.moe/16k7td.csv'
+name_lookup = pd.read_csv(url)
+st.write("Done!")
+
+input_name = st.text_input("What is your name?")
+
+boy_name_lookup = name_lookup[name_lookup["Boy Name"] == input_name]
+girl_name_lookup = name_lookup[name_lookup["Girl Name"] == input_name]
+
+if len(boy_name_lookup) > 0:
+    st.write(f"{input_name} was in popularity position {boy_name_lookup["Rank"].values[0]} for boys in 2022.")
+else:
+    st.write(f"{input_name} was not in the most popular 1000 names for boys in 2022.")
+
+if len(girl_name_lookup) > 0:
+    st.write(f"{input_name} was in popularity position {girl_name_lookup["Rank"].values[0]} for girls in 2022.")
+else:
+    st.write(f"{input_name} was not in the most popular 1000 names for girls in 2022.")
+
+```
+
+
+:::{.callout-tip}
+There are some more advanced features of Streamlit you can call upon when you want to minimize the number of code reruns that occur unnecessarily.
+
+We'll cover these - such as caching, partial reruns, activation buttons and session state - later in the book.
+
+For now, it's just important to be aware that a Streamlit app behaves a lot like a Python script - it's almost like a frontend that reruns a script each time an input value is changed.
+
+This design decision keeps the code as simple as possible - and it's often not a big problem for simpler apps.
+
+Still, you will need to keep it in mind as your apps grow in complexity.
+:::
