@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>40&nbsp; Deploying to Streamlit Community Cloud – HSMA - Web Apps with Streamlit</title>
+<title>41&nbsp; Deploying to Streamlit Community Cloud – HSMA - Web Apps with Streamlit</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -348,7 +383,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./streamlit_community_cloud.html">Deployment</a></li><li class="breadcrumb-item"><a href="./streamlit_community_cloud.html"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Deploying to Streamlit Community Cloud</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./streamlit_community_cloud.html">Deployment</a></li><li class="breadcrumb-item"><a href="./streamlit_community_cloud.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Deploying to Streamlit Community Cloud</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -466,6 +501,12 @@ cookieconsent.run({
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Additional Output Components</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./progress.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Showing progress for long-running tasks</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -477,37 +518,37 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction_to_inputs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Basic inputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Basic inputs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./text_numeric_and_selection_inputs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">An overview of available input types</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">An overview of available input types</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./file_uploads.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Uploading data files, images and more</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Uploading data files, images and more</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bidirectional_plots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bidirectional inputs - dataframes and charts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Bidirectional inputs - dataframes and charts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./bidirectional_maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Bidirectional inputs - maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Bidirectional inputs - maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./editable_dataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Editable Dataframes</span></span></a>
   </div>
 </li>
       </ul>
@@ -521,25 +562,25 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./file_downloads_tabular.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Downloading tabular data files (e.g.&nbsp;pandas dataframes)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Downloading tabular data files (e.g.&nbsp;pandas dataframes)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./file_downloads_images_charts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Downloading images and charts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Downloading images and charts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./file_downloads_maps_static.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Downloading static maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Downloading static maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./file_downloads_maps_interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Downloading interactive maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Downloading interactive maps</span></span></a>
   </div>
 </li>
       </ul>
@@ -553,43 +594,43 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./wide_layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Wide layout, page tab titles and favicons</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Wide layout, page tab titles and favicons</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./layout_divider.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Page dividers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Page dividers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./layout_columns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Columns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Columns</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./layout_sidebar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Sidebar</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Sidebar</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./layout_tabs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Tabs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Tabs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./layout_expander.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Expanders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Expanders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multipage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Multipage apps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Multipage apps</span></span></a>
   </div>
 </li>
       </ul>
@@ -603,19 +644,19 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./app_colours.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">App colours</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">App colours</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Logos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Logos</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fonts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Fonts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Fonts</span></span></a>
   </div>
 </li>
       </ul>
@@ -629,19 +670,19 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./forms_and_run_buttons.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Adding a ‘Run’ Button</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Adding a ‘Run’ Button</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./partial_reruns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Partial reruns (fragments)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Partial reruns (fragments)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom_page_navigation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Custom page navigation buttons</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Custom page navigation buttons</span></span></a>
   </div>
 </li>
       </ul>
@@ -655,25 +696,25 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./caching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Reducing Load Time with Caching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Reducing Load Time with Caching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./session_state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Persisting data across pages and runs with session state</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Persisting data across pages and runs with session state</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./callbacks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Callbacks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Callbacks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./persisting_data_between_sessions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Persisting data between sessions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Persisting data between sessions</span></span></a>
   </div>
 </li>
       </ul>
@@ -687,13 +728,13 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./streamlit_community_cloud.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Deploying to Streamlit Community Cloud</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Deploying to Streamlit Community Cloud</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stlite_github_pages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Deploying an app with stlite and GitHub Pages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Deploying an app with stlite and GitHub Pages</span></span></a>
   </div>
 </li>
       </ul>
@@ -707,31 +748,31 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_1_identifying_opportunities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Exercise 1: Into the future</span></span></a>
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Exercise 1: Into the future</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_2a_simple_calculator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Exercise 2a: Hello streamlit!</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Exercise 2a: Hello streamlit!</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_2b_wordcloud_app.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Exercise 2b: Wordcloudy with a chance of meatballs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Exercise 2b: Wordcloudy with a chance of meatballs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_3_dashboard.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Exercise 3: Double dash!!(boards)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Exercise 3: Double dash!!(boards)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercise_4_deployment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Exercise 4: Take me to the clouds above</span></span></a>
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Exercise 4: Take me to the clouds above</span></span></a>
   </div>
 </li>
       </ul>
@@ -745,7 +786,7 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cheat_sheet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Streamlit cheatsheet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Streamlit cheatsheet</span></span></a>
   </div>
 </li>
       </ul>
@@ -760,11 +801,16 @@ cookieconsent.run({
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#method-1---from-the-app" id="toc-method-1---from-the-app" class="nav-link active" data-scroll-target="#method-1---from-the-app"><span class="header-section-number">40.1</span> Method 1 - from the app</a></li>
-  <li><a href="#method-2---from-the-streamlit-community-cloud-website" id="toc-method-2---from-the-streamlit-community-cloud-website" class="nav-link" data-scroll-target="#method-2---from-the-streamlit-community-cloud-website"><span class="header-section-number">40.2</span> Method 2 - from the Streamlit Community Cloud website</a></li>
-  <li><a href="#managing-your-community-cloud-apps" id="toc-managing-your-community-cloud-apps" class="nav-link" data-scroll-target="#managing-your-community-cloud-apps"><span class="header-section-number">40.3</span> Managing your community cloud apps</a></li>
-  <li><a href="#troubleshooting-your-app" id="toc-troubleshooting-your-app" class="nav-link" data-scroll-target="#troubleshooting-your-app"><span class="header-section-number">40.4</span> Troubleshooting your app</a></li>
-  <li><a href="#updating-your-app" id="toc-updating-your-app" class="nav-link" data-scroll-target="#updating-your-app"><span class="header-section-number">40.5</span> Updating your app</a></li>
+  <li><a href="#method-1---from-the-app" id="toc-method-1---from-the-app" class="nav-link active" data-scroll-target="#method-1---from-the-app"><span class="header-section-number">41.1</span> Method 1 - from the app</a></li>
+  <li><a href="#method-2---from-the-streamlit-community-cloud-website" id="toc-method-2---from-the-streamlit-community-cloud-website" class="nav-link" data-scroll-target="#method-2---from-the-streamlit-community-cloud-website"><span class="header-section-number">41.2</span> Method 2 - from the Streamlit Community Cloud website</a></li>
+  <li><a href="#managing-your-community-cloud-apps" id="toc-managing-your-community-cloud-apps" class="nav-link" data-scroll-target="#managing-your-community-cloud-apps"><span class="header-section-number">41.3</span> Managing your community cloud apps</a></li>
+  <li><a href="#troubleshooting-your-app" id="toc-troubleshooting-your-app" class="nav-link" data-scroll-target="#troubleshooting-your-app"><span class="header-section-number">41.4</span> Troubleshooting your app</a></li>
+  <li><a href="#updating-your-app" id="toc-updating-your-app" class="nav-link" data-scroll-target="#updating-your-app"><span class="header-section-number">41.5</span> Updating your app</a></li>
+  <li><a href="#installing-packages-that-arent-on-pypi" id="toc-installing-packages-that-arent-on-pypi" class="nav-link" data-scroll-target="#installing-packages-that-arent-on-pypi"><span class="header-section-number">41.6</span> Installing packages that aren’t on PyPI</a>
+  <ul class="collapse">
+  <li><a href="#spacy-language-models" id="toc-spacy-language-models" class="nav-link" data-scroll-target="#spacy-language-models"><span class="header-section-number">41.6.1</span> spaCy language models</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">41.6.2</span> Quarto</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -772,9 +818,9 @@ cookieconsent.run({
 <main class="content" id="quarto-document-content" tabindex="-1">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./streamlit_community_cloud.html">Deployment</a></li><li class="breadcrumb-item"><a href="./streamlit_community_cloud.html"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Deploying to Streamlit Community Cloud</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./streamlit_community_cloud.html">Deployment</a></li><li class="breadcrumb-item"><a href="./streamlit_community_cloud.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Deploying to Streamlit Community Cloud</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Deploying to Streamlit Community Cloud</span></h1>
+<h1 class="title"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Deploying to Streamlit Community Cloud</span></h1>
 </div>
 
 
@@ -809,8 +855,8 @@ Tip
 </div>
 </div>
 <p><br></p>
-<section id="method-1---from-the-app" class="level2" data-number="40.1">
-<h2 data-number="40.1" class="anchored" data-anchor-id="method-1---from-the-app"><span class="header-section-number">40.1</span> Method 1 - from the app</h2>
+<section id="method-1---from-the-app" class="level2" data-number="41.1">
+<h2 data-number="41.1" class="anchored" data-anchor-id="method-1---from-the-app"><span class="header-section-number">41.1</span> Method 1 - from the app</h2>
 <p>Before undertaking this step, you will need to have uploaded your repository to Github.</p>
 <p>You also need to provide a <code>requirements.txt</code> file. Although Streamlit has some common packages by default, we need the file for any non-standard Python packages.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -902,8 +948,8 @@ Note
 </div>
 <p><br></p>
 </section>
-<section id="method-2---from-the-streamlit-community-cloud-website" class="level2" data-number="40.2">
-<h2 data-number="40.2" class="anchored" data-anchor-id="method-2---from-the-streamlit-community-cloud-website"><span class="header-section-number">40.2</span> Method 2 - from the Streamlit Community Cloud website</h2>
+<section id="method-2---from-the-streamlit-community-cloud-website" class="level2" data-number="41.2">
+<h2 data-number="41.2" class="anchored" data-anchor-id="method-2---from-the-streamlit-community-cloud-website"><span class="header-section-number">41.2</span> Method 2 - from the Streamlit Community Cloud website</h2>
 <p>For subsequent apps, you may find it quicker to navigate to <a href="https://share.streamlit.io/" class="uri">https://share.streamlit.io/</a> and choose ‘Create App’.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -928,16 +974,16 @@ Tip
 <p>When you’re ready, click deploy.</p>
 <p><br></p>
 </section>
-<section id="managing-your-community-cloud-apps" class="level2" data-number="40.3">
-<h2 data-number="40.3" class="anchored" data-anchor-id="managing-your-community-cloud-apps"><span class="header-section-number">40.3</span> Managing your community cloud apps</h2>
+<section id="managing-your-community-cloud-apps" class="level2" data-number="41.3">
+<h2 data-number="41.3" class="anchored" data-anchor-id="managing-your-community-cloud-apps"><span class="header-section-number">41.3</span> Managing your community cloud apps</h2>
 <p>Navigating to <a href="https://share.streamlit.io/" class="uri">https://share.streamlit.io/</a> will give you an overview of the apps you have published to the community cloud.</p>
 <p><a href="assets/images/2024-09-30-16-54-17.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="assets/images/2024-09-30-16-54-17.png" class="box img-fluid"></a></p>
 <p>Clicking on the three dots will allow you to delete or reboot the app, or change various settings relating to app privacy, secrets, and the app URL.</p>
 <p><a href="assets/images/2024-09-30-16-59-08.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="assets/images/2024-09-30-16-59-08.png" class="box img-fluid"></a></p>
 <p><br></p>
 </section>
-<section id="troubleshooting-your-app" class="level2" data-number="40.4">
-<h2 data-number="40.4" class="anchored" data-anchor-id="troubleshooting-your-app"><span class="header-section-number">40.4</span> Troubleshooting your app</h2>
+<section id="troubleshooting-your-app" class="level2" data-number="41.4">
+<h2 data-number="41.4" class="anchored" data-anchor-id="troubleshooting-your-app"><span class="header-section-number">41.4</span> Troubleshooting your app</h2>
 <p>When loading up your app while logged into your Streamlit community cloud account, you will receive additional powers to manage and troubleshoot your app.</p>
 <p>You should see a ‘manage app’ button at the bottom right of the screen.</p>
 <p><a href="assets/images/2024-09-30-17-01-27.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="assets/images/2024-09-30-17-01-27.png" class="box img-fluid"></a></p>
@@ -947,15 +993,254 @@ Tip
 <p><a href="assets/images/2024-09-30-17-03-27.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="assets/images/2024-09-30-17-03-27.png" class="box img-fluid"></a></p>
 <p><br></p>
 </section>
-<section id="updating-your-app" class="level2" data-number="40.5">
-<h2 data-number="40.5" class="anchored" data-anchor-id="updating-your-app"><span class="header-section-number">40.5</span> Updating your app</h2>
+<section id="updating-your-app" class="level2" data-number="41.5">
+<h2 data-number="41.5" class="anchored" data-anchor-id="updating-your-app"><span class="header-section-number">41.5</span> Updating your app</h2>
 <p>New changes made to your repository should automatically be reflected in your app.</p>
 <p>The exception to this may be changes to the list of required packages in <code>requirements.txt</code></p>
 <p>If this is the case, you may need to manually reboot the app from the list in <a href="https://share.streamlit.io/" class="uri">https://share.streamlit.io/</a> or from within the ‘manage app’ menu when viewing your app.</p>
 <p><a href="assets/images/2024-09-30-16-59-08.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="assets/images/2024-09-30-16-59-08.png" class="box img-fluid"></a></p>
 <p><a href="assets/images/2024-09-30-17-03-27.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="assets/images/2024-09-30-17-03-27.png" class="box img-fluid"></a></p>
+<p><br></p>
+</section>
+<section id="installing-packages-that-arent-on-pypi" class="level2" data-number="41.6">
+<h2 data-number="41.6" class="anchored" data-anchor-id="installing-packages-that-arent-on-pypi"><span class="header-section-number">41.6</span> Installing packages that aren’t on PyPI</h2>
+<section id="spacy-language-models" class="level3" data-number="41.6.1">
+<h3 data-number="41.6.1" class="anchored" data-anchor-id="spacy-language-models"><span class="header-section-number">41.6.1</span> spaCy language models</h3>
+<p>Most packages can be added to <code>requirements.txt</code> by name, as in the example above. Some, like <strong>spaCy language models</strong>, aren’t installed that way. Listing <code>spacy</code> alone will install the library, but your app will fail when it tries to load a model such as <code>en_core_web_sm</code>.</p>
+<p>To fix this, add the direct URL of the model’s <code>.whl</code> file on its own line at the bottom of <code>requirements.txt</code>:</p>
+<pre><code>https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl</code></pre>
+<p>Paste in just the URL, with nothing else on the line.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This example is for <code>en_core_web_sm</code> version 3.8.0. If you use a different model, you will need the URL for that model and version. You can find them in the <a href="https://spacy.io/models">spaCy models documentation</a> and on the <a href="https://github.com/explosion/spacy-models/releases">spacy-models releases page</a>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example from a real app
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can see this in practice in the <code>requirements.txt</code> of the <a href="https://github.com/hsma-chief-elf/PIMS">PIMS app</a>. There is a lot of conflicting advice online about this problem, but this was the only approach that worked when deploying that app. Thanks to Dan for working it out!</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="quarto" class="level3" data-number="41.6.2">
+<h3 data-number="41.6.2" class="anchored" data-anchor-id="quarto"><span class="header-section-number">41.6.2</span> Quarto</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Experimental workaround
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This approach is <strong>experimental</strong>. It relies on how Streamlit currently sets up the containers that run Community Cloud apps. If Streamlit changes this, the approach may stop working without warning.</p>
+<p>It is a workaround rather than an officially supported feature, so don’t rely on it for anything critical. We don’t believe it breaks Streamlit’s terms of service, but check them yourself if you are unsure.</p>
+</div>
+</div>
+<p>Quarto isn’t installed on Community Cloud by default. This matters if you want your app to render a Quarto report, for example to generate an HTML or PDF report from user inputs.</p>
+<p>One workaround is to download and install Quarto from inside the app the first time it runs. The example app below does this and then generates a Quarto report. You can see the code for this app at:</p>
+<p><a href="https://github.com/Bergam0t/quarto_streamlit_community_cloud" class="uri">https://github.com/Bergam0t/quarto_streamlit_community_cloud</a></p>
+<iframe width="100%" height="600" src="https://quarto-community-cloud.streamlit.app/?embed=true" title="Quarto app"></iframe>
+<p><a href="https://quarto-community-cloud.streamlit.app/">Click here to load the app in a new page</a></p>
+<p><strong>How does it work?</strong> The main app file does the following:</p>
+<ol type="1">
+<li>It checks whether the app is running on Community Cloud. Here, <code>platform.processor()</code> returns an empty string, which the code uses as the signal.</li>
+<li>If so, it downloads and extracts the Linux build of Quarto.</li>
+<li>It adds Quarto to the <code>PATH</code>, so the app can call it.</li>
+<li>It installs <code>jupyter</code> and a second copy of your <code>requirements.txt</code> packages. Quarto can’t see the packages installed during Community Cloud’s own setup.</li>
+<li>It runs <code>quarto check</code> and prints the output to the logs, so you can see whether the install worked.</li>
+<li><code>@st.cache_data</code> means the install only happens once, not on every rerun.</li>
+</ol>
+<div id="9b8f5b99" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> platform</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">@st.cache_data</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_quarto(repo_name, quarto_version<span class="op">=</span><span class="st">"1.5.57"</span>):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Output of platform.processor(): </span><span class="sc">{</span>platform<span class="sc">.</span>processor()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"type:  </span><span class="sc">{</span><span class="bu">type</span>(platform.processor())<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Attempting to download Quarto"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Download Quarto</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="ss">f"wget https://github.com/quarto-dev/quarto-cli/releases/download/v</span><span class="sc">{</span>quarto_version<span class="sc">}</span><span class="ss">/quarto-</span><span class="sc">{</span>quarto_version<span class="sc">}</span><span class="ss">-linux-amd64.tar.gz"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create directory and extract Quarto</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="ss">f"tar -xvzf quarto-</span><span class="sc">{</span>quarto_version<span class="sc">}</span><span class="ss">-linux-amd64.tar.gz"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check the contents of the folder we are in</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="st">"pwd"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># # Ensure PATH is updated in the current Python process</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check current path</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="st">"echo $PATH"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a folder and symlink quarto to that location</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="ss">f"mkdir -p /mount/src/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">/local/bin"</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="ss">f"ln -s /mount/src/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">/quarto-</span><span class="sc">{</span>quarto_version<span class="sc">}</span><span class="ss">/bin/quarto /mount/src/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">/local/bin"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update path</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="ss">f"echo 'export PATH=$PATH:/mount/src/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">/local/bin' &gt;&gt; ~/.bashrc"</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="st">'source /etc/bash.bashrc'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># alternative method for good measure</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    os.environ[<span class="st">'PATH'</span>] <span class="op">=</span> <span class="ss">f"/mount/src/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">/local/bin:</span><span class="sc">{</span>os<span class="sc">.</span>environ[<span class="st">'PATH'</span>]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ensure path updates have propagated through</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(os.environ[<span class="st">'PATH'</span>])</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Install jupyter even if not in requirements</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="st">"python3 -m pip install jupyter"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Install second copy of requirements (so accessible by Quarto - can't access packages</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># that are installed as part of community cloud instance setup process)</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="ss">f"python3 -m pip install -r /mount/src/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">/requirements.txt"</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Trying to run 'quarto check' command"</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        os.system(<span class="st">"quarto check"</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> subprocess.run([<span class="st">'quarto'</span>, <span class="st">'check'</span>], capture_output<span class="op">=</span><span class="va">True</span>, text<span class="op">=</span><span class="va">True</span>, shell<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(result.stdout)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(result.stderr)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Quarto check run"</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">PermissionError</span>:</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Permission error encountered when running 'quarto check'"</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Other unspecified error when running quarto check"</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>st.set_page_config(layout<span class="op">=</span><span class="st">"wide"</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="co"># If running on community cloud, output of this is an empty string</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co"># If this is the case, we'll try to install quarto</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> platform.processor() <span class="op">==</span> <span class="st">''</span>:</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    get_quarto(<span class="st">"quarto_streamlit_community_cloud"</span>) <span class="co"># This name must match the repository name on GitHub</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up multipage navigation</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>pg <span class="op">=</span> st.navigation(</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    [st.Page(<span class="st">"introduction.py"</span>,</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>             title<span class="op">=</span><span class="st">"App Overview"</span>),</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    st.Page(<span class="st">"quarto_output_generator_pass.py"</span>,</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>             title<span class="op">=</span><span class="st">"Generate Quarto Report"</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>     ]</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>pg.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Once Quarto is available, the app can render a report with <code>subprocess</code>. In this example, the report is created in four steps:</p>
+<ol type="1">
+<li>The user’s inputs are saved to a JSON file (<code>session_data.json</code>).</li>
+<li>The app runs <code>quarto render</code> on a <code>.qmd</code> template.</li>
+<li>The template reads the JSON file, so the report reflects the user’s inputs.</li>
+<li>The rendered HTML is offered to the user with <code>st.download_button</code>.</li>
+</ol>
+<div id="2b18c4c1" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>st.session_state.download_clicked <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Passing Parameters to a Quarto Template"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>st.write(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"""</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">In this example, the inputs from the user are saved in a json file and this is then accessed</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">by quarto when rendering the document.</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">    """</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>first_number_input <span class="op">=</span> st.slider(<span class="st">"Enter a first number"</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>second_number_input <span class="op">=</span> st.number_input(<span class="st">"Enter a second number"</span>, value<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>operation_input <span class="op">=</span> st.selectbox(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Select an operation"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Add"</span>, <span class="st">"Subtract"</span>, <span class="st">"Multiply"</span>, <span class="st">"Divide"</span>]</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> disable_download():</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    st.session_state.download_clicked <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    report_message.empty()</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> st.button(<span class="st">"Generate Output"</span>):</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    json_path <span class="op">=</span> os.path.join(os.getcwd(), <span class="st">'session_data.json'</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(json_path)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    model_parameters <span class="op">=</span> {</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"input_1"</span>: first_number_input,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">"input_2"</span>: second_number_input,</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="st">"operation"</span>: operation_input</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(json_path, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        json.dump(model_parameters, f)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    report_message <span class="op">=</span> st.empty()</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    report_message.info(<span class="st">"Generating Report..."</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">## filepaths for</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    output_dir <span class="op">=</span> os.path.join(os.getcwd(),<span class="st">'outputs'</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    qmd_filename <span class="op">=</span> <span class="st">'quarto_calculator_output.qmd'</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    qmd_path <span class="op">=</span> os.path.join(os.getcwd(),qmd_filename)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    html_filename <span class="op">=</span> os.path.basename(qmd_filename).replace(<span class="st">'.qmd'</span>, <span class="st">'.html'</span>)</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    dest_html_path <span class="op">=</span> os.path.join(output_dir,html_filename)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>        <span class="co">## forces result to be html</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> subprocess.run([<span class="st">"quarto"</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>                                , <span class="st">"render"</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>                                , qmd_path</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>                                , <span class="st">"--to"</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>                                , <span class="st">"html"</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>                                , <span class="st">"--output-dir"</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>                                , output_dir]</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>                                , capture_output<span class="op">=</span><span class="va">True</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>                                , text<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>        <span class="co">## error message</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>        report_message.error(<span class="ss">f"Report cannot be generated"</span>)</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> os.path.exists(dest_html_path):</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(dest_html_path, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>            html_data <span class="op">=</span> f.read()</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>        report_message.success(<span class="st">"Report Available for Download"</span>)</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> st.session_state.download_clicked:</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>            st.download_button(</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>                label<span class="op">=</span><span class="st">"Download Report"</span>,</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>                data<span class="op">=</span>html_data,</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>                file_name<span class="op">=</span>html_filename,</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>                mime<span class="op">=</span><span class="st">"text/html"</span>,</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>                <span class="co"># disabled=not st.session_state.simulation_completed,</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>                on_click<span class="op">=</span>disable_download</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>        <span class="co">## error message</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>        report_message.error(<span class="ss">f"Report failed to generate</span><span class="ch">\n\n</span><span class="ss">_</span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">_"</span>)</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>    <span class="co">## empty location for report message</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>    report_message <span class="op">=</span> st.empty()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1486,12 +1771,12 @@ Tip
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
       <a href="./persisting_data_between_sessions.html" class="pagination-link" aria-label="Persisting data between sessions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Persisting data between sessions</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Persisting data between sessions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./stlite_github_pages.html" class="pagination-link" aria-label="Deploying an app with stlite and GitHub Pages">
-        <span class="nav-page-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Deploying an app with stlite and GitHub Pages</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Deploying an app with stlite and GitHub Pages</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
