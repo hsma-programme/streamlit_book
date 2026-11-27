@@ -165,3 +165,26 @@ If this is the case, you may need to manually reboot the app from the list in <h
 ![](assets/images/2024-09-30-16-59-08.png){.box}
 
 ![](assets/images/2024-09-30-17-03-27.png){.box}
+
+<br>
+
+## Installing packages that aren't on PyPI (e.g., spaCy models)
+
+Most packages can be added to `requirements.txt` by name, as in the example above. Some, like **spaCy language models**, aren't installed that way. Listing `spacy` alone will install the library, but your app will fail when it tries to load a model such as `en_core_web_sm`.
+
+To fix this, add the direct URL of the model's `.whl` file on its own line at the bottom of `requirements.txt`:
+
+```
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+```
+
+Paste in just the URL, with nothing else on the line.
+
+:::{.callout-note}
+This example is for `en_core_web_sm` version 3.8.0. If you use a different model, you will need the URL for that model and version. You can find them in the [spaCy models documentation](https://spacy.io/models) and on the [spacy-models releases page](https://github.com/explosion/spacy-models/releases).
+:::
+
+:::{.callout-tip}
+#### Example from a real app
+You can see this in practice in the `requirements.txt` of the [PIMS app](https://github.com/hsma-chief-elf/PIMS). There is a lot of conflicting advice online about this problem, but this was the only approach that worked when deploying that app. Thanks to Dan for working it out!
+:::
