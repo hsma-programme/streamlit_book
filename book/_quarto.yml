@@ -35,6 +35,7 @@ book:
     - static_maps.qmd
     - interactive_maps.qmd
     - custom_components.qmd
+    - progress.qmd
   - part: User Inputs
     chapters:
     - introduction_to_inputs.qmd
