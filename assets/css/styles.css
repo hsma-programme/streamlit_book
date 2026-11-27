@@ -1,0 +1,36 @@
+/* Box will centre and give a border to images */
+/* This is helpful when they are dark / full of text, as otherwise */
+/* they blend in easily with the rest of the page and text */
+img.box {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.25rem auto 2rem;
+  border: 3px solid #8a8a8a;
+  border-radius: 6px;
+}
+
+/* Wrapper for stlite-quarto outputs */
+.stlite-box {
+  margin: 1.5em 0;
+  border: 2px solid #005EB8;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f4f8fc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.stlite-header {
+  padding: 0.4em 0.8em;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #fff;
+  background: #005EB8;
+}
+
+.stlite-box iframe.stlite {
+  display: block;
+  width: 100%;
+  border: 0;
+  margin: 0;
+}
