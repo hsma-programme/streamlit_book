@@ -19,7 +19,7 @@ It should then
 
 (for now, don’t worry if it displays an error until the user has entered all of the information!)
 
-Look in [exercises/2a](https://github.com/hsma-programme/h6_7b_web_apps_1/tree/main/exercises/exercise_2a) to find the code to get you started - or copy it from below.
+Look in [exercises/2a](https://github.com/hsma-programme/streamlit_book/tree/main/exercises/exercise_2a) to find the code to get you started - or copy it from below.
 
 ```{python}
 #| eval: false
