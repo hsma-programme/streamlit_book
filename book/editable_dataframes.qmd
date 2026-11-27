@@ -10,6 +10,10 @@ Any pandas dataframe can be turned into an editable dataframe using the `st.data
 
 This displays the dataframe in a very similar manner to `st.dataframe()` but allows users to also click in and edit individual cells.
 
+<br>
+
+## Simple example
+
 In the example below, try changing the value in the top left cell and see how it updates the values printed out in the app.
 
 This is possible because we save the output of the `st.data_editor()` function to a different variable, allowing us to access the updated dataframe and use it just like we would any normal dataframe.
@@ -51,3 +55,103 @@ You will either need to use a more advanced method to write the changes in the d
 
 While you could also save and load to the same .csv file, you may find that having multiple people accessing the web app at once could cause signficant confusion - so if you find yourself needing to edit dataframes that also need to persist afterwards, make sure you consider whether other alternatives may exist.
 :::
+
+<br>
+
+## Configuring columns
+
+By default, `st.data_editor()` guesses how to display each column from its data type. You can override this with the `column_config` argument, which takes a dictionary mapping column names to `st.column_config` objects.
+
+This lets you give users a time picker, a dropdown of allowed options, a checkbox, a date picker, and so on. It also helps keep the data clean, because users can only pick valid values.
+
+In the example below:
+
+- `TextColumn` allows free text.
+- `DateColumn` gives a date picker.
+- `TimeColumn` gives a time picker, with a display format and limits.
+- `SelectboxColumn` gives a dropdown with fixed options.
+- `CheckboxColumn` gives a tick box.
+- `NumberColumn` limits the range of allowed numbers.
+
+```{python}
+#| eval: false
+appointments_df = pd.DataFrame(
+    {
+        "name": ["Alex", "Sam", "Priya"],
+        "date": [date(2026, 12, 1), date(2026, 12, 2), date(2026, 12, 3)],
+        "start_time": [time(9, 0), time(13, 30), time(15, 15)],
+        "room": ["Room A", "Room B", "Room A"],
+        "attended": [False, True, False],
+        "duration_mins": [30, 45, 60],
+    }
+)
+
+st.write("Editable dataframe:")
+
+appointments_edited = st.data_editor(
+    appointments_df,
+    column_config={
+        "name": st.column_config.TextColumn("Name", max_chars=50),
+        "date": st.column_config.DateColumn(
+            "Date", min_value=date(2026, 1, 1), format="DD/MM/YYYY"
+        ),
+        "start_time": st.column_config.TimeColumn(
+            "Start time", min_value=time(8, 0), max_value=time(18, 0), format="HH:mm"
+        ),
+        "room": st.column_config.SelectboxColumn(
+            "Room", options=["Room A", "Room B", "Room C"], required=True
+        ),
+        "attended": st.column_config.CheckboxColumn("Attended?"),
+        "duration_mins": st.column_config.NumberColumn(
+            "Duration (mins)", min_value=15, max_value=120, step=15
+        ),
+    },
+    hide_index=True,
+)
+
+st.write("Stored dataframe (`appointments_edited`):")
+st.write(appointments_edited)
+```
+
+```{stlite-python}
+from datetime import date, time
+import pandas as pd
+import streamlit as st
+
+appointments_df = pd.DataFrame(
+    {
+        "name": ["Alex", "Sam", "Priya"],
+        "date": [date(2026, 12, 1), date(2026, 12, 2), date(2026, 12, 3)],
+        "start_time": [time(9, 0), time(13, 30), time(15, 15)],
+        "room": ["Room A", "Room B", "Room A"],
+        "attended": [False, True, False],
+        "duration_mins": [30, 45, 60],
+    }
+)
+
+st.write("Editable dataframe:")
+
+appointments_edited = st.data_editor(
+    appointments_df,
+    column_config={
+        "name": st.column_config.TextColumn("Name", max_chars=50),
+        "date": st.column_config.DateColumn(
+            "Date", min_value=date(2026, 1, 1), format="DD/MM/YYYY"
+        ),
+        "start_time": st.column_config.TimeColumn(
+            "Start time", min_value=time(8, 0), max_value=time(18, 0), format="HH:mm"
+        ),
+        "room": st.column_config.SelectboxColumn(
+            "Room", options=["Room A", "Room B", "Room C"], required=True
+        ),
+        "attended": st.column_config.CheckboxColumn("Attended?"),
+        "duration_mins": st.column_config.NumberColumn(
+            "Duration (mins)", min_value=15, max_value=120, step=15
+        ),
+    },
+    hide_index=True,
+)
+
+st.write("Stored dataframe (`appointments_edited`):")
+st.write(appointments_edited)
+```
