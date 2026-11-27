@@ -577,3 +577,7 @@ world_map_medals
 
 
 :::
+
+::: {.callout-note collapse="true" title="Solutions"}
+You can find solutions to this exercise at <https://github.com/hsma-programme/streamlit_book/tree/main/solutions>.
+:::

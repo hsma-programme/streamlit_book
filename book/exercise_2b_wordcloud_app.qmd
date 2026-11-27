@@ -22,3 +22,7 @@ Some code snippets to help you build this are in [exercises/2b](https://github.c
 #| eval: false
 {{< include ../exercises/exercise_2b/wordcloud_starter_code.py >}}
 ```
+
+::: {.callout-note collapse="true" title="Solutions"}
+You can find solutions to this exercise at <https://github.com/hsma-programme/streamlit_book/tree/main/solutions>.
+:::
