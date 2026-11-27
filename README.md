@@ -12,6 +12,8 @@ You can view the book at: **<https://webapps.hsma.co.uk/>**
 
 Please open an issue if you spot an error, or have suggestions for improvements or additional chapters.
 
+<br>
+
 ## Viewing the book locally
 
 The book is available [online](https://webapps.hsma.co.uk/). To build it locally, you will need to:
@@ -32,6 +34,8 @@ pip install -r requirements.txt
 quarto render book
 quarto preview book
 ```
+
+<br>
 
 ## Citation
 
