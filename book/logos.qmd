@@ -8,14 +8,13 @@ filters:
 
 ## Logos
 
-Streamlit has basic support for small logos in your app.
+Streamlit has built-in support for logos in your app.
 
-It will look for a file you specify relative to the currently running streamlit file
-here, for example, it looks for a folder called ‘resources’ and then looks for the ‘hsma_logo.png’ file.
+You give it the path to an image file. In the example below, it looks for a folder called 'resources' and then the 'hsma_logo.png' file inside it.
 
 ![](assets/images/2024-09-16-22-24-06.png){.box}
 
-The logo will appear in the top left of your app.
+The logo will appear in the top left of your app. If it's a multi page app or an app using a Streamlit sidebar that you have manually defined, it will appear at the top of the sidebar.
 
 :::{.callout-tip}
 The command to insert a logo is
@@ -25,7 +24,9 @@ The command to insert a logo is
 e.g. `st.logo("resources/hsma_logo.png")`
 :::
 
-
+:::{.callout-note}
+Relative paths are usually resolved from the folder you run `streamlit run` in, not from the folder containing your script. If your logo doesn't appear, check this first.
+:::
 
 ```{python}
 #| eval: false
@@ -35,11 +36,10 @@ st.logo("resources/hsma_logo.png")
 
 st.title('Simple Calculator App')
 
-num_1 = st.number_input(label="First Number")
-
-num_2 = st.number_input(label="Second Number")
-
-operator = st.selectbox(label="Operation", options=["Add", "Subtract", "Multiply", "Divide"])
+with st.sidebar:
+  num_1 = st.number_input(label="First Number")
+  num_2 = st.number_input(label="Second Number")
+  operator = st.selectbox(label="Operation", options=["Add", "Subtract", "Multiply", "Divide"])
 
 if operator == "Add":
     output = num_1 + num_2
@@ -56,141 +56,91 @@ st.text(f"The answer is {output}")
 
 <br>
 
-If it's a multi page app or an app using a streamlit sidebar that you have manually defined, it will appear at the top of the sidebar.
+## Choosing a logo size
+
+By default, logos have a maximum height of 24 pixels. You can change this with the `size` argument:
+
+| `size` | Maximum height |
+| - | - |
+| `"small"` | 20 pixels |
+| `"medium"` (default) | 24 pixels |
+| `"large"` | 32 pixels |
+
+The width scales automatically to fit the sidebar.
 
 ```{python}
 #| eval: false
-import streamlit as st
-
-st.logo("resources/hsma_logo.png")
-
-st.title('Simple Calculator App')
-
-with st.sidebar:
-  num_1 = st.number_input(label="First Number")
-
-  num_2 = st.number_input(label="Second Number")
-
-  operator = st.selectbox(label="Operation", options=["Add", "Subtract", "Multiply", "Divide"])
-
-if operator == "Add":
-    output = num_1 + num_2
-elif operator == "Subtract":
-    output = num_1 - num_2
-elif operator == "Multiply":
-    output = num_1 * num_2
-elif operator == "Divide":
-    output = num_1 / num_2
-
-st.text(f"The answer is {output}")
-
+st.logo("resources/hsma_logo.png", size="large")
 ```
 
 :::{.callout-tip}
-Ideally, your logo should be close to 24 pixels tall by 240 pixels wide.
+For the most consistent results:
+
+- call `st.logo` early in your script
+- choose an image that looks good in both light and dark mode
+- avoid empty margins (transparent padding) around the image, as they make the logo look smaller than it is
 :::
 
 <br>
 
 ## Larger logos
 
-It is possible to include larger logos through more advanced tricks, but they are fragile and prone to breaking as changes are made to the Streamlit library.
+If `size="large"` still isn't big enough, it is possible to go further with custom CSS, but this is fragile and may break as Streamlit changes.
 
 ![](assets/images/2024-09-16-22-27-41.png){.box}
 
 The approach requires using some markdown to inject some custom CSS (see the fonts chapter for more details on CSS).
 
-Here is a reusable function you could adapt to your own use:
-
-```{python}
-#| eval: false
-def add_logo():
-    '''
-    Add a logo at the top of the page navigation sidebar
-
-    Approach written by blackary on
-    https://discuss.streamlit.io/t/put-logo-and-title-above-on-top-of-page-navigation-in-sidebar-of-multipage-app/28213/5
-
-    '''
-    st.markdown(
-        """
-        <style>
-            [data-testid="stSidebarNav"] {
-                background-image: url(https://raw.githubusercontent.com/hsma-programme/Teaching_DES_Concepts_Streamlit/main/resources/hsma_logo_transparent_background_small.png);
-                background-repeat: no-repeat;
-                padding-top: 175px;
-                background-position: 40px 30px;
-            }
-            [data-testid="stSidebarNav"]::before {
-                content: "The DES Playground";
-                padding-left: 20px;
-                margin-top: 50px;
-                font-size: 30px;
-                position: relative;
-                top: 100px;
-            }
-
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-```
-
 ```{python}
 #| eval: false
 import streamlit as st
 
-def add_logo():
-    '''
-    Add a logo at the top of the page navigation sidebar
+st.logo("resources/hsma_logo.png")
 
-    Approach written by blackary on
-    https://discuss.streamlit.io/t/put-logo-and-title-above-on-top-of-page-navigation-in-sidebar-of-multipage-app/28213/5
+st.markdown(
+    """
+    <style>
+        [data-testid="stSidebarHeader"] {
+            height: auto !important;
+            padding-bottom: 1rem;
+        }
+        [data-testid="stSidebarHeader"] img,
+        img[data-testid="stLogo"] {
+            height: 200px !important;
+            max-height: none !important;
+            width: auto !important;
+            max-width: 100% !important;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+```
 
-    '''
-    st.markdown(
-        """
-        <style>
-            [data-testid="stSidebarNav"] {
-                background-image: url(https://raw.githubusercontent.com/hsma-programme/Teaching_DES_Concepts_Streamlit/main/resources/hsma_logo_transparent_background_small.png);
-                background-repeat: no-repeat;
-                padding-top: 175px;
-                background-position: 40px 30px;
-            }
-            [data-testid="stSidebarNav"]::before {
-                content: "The DES Playground";
-                padding-left: 20px;
-                margin-top: 50px;
-                font-size: 30px;
-                position: relative;
-                top: 100px;
-            }
+<br>
 
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+## Making the logo a link
 
-add_logo()
+Use the `link` argument to make the logo clickable. The URL must start with `http://` or `https://`.
 
-st.title('Simple Calculator App')
+```{python}
+#| eval: false
+st.logo(
+    "resources/hsma_logo.png",
+    link="[https://hsma.co.uk](https://hsma.co.uk)"
+)
+```
 
-with st.sidebar:
-  num_1 = st.number_input(label="First Number")
+<br>
 
-  num_2 = st.number_input(label="Second Number")
+## A different logo when the sidebar is collapsed
 
-  operator = st.selectbox(label="Operation", options=["Add", "Subtract", "Multiply", "Divide"])
+When the sidebar is collapsed, Streamlit shows a smaller logo in the header. You can provide a separate, compact image for this with `icon_image`. This works well with a wide logo in the sidebar and a square icon version for the header.
 
-if operator == "Add":
-    output = num_1 + num_2
-elif operator == "Subtract":
-    output = num_1 - num_2
-elif operator == "Multiply":
-    output = num_1 * num_2
-elif operator == "Divide":
-    output = num_1 / num_2
-
-st.text(f"The answer is {output}")
-
+```{python}
+#| eval: false
+st.logo(
+    "resources/hsma_logo.png",
+    icon_image="resources/hsma_icon.png",
+)
 ```
