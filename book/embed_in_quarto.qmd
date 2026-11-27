@@ -2,6 +2,8 @@
 title: Embedding apps in Quarto
 ---
 
+<br>
+
 If you write documentation, reports or teaching materials in Quarto, you can embed a Streamlit app directly in the page. This lets people try the app without leaving the document.
 
 There are two main approaches:
