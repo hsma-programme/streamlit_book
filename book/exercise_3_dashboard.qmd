@@ -5,9 +5,9 @@
 You’re now going to create a dashboard in Streamlit.
 
 Here is a link to the dataset.
-[Link](https://github.com/hsma-programme/h6_7b_web_apps_1/tree/main/exercises/exercise_3)
+[Link](https://github.com/hsma-programme/streamlit_book/tree/main/exercises/exercise_3)
 
-You can use the starter code from <https://github.com/hsma-programme/h6_7b_web_apps_1/blob/main/exercises/exercise_3/starter_code.py>
+You can use the starter code from <https://github.com/hsma-programme/streamlit_book/blob/main/exercises/exercise_3/starter_code.py>
 
 :::{.callout-note collapse="true"}
 ### Click here to view the starter code
@@ -576,4 +576,8 @@ world_map_medals
 ```
 
 
+:::
+
+::: {.callout-note collapse="true" title="Solutions"}
+You can find solutions to this exercise at <https://github.com/hsma-programme/streamlit_book/tree/main/solutions>.
 :::

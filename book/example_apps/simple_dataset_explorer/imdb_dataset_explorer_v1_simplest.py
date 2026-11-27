@@ -6,7 +6,7 @@ st.title("IMDB Dataset Explorer")
 
 # Import data
 url = (
-    "https://github.com/hsma-programme/h6_7b_web_apps_1/raw/main/data/imdb_top_1000.csv"
+    "https://github.com/hsma-programme/streamlit_book/blob/main/book/datasets/imdb_top_1000.csv"
 )
 data = pd.read_csv(url)
 

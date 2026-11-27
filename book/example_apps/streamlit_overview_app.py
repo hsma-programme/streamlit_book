@@ -590,7 +590,7 @@ with tab4:
             st.code(
                 """
 
-        penguins_df = pd.read_csv("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/penguins_df.csv")
+        penguins_df = pd.read_csv("https://github.com/hsma-programme/streamlit_book/blob/main/book/datasets/penguins_df.csv")
 
         st.download_button(
             "Click here to download the dataframe as a csv file", # <1>
@@ -615,7 +615,7 @@ with tab4:
 
         st.code(
             """
-        penguins_df = pd.read_csv("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/datasets/penguins_df.csv")
+        penguins_df = pd.read_csv("https://github.com/hsma-programme/streamlit_book/blob/main/book/datasets/penguins_df.csv")
 
         output = BytesIO()
 
@@ -657,7 +657,7 @@ with tab4:
         if show_code:
             st.code(
                 """
-            penguins_df = pd.read_csv("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/datasets/penguins_df.csv")
+            penguins_df = pd.read_csv("https://github.com/hsma-programme/streamlit_book/blob/main/book/datasets/penguins_df.csv")
             fig, ax = plt.subplots(figsize=(15,10))
             plt.scatter(x=penguins_df["body_mass_g"], y=penguins_df["bill_length_mm"])
             plt.title("Penguin Body Mass (g) versus Bill Length (mm)")
@@ -703,7 +703,7 @@ with tab4:
         if show_code:
             st.code(
                 """
-            penguins_df = pd.read_csv("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/datasets/penguins_df.csv")
+            penguins_df = pd.read_csv("https://github.com/hsma-programme/streamlit_book/blob/main/book/datasets/penguins_df.csv")
 
             fig = px.scatter(penguins_df, x="body_mass_g", y="bill_length_mm")
 
@@ -743,7 +743,7 @@ with tab4:
         @st.cache_data
         def load_crime_data():
             return geopandas.read_file(
-                "https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/assets/geo/crime_dataset.gpkg"
+                "https://github.com/hsma-programme/streamlit_book/blob/main/book/assets/geo/crime_dataset.gpkg"
             )
 
         lsoa_2011_crime_figures_df = load_crime_data()
@@ -752,7 +752,7 @@ with tab4:
             (
                 """
 
-            lsoa_2011_crime_figures_df = geopandas.read_file("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/assets/geo/crime_dataset.gpkg")
+            lsoa_2011_crime_figures_df = geopandas.read_file("https://github.com/hsma-programme/streamlit_book/blob/main/book/assets/geo/crime_dataset.gpkg")
              fig, ax = plt.subplots()
 
         lsoa_2011_crime_figures_df.plot(
@@ -799,7 +799,7 @@ with tab4:
         @st.cache_data
         def load_gp_data():
             return geopandas.read_file(
-                "https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/assets/geo/gps_sw.gpkg"
+                "https://github.com/hsma-programme/streamlit_book/blob/main/book/assets/geo/gps_sw.gpkg"
             )
 
         gp_list_gdf_sw = load_gp_data()
@@ -808,7 +808,7 @@ with tab4:
             st.code(
                 """
 gp_list_gdf_sw = geopandas.read_file(
-            "https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/assets/geo/gps_sw.gpkg"
+            "https://github.com/hsma-programme/streamlit_book/blob/main/book/assets/geo/gps_sw.gpkg"
             )
 
 gp_list_gdf_sw = gp_list_gdf_sw[~gp_list_gdf_sw['geometry'].is_empty]
@@ -901,7 +901,7 @@ with tab3:
     with tab11:
         if show_code:
             st.code("""
-            penguins_df = pd.read_csv("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/datasets/penguins_df.csv")
+            penguins_df = pd.read_csv("https://github.com/hsma-programme/streamlit_book/blob/main/book/datasets/penguins_df.csv")
 
             st.table(penguins_df)
             """)
@@ -910,7 +910,7 @@ with tab3:
     with tab22:
         if show_code:
             st.code("""
-                    penguins_df = pd.read_csv("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/datasets/penguins_df.csv")
+                    penguins_df = pd.read_csv("https://github.com/hsma-programme/streamlit_book/blob/main/book/datasets/penguins_df.csv")
 
                     st.dataframe(penguins_df)
                     """)
@@ -920,7 +920,7 @@ with tab3:
     with tab33:
         if show_code:
             st.code("""
-                    penguins_df = pd.read_csv("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/datasets/penguins_df.csv")
+                    penguins_df = pd.read_csv("https://github.com/hsma-programme/streamlit_book/blob/main/book/datasets/penguins_df.csv")
 
                     penguins_df_edited = st.data_editor(penguins_df)
 
@@ -944,7 +944,7 @@ with tab3:
         if show_code:
             st.code(
                 """
-            penguins_df = pd.read_csv("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/datasets/penguins_df.csv")
+            penguins_df = pd.read_csv("https://github.com/hsma-programme/streamlit_book/blob/main/book/datasets/penguins_df.csv")
 
             fig, ax = plt.subplots(figsize=(15,10))
             plt.scatter(x=penguins_df["body_mass_g"], y=penguins_df["bill_length_mm"])
@@ -970,7 +970,7 @@ with tab3:
         if show_code:
             st.code(
                 """
-            penguins_df = pd.read_csv("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/datasets/penguins_df.csv")
+            penguins_df = pd.read_csv("https://github.com/hsma-programme/streamlit_book/blob/main/book/datasets/penguins_df.csv")
 
             plotly_fig = px.scatter(penguins_df, x="body_mass_g", y="bill_length_mm")
 
@@ -989,7 +989,7 @@ with tab3:
         if show_code:
             st.code(
                 """
-            lsoa_2011_crime_figures_df = geopandas.read_file("https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/assets/geo/crime_dataset.gpkg")
+            lsoa_2011_crime_figures_df = geopandas.read_file("https://github.com/hsma-programme/streamlit_book/blob/main/book/assets/geo/crime_dataset.gpkg")
 
             fig, ax = plt.subplots()
 
@@ -1017,7 +1017,7 @@ with tab3:
         if show_code:
             st.code("""
         gp_list_gdf_sw = geopandas.read_file(
-            "https://github.com/Bergam0t/streamlit_book/raw/refs/heads/main/assets/geo/gps_sw.gpkg"
+            "https://github.com/hsma-programme/streamlit_book/blob/main/book/assets/geo/gps_sw.gpkg"
             )
         # Filter out instances with no geometry
         gp_list_gdf_sw = gp_list_gdf_sw[~gp_list_gdf_sw['geometry'].is_empty]

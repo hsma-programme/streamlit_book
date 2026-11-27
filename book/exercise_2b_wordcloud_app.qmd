@@ -16,9 +16,13 @@ You can then add in some extra features:
 - A way to upload an image to use as a mask (I’ve provided a sample image that is in the right format to work)
 - A way to remove words they want excluded (this one’s a bit trickier!)
 
-Some code snippets to help you build this are in [exercises/2b](https://github.com/hsma-programme/h6_7b_web_apps_1/tree/main/exercises/exercise_2b) - but you can also take a look at them below.
+Some code snippets to help you build this are in [exercises/2b](https://github.com/hsma-programme/streamlit_book/tree/main/exercises/exercise_2b) - but you can also take a look at them below.
 
 ```{python}
 #| eval: false
 {{< include ../exercises/exercise_2b/wordcloud_starter_code.py >}}
 ```
+
+::: {.callout-note collapse="true" title="Solutions"}
+You can find solutions to this exercise at <https://github.com/hsma-programme/streamlit_book/tree/main/solutions>.
+:::

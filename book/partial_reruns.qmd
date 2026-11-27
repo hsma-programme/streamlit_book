@@ -27,9 +27,6 @@ penguins = load_penguins()
 
 app_column_1, app_column_2 = st.columns(2)
 
-axis_options = ['bill_length_mm', 'bill_depth_mm',
-       'flipper_length_mm', 'body_mass_g']
-
 with app_column_1:
     time.sleep(3)
     species = st.selectbox("Select a penguin species to filter by", ["Adelie", "Gentoo", "Chinstrap"])
@@ -38,9 +35,13 @@ with app_column_1:
 
 with app_column_2:
     time.sleep(3)
+
+    axis_options = ['bill_length_mm', 'bill_depth_mm',
+       'flipper_length_mm', 'body_mass_g']
     col_1 = st.selectbox("Select the column to use for the x axis", axis_options)
-    axis_options.remove(col_1)
-    col_2 = st.selectbox("Select the column to use for the y axis", axis_options)
+
+    y_options = [c for c in axis_options if c != col_1]
+    col_2 = st.selectbox("Select the column to use for the y axis", y_options)
 
     color_factor = st.selectbox("Select the column to colour the chart by",
     ["species", "sex", "island"])
@@ -65,9 +66,6 @@ penguins = load_penguins()
 
 app_column_1, app_column_2 = st.columns(2)
 
-axis_options = ['bill_length_mm', 'bill_depth_mm',
-       'flipper_length_mm', 'body_mass_g']
-
 with app_column_1:
     await asyncio.sleep(3)
     species = st.selectbox("Select a penguin species to filter by", ["Adelie", "Gentoo", "Chinstrap"])
@@ -76,9 +74,13 @@ with app_column_1:
 
 with app_column_2:
     await asyncio.sleep(3)
+
+    axis_options = ['bill_length_mm', 'bill_depth_mm',
+       'flipper_length_mm', 'body_mass_g']
     col_1 = st.selectbox("Select the column to use for the x axis", axis_options)
-    axis_options.remove(col_1)
-    col_2 = st.selectbox("Select the column to use for the y axis", axis_options)
+
+    y_options = [c for c in axis_options if c != col_1]
+    col_2 = st.selectbox("Select the column to use for the y axis", y_options)
 
     color_factor = st.selectbox("Select the column to colour the chart by",
     ["species", "sex", "island"])
@@ -106,9 +108,6 @@ penguins = load_penguins()
 
 app_column_1, app_column_2 = st.columns(2)
 
-axis_options = ['bill_length_mm', 'bill_depth_mm',
-       'flipper_length_mm', 'body_mass_g']
-
 @st.fragment # <1>
 def penguin_barchart(): # <2>
     time.sleep(3)
@@ -120,9 +119,13 @@ def penguin_barchart(): # <2>
 @st.fragment # <3>
 def penguin_scatterplot(): # <3>
     time.sleep(3)
+
+    axis_options = ['bill_length_mm', 'bill_depth_mm',
+       'flipper_length_mm', 'body_mass_g']
     col_1 = st.selectbox("Select the column to use for the x axis", axis_options)
-    axis_options.remove(col_1)
-    col_2 = st.selectbox("Select the column to use for the y axis", axis_options)
+
+    y_options = [c for c in axis_options if c != col_1]
+    col_2 = st.selectbox("Select the column to use for the y axis", y_options)
 
     color_factor = st.selectbox("Select the column to colour the chart by",
     ["species", "sex", "island"])

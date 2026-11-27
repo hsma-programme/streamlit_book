@@ -1,0 +1,233 @@
+---
+title: "Showing progress for long-running tasks"
+filters:
+  - whitphx/stlite
+---
+
+For long running tasks (e.g., big calculation, simulation model), it's good to show the user that something is happening.
+
+This provides reassurance that the app is working and hasn't frozen or crashed, and maybe show them how much longer they need to wait.
+
+Streamlit gives us three main ways to do this:
+
+* `st.spinner` - a simple "in progress" message.
+* `st.progress` - a bar showing how far through we are.
+* `st.status` - a container that shows a series of steps.
+
+<br>
+
+## Spinner
+
+A spinner is the simplest option. You use a `with` block, and everything nested underneath it will run while the spinner is displayed. When the code finishes, the spinner disappears.
+
+You can show how much time has passed using `show_time=True`.
+
+```{python}
+#| eval: false
+import streamlit as st
+import time
+
+if st.button("Run simulation"):
+
+    with st.spinner(text="Running simulation...", show_time=True):
+        # Pretend this is your simulation code
+        time.sleep(5)
+
+    st.success("Simulation complete!")
+```
+
+```{stlite-python}
+import streamlit as st
+import time
+
+if st.button("Run simulation"):
+
+    with st.spinner(text="Running simulation...", show_time=True):
+        # Pretend this is your simulation code
+        time.sleep(5)
+
+    st.success("Simulation complete!")
+```
+
+<br>
+
+## Progress bar
+
+A progress bar can show how far you are through a task.
+
+Create the bar with `st.progress` then update it inside your loop with a value between 0 and 100 (or 0.0 and 1.0).
+
+Calling `.empty()` at the end removes the bar if it's no longer needed.
+
+```{python}
+#| eval: false
+import streamlit as st
+import time
+
+n_runs = 20
+
+if st.button("Run simulation"):
+
+    progress_bar = st.progress(value=0, text="Starting simulation...")
+
+    for i in range(n_runs):
+        # Pretend this is one run of your simulation
+        time.sleep(0.25)
+
+        percent_complete = (i + 1) / n_runs
+        progress_bar.progress(
+            value=percent_complete,
+            text=f"Completed run {i + 1} of {n_runs}"
+        )
+
+    time.sleep(0.5)
+    progress_bar.empty()  # Remove the bar when finished
+    st.success("All runs complete!")
+```
+
+```{stlite-python}
+import streamlit as st
+import time
+
+n_runs = 20
+
+if st.button("Run simulation"):
+
+    progress_bar = st.progress(value=0, text="Starting simulation...")
+
+    for i in range(n_runs):
+        # Pretend this is one run of your simulation
+        time.sleep(0.25)
+
+        percent_complete = (i + 1) / n_runs
+        progress_bar.progress(
+            value=percent_complete,
+            text=f"Completed run {i + 1} of {n_runs}"
+        )
+
+    time.sleep(0.5)
+    progress_bar.empty()  # Remove the bar when finished
+    st.success("All runs complete!")
+```
+
+<br>
+
+## Status container
+
+`st.status` is useful when your task has several distinct stages.
+
+It shows a container with a label and spinner, and you can write messages inside it as each stage completes.
+
+```{python}
+#| eval: false
+import streamlit as st
+import time
+
+if st.button("Run simulation"):
+    with st.status("Running model...", expanded=True) as status:
+        st.write("Loading data...")
+        time.sleep(2)
+
+        st.write("Running simulation...")
+        time.sleep(3)
+
+        st.write("Processing results...")
+        time.sleep(2)
+
+        status.update(
+            label="Model complete!",
+            state="complete",
+            expanded=False
+        )
+```
+
+```{stlite-python}
+import streamlit as st
+import time
+
+if st.button("Run simulation"):
+    with st.status("Running model...", expanded=True) as status:
+        st.write("Loading data...")
+        time.sleep(2)
+
+        st.write("Running simulation...")
+        time.sleep(3)
+
+        st.write("Processing results...")
+        time.sleep(2)
+
+        status.update(
+            label="Model complete!",
+            state="complete",
+            expanded=False
+        )
+```
+
+<br>
+
+## Combining `st.status` and `st.progress`
+
+As `st.status` is a container, we can put `st.progress` inside it if we want to.
+
+```{python}
+#| eval: false
+import streamlit as st
+import time
+
+if st.button("Run simulation"):
+    with st.status("Running model...", expanded=True) as status:
+        st.write("Loading data...")
+        time.sleep(2)
+
+        st.write("Running simulation...")
+        n_runs = 20
+        progress_bar = st.progress(value=0, text="Starting simulation...")
+        for i in range(n_runs):
+            # Pretend this is one run of your simulation
+            time.sleep(0.25)
+            percent_complete = (i + 1) / n_runs
+            progress_bar.progress(
+                value=percent_complete,
+                text=f"Completed run {i + 1} of {n_runs}"
+            )
+
+        st.write("Processing results...")
+        time.sleep(2)
+
+        status.update(
+            label="Model complete!",
+            state="complete",
+            expanded=False
+        )
+```
+
+```{stlite-python}
+import streamlit as st
+import time
+
+if st.button("Run simulation"):
+    with st.status("Running model...", expanded=True) as status:
+        st.write("Loading data...")
+        time.sleep(2)
+
+        st.write("Running simulation...")
+        n_runs = 20
+        progress_bar = st.progress(value=0, text="Starting simulation...")
+        for i in range(n_runs):
+            # Pretend this is one run of your simulation
+            time.sleep(0.25)
+            percent_complete = (i + 1) / n_runs
+            progress_bar.progress(
+                value=percent_complete,
+                text=f"Completed run {i + 1} of {n_runs}"
+            )
+
+        st.write("Processing results...")
+        time.sleep(2)
+
+        status.update(
+            label="Model complete!",
+            state="complete",
+            expanded=False
+        )
+```

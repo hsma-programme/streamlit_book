@@ -19,7 +19,7 @@ It should then
 
 (for now, don’t worry if it displays an error until the user has entered all of the information!)
 
-Look in [exercises/2a](https://github.com/hsma-programme/h6_7b_web_apps_1/tree/main/exercises/exercise_2a) to find the code to get you started - or copy it from below.
+Look in [exercises/2a](https://github.com/hsma-programme/streamlit_book/tree/main/exercises/exercise_2a) to find the code to get you started - or copy it from below.
 
 ```{python}
 #| eval: false
@@ -49,3 +49,7 @@ Once you’ve got the basic calculator working, try
 - Take a look at the documentation to see what is returned from the different kinds of inputs if the user hasn’t entered a value
 - Using st.error, st.warning and st.success to warn the user if the percentage of their income they are spending on housing exceeds a recommended threshold (e.g. over 50% on housing might be red, over 33% might be amber - how could you do that with these functions?)
 - Provide some recommended amounts to the user based on their income
+
+::: {.callout-note collapse="true" title="Solutions"}
+You can find solutions to this exercise at <https://github.com/hsma-programme/streamlit_book/tree/main/solutions>.
+:::

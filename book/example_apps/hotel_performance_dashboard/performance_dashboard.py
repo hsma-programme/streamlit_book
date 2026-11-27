@@ -37,7 +37,7 @@ dld = get_nltk_resource()
 @st.cache_data
 def get_hotel_data():
     hotel_df = pd.read_csv(
-        "https://raw.githubusercontent.com/Bergam0t/streamlit_book/main/example_apps/hotel_performance_dashboard/hotels_subset.csv"
+        "https://github.com/hsma-programme/streamlit_book/blob/main/book/example_apps/hotel_performance_dashboard/hotels_subset.csv"
     )
 
     min_date = datetime.strptime(hotel_df["reviews.date"].min(), "%Y-%m-%dT00:00:00Z")
